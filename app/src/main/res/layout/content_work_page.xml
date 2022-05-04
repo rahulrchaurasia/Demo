@@ -13,24 +13,12 @@
         android:orientation="vertical"
         android:padding="@dimen/fab_margin">
 
-        <Button
-            android:id="@+id/btnKotlinBasic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kotlin Demo"/>
-
-        <Button
-            android:id="@+id/btnViewModelDemo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="View Model Demo"/>
 
         <Button
             android:id="@+id/btnWorkManagerDemo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:backgroundTint="@color/teal_200"
             android:text="Work Manager Demo"/>
     </LinearLayout>
 

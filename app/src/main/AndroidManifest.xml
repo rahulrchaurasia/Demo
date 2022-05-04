@@ -11,6 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetPackDemo">
         <activity
+            android:name=".WorkManager.WorkManagerDemoActivity"
+            android:theme="@style/Theme.JetPackDemo"
+            android:label="Work Manager Demo"
+            android:parentActivityName=".HomePage.HomePageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewModelShareDemo.DemoViewmodelActivity"
+            android:theme="@style/Theme.JetPackDemo"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
@@ -19,14 +29,19 @@
             android:name=".NavigationDemo.NavDemoActivity"
             android:exported="false"
             android:label="Home"
+            android:parentActivityName=".HomePage.HomePageActivity"
             android:theme="@style/Theme.JetPackDemo" />
         <activity
             android:name=".KotlinDemo.KotlinBasicDemoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomePageActivity"
+            android:theme="@style/Theme.JetPackDemo"/>
         <activity android:name=".BaseActivity" />
         <activity
             android:name=".HomePage.HomePageActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
+
             android:theme="@style/Theme.JetPackDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
