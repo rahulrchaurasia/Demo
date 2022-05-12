@@ -12,6 +12,9 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="colorButtonNormal">@color/red_light</item>
+        <item name="colorControlHighlight">@color/red_custom</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -24,6 +27,8 @@
         <item name="android:singleLine">true</item>
     </style>
 
+
+
     <style name="Theme.JetPackDemo.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -32,4 +37,42 @@
     <style name="Theme.JetPackDemo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.JetPackDemo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="PBarTheme">
+
+        <item name="colorSecondary"> @color/red_custom</item>
+
+    </style>
+    <style name="ButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/bg_primary_rect</item>
+        <item name="backgroundTint">@color/orange_button</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textSize">17sp</item>
+
+
+    </style>
+
+    <style name="ButtonBlue" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@drawable/blue_border_lightblue_background</item>
+        <item name="backgroundTint">@color/tab_color</item>
+        <item name="android:focusable">true</item>
+        <item name="android:minHeight">39dp</item>
+
+
+
+    </style>
 </resources>

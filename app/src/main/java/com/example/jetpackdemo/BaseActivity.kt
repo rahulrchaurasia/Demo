@@ -1,29 +1,70 @@
 package com.example.jetpackdemo
 
+import android.app.Dialog
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import com.example.jetpackdemo.databinding.ActivityBaseBinding
+import com.example.jetpackdemo.databinding.DialogLoadingBinding
 
 open class BaseActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
-    }
 
+       private lateinit var binding : ActivityBaseBinding
 
-    fun showAlert(msg : String){
+       private lateinit var dialog : Dialog
 
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Alert")
-        builder.setMessage(msg)
-//builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            binding = ActivityBaseBinding.inflate(layoutInflater)
+            setContentView(binding.root)
 
-        builder.setPositiveButton(android.R.string.ok) { dialog, which ->
+             dialog = Dialog(this)
+
 
         }
 
+        open fun showDialog(msg: String){
 
-        builder.show()
-    }
+            if(!dialog.isShowing) {
+                val dialogLoadingBinding = DialogLoadingBinding.inflate(layoutInflater)
+                dialog.setContentView(dialogLoadingBinding.root)
+                if (dialog.window != null) {
+
+                    dialog!!.window!!.setBackgroundDrawable(ColorDrawable(0))
+
+                }
+                if(msg.isNotEmpty()){
+                    dialogLoadingBinding.txtMessage.text = msg
+
+                }
+                dialog.setCancelable(false)
+                dialog.show()
+            }
+        }
+
+        fun cancelDialog(){
+
+            if(dialog.isShowing){
+
+                dialog.dismiss()
+            }
+        }
+
+
+        fun showAlert(msg : String){
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Alert")
+            builder.setMessage(msg)
+    //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+
+            builder.setPositiveButton(android.R.string.ok) { dialog, which ->
+
+            }
+
+
+            builder.show()
+        }
 
 }

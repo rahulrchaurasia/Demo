@@ -11,6 +11,7 @@ import androidx.work.*
 import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.WorkManager.Worker.*
 import com.example.jetpackdemo.databinding.ActivityWorkManagerDemoBinding
+import com.google.android.material.snackbar.Snackbar
 import java.util.concurrent.TimeUnit
 
 
@@ -50,7 +51,9 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
 
             includedLayout.btnWorkManagerDemo.setOnClickListener(this)
             includedLayout.btnWorkManagerDemoPeriodic.setOnClickListener(this)
-
+            includedLayout.btnStopPeriodic.setOnClickListener(this)
+            includedLayout.btnWorkManagerDemo1.setOnClickListener(this)
+            includedLayout.btnWorkManagerDemoPeriodicUnique.setOnClickListener(this)
 
     }
 
@@ -62,14 +65,14 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
             .putInt(Constant.KEY_COUNT_VALUE, 1000)
             .build()
 
-        val constraint: Constraints = Constraints.Builder()
+        val constraintNetworkType: Constraints = Constraints.Builder()
             // .setRequiresCharging(true)
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
 
         val upladRequest: OneTimeWorkRequest =
             OneTimeWorkRequest.Builder(UploadWorkerDemo::class.java)
-                .setConstraints(constraint)
+                .setConstraints(constraintNetworkType)
                 .setInputData(data)
                 .build()
 
@@ -88,6 +91,7 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
 
         //Todo : For Single
       //  workManager.enqueue(upladRequest)
+
 
         // Todo : For Chain (Chaining in Series)
 //            workManager.beginWith(filteringRequest)
@@ -135,27 +139,72 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
          */
     }
 
+    private fun setUniqueOneTimeRequest() {
+
+        val workManager: WorkManager = WorkManager.getInstance(applicationContext)
+
+
+
+        val downloadingRequest : OneTimeWorkRequest =
+            OneTimeWorkRequest.Builder(DownloadingPeriodicWorker::class.java)
+                .build()
+
+        //Todo : For Single
+          workManager.enqueue(downloadingRequest)
+
+
+
+
+    }
+
     private fun setPeriodicWorkRequest(){
         val workManager: WorkManager = WorkManager.getInstance(applicationContext)
 
+
+
         val periodicWorkRequest : PeriodicWorkRequest = PeriodicWorkRequest
                       .Builder(DownloadingPeriodicWorker::class.java, 15,TimeUnit.MINUTES)
+
                       .build()
 
-       // workManager.getInstance(applicationContext).enqueue(periodicWorkRequest)
+       workManager.enqueue(periodicWorkRequest)
+
+
+    }
+
+    private fun setUniquePeriodicWorkRequest(){
+        val workManager: WorkManager = WorkManager.getInstance(applicationContext)
+
+        val constraintNetworkType: Constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+
+
+        val periodicWorkRequest : PeriodicWorkRequest = PeriodicWorkRequest
+            .Builder(DownloadingPeriodicWorker::class.java, 15,TimeUnit.MINUTES)
+            .addTag("NOTIFYJOB1")
+            .setConstraints(constraintNetworkType)
+            .build()
+
+         workManager.enqueueUniquePeriodicWork("NOTIFY_WORK",
+                                    ExistingPeriodicWorkPolicy.REPLACE,periodicWorkRequest)
 
         workManager.getWorkInfoByIdLiveData(periodicWorkRequest.id)
             .observe(this, Observer {
-                txtDemo.text = it.state.name
+                if (it != null) {
+                it.let {
+                    txtDemo.text = it.state.name
 
-                if(it.state.isFinished){
+                        val opData : Data  = it.outputData
+                        val msg : String? = opData.getString(Constant.KEY_COUNT_VALUE1)
 
-                    val opData : Data  = it.outputData
-                    val msg : String? = opData.getString(Constant.KEY_COUNT_VALUE1)
+                        txtDemo.text = it.state.name + "\n\n" +msg
 
-                    txtDemo.text = it.state.name + "\n\n" +msg
-                    Toast.makeText(applicationContext,msg, Toast.LENGTH_LONG).duration
+
                 }
+
+
+            }
             })
     }
 
@@ -168,9 +217,25 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
                 setOneTimeRequest()
             }
 
+            binding.includeWorkManager.btnWorkManagerDemo1.id -> {
+
+                setUniqueOneTimeRequest()
+            }
+
             binding.includeWorkManager.btnWorkManagerDemoPeriodic.id -> {
 
                 setPeriodicWorkRequest()
+            }
+
+            binding.includeWorkManager.btnWorkManagerDemoPeriodicUnique.id -> {
+
+                setUniquePeriodicWorkRequest()
+            }
+
+
+            binding.includeWorkManager.btnStopPeriodic.id -> {
+
+                WorkManager.getInstance(applicationContext).cancelAllWorkByTag("NOTIFYJOB1");
             }
         }
     }

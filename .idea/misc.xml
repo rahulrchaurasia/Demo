@@ -3,14 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/drawable/bg_primary_rect.xml" value="0.1" />
+        <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/drawable/blue_border_lightblue_background.xml" value="0.1" />
+        <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/activity_base.xml" value="0.1" />
         <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/activity_demo_viewmodel.xml" value="0.17" />
         <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/activity_home.xml" value="0.13405797101449277" />
         <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/activity_home_page.xml" value="0.1" />
         <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/activity_kotlin_basic_demo.xml" value="0.11141304347826086" />
+        <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/activity_notification.xml" value="0.1921875" />
         <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/activity_work_manager_demo.xml" value="0.1" />
         <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/content_home.xml" value="0.13405797101449277" />
-        <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/content_home_page.xml" value="0.15307971014492755" />
+        <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/content_home_page.xml" value="0.1" />
         <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/content_work_page.xml" value="0.15" />
+        <entry key="..\:/Rahul Proj/PracticeProj/JetPackDemos/app/src/main/res/layout/dialog_loading.xml" value="0.33" />
       </map>
     </option>
   </component>

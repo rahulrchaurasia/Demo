@@ -14,19 +14,54 @@
         android:padding="@dimen/fab_margin">
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ButtonStyle"
             android:id="@+id/btnWorkManagerDemo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/teal_200"
-            android:text="Work Manager Demo OneTime"/>
+            android:text="Work ManagerDemo OneTime"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="@dimen/fab_margin"
+            android:id="@+id/btnWorkManagerDemo1"
+            style="@style/ButtonBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Unique Work ManagerDemo  OneTime" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black_light"
+           />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="@dimen/fab_margin"
             android:id="@+id/btnWorkManagerDemoPeriodic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/teal_200"
+
             android:text="Work Manager Demo Periodic"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="@dimen/fab_margin"
+            android:id="@+id/btnWorkManagerDemoPeriodicUnique"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:backgroundTint="@color/colorAccent_inspect"
+            android:text="Unique Work ManagerDemo Periodic"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="@dimen/fab_margin"
+            android:id="@+id/btnStopPeriodic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_200"
+            android:text="Stop Periodic Work"/>
+
 
         <TextView
             android:id="@+id/txtDemo"
