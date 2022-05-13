@@ -1,11 +1,13 @@
 package com.example.jetpackdemo.WorkManager
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.work.*
 import com.example.jetpackdemo.Utility.Constant
@@ -19,7 +21,7 @@ import java.util.concurrent.TimeUnit
 
 class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var toolbar: ActionBar
+    lateinit var toolbar: Toolbar
     private lateinit var binding: ActivityWorkManagerDemoBinding
 
     private lateinit var txtDemo: TextView
@@ -30,15 +32,16 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityWorkManagerDemoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        toolbar = supportActionBar!!
+
+        setSupportActionBar(binding.toolbar)
 
         supportActionBar!!.apply {
 
             setDisplayShowHomeEnabled(true)
             setDisplayHomeAsUpEnabled(true)
+            setDisplayUseLogoEnabled(true)
             //setTitle("Work Manger Demo")
         }
-
         init()
 
     }
@@ -54,6 +57,7 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
             includedLayout.btnStopPeriodic.setOnClickListener(this)
             includedLayout.btnWorkManagerDemo1.setOnClickListener(this)
             includedLayout.btnWorkManagerDemoPeriodicUnique.setOnClickListener(this)
+            includedLayout.btnWorkManagerCoroutines.setOnClickListener(this)
 
     }
 
@@ -208,6 +212,21 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
             })
     }
 
+
+    private fun setOneTimeRequestWithCoroutine(){
+        // uses forground Service
+
+        WorkManager.getInstance(this)
+            .beginUniqueWork("ForegroundWorker", ExistingWorkPolicy.APPEND_OR_REPLACE,
+                 OneTimeWorkRequest.from(ForegroundWorker::class.java)).enqueue().state
+            .observe(this) { state ->
+                Log.d(Constant.TAG2, "ForegroundWorker: $state")
+            }
+
+
+
+    }
+
     override fun onClick(view: View?) {
 
         when (view!!.id) {
@@ -236,6 +255,11 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
             binding.includeWorkManager.btnStopPeriodic.id -> {
 
                 WorkManager.getInstance(applicationContext).cancelAllWorkByTag("NOTIFYJOB1");
+            }
+
+            binding.includeWorkManager.btnWorkManagerCoroutines.id -> {
+
+                setOneTimeRequestWithCoroutine()
             }
         }
     }

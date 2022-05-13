@@ -27,18 +27,30 @@
             android:text="View Model Demo"/>
 
         <Button
+            android:id="@+id/btnNotificationDemo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Notification Demo"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ButtonBlue"
             android:id="@+id/btnWorkManagerDemo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             android:text="Work Manager Demo"/>
 
-        <Button
-            android:id="@+id/btnNotificationDemo"
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnServiceDemo"
+            style="@style/ButtonStyle"
+            android:layout_marginTop="@dimen/eight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:text="Notification Demo"/>
+            android:text="Service Demo"/>
     </LinearLayout>
 
 

@@ -67,10 +67,12 @@
         <item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:textColor">#FFFFFFFF</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
         <item name="android:background">@drawable/blue_border_lightblue_background</item>
         <item name="backgroundTint">@color/tab_color</item>
         <item name="android:focusable">true</item>
-        <item name="android:minHeight">39dp</item>
+        <item name="android:minHeight">42dp</item>
 
 
 

@@ -13,6 +13,7 @@ import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.KotlinDemo.KotlinBasicDemoActivity
 import com.example.jetpackdemo.Notification.NotificationActivity
 import com.example.jetpackdemo.R
+import com.example.jetpackdemo.ServiceDemo.ServiceDemoActivity
 import com.example.jetpackdemo.ViewModelShareDemo.DemoViewmodelActivity
 import com.example.jetpackdemo.WorkManager.WorkManagerDemoActivity
 import com.example.jetpackdemo.databinding.ActivityHomePageBinding
@@ -21,7 +22,7 @@ import com.example.jetpackdemo.databinding.ActivityHomePageBinding
 class HomePageActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding:ActivityHomePageBinding
-    lateinit var toolbar: ActionBar
+    lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +31,7 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
         binding = ActivityHomePageBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
-        toolbar = supportActionBar!!
 
         supportActionBar!!.apply {
 
@@ -41,11 +40,12 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
             setTitle("Home")
         }
 
-
-        binding.includeHomepage.btnKotlinBasic.setOnClickListener(this)
-        binding.includeHomepage.btnViewModelDemo.setOnClickListener(this)
-        binding.includeHomepage.btnWorkManagerDemo.setOnClickListener(this)
-        binding.includeHomepage.btnNotificationDemo.setOnClickListener(this)
+        val  include = binding.includeHomepage
+        include.btnKotlinBasic.setOnClickListener(this)
+        include.btnViewModelDemo.setOnClickListener(this)
+        include.btnWorkManagerDemo.setOnClickListener(this)
+        include.btnNotificationDemo.setOnClickListener(this)
+        include.btnServiceDemo.setOnClickListener(this)
 
     }
 
@@ -55,14 +55,14 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
 
             binding.includeHomepage.btnKotlinBasic.id!! -> {
 
-               // startActivity(Intent(this@HomePageActivity, KotlinBasicDemoActivity::class.java))
-                showDialog("Data is Loading")
+                startActivity(Intent(this@HomePageActivity, KotlinBasicDemoActivity::class.java))
+               // showDialog("Data is Loading")
 
             }
 
             binding.includeHomepage.btnViewModelDemo.id!! -> {
 
-             //   startActivity(Intent(this@HomePageActivity, DemoViewmodelActivity::class.java))
+               startActivity(Intent(this@HomePageActivity, DemoViewmodelActivity::class.java))
 
 
             }
@@ -81,6 +81,14 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
 
 
             }
+            binding.includeHomepage.btnServiceDemo.id!! -> {
+
+                startActivity(Intent(this@HomePageActivity, ServiceDemoActivity::class.java))
+
+
+            }
+
+
         }
 
 

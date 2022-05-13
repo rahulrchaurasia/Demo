@@ -10,14 +10,14 @@ import com.example.jetpackdemo.databinding.DialogLoadingBinding
 
 open class BaseActivity : AppCompatActivity() {
 
-       private lateinit var binding : ActivityBaseBinding
+       private lateinit var bindingMain : ActivityBaseBinding
 
        private lateinit var dialog : Dialog
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-            binding = ActivityBaseBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+            bindingMain = ActivityBaseBinding.inflate(layoutInflater)
+            setContentView(bindingMain.root)
 
              dialog = Dialog(this)
 
