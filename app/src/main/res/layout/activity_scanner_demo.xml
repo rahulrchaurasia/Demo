@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Scanner.ScannerDemoActivity">
+
+    <ToggleButton
+        android:id="@+id/flashLlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/green"
+        android:layout_margin="5dp"
+        android:padding="2dp"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:textOn="Flash ON"
+        android:textOff="Flash OFF"/>
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

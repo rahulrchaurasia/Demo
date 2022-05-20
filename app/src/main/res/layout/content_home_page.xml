@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -34,12 +35,14 @@
             android:text="Notification Demo"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            style="@style/ButtonBlue"
             android:id="@+id/btnWorkManagerDemo"
+            style="@style/ButtonBlue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:text="Work Manager Demo"/>
+            android:minHeight="48dp"
+            android:text="Work Manager Demo"
+            tools:ignore="TouchTargetSizeCheck" />
 
 
 
@@ -51,6 +54,16 @@
             android:layout_height="wrap_content"
 
             android:text="Service Demo"/>
+
+
+        <Button
+            android:id="@+id/btnScannerDemo"
+            style="@style/myCustomContainedButton"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Scanner Demo"/>
     </LinearLayout>
 
 

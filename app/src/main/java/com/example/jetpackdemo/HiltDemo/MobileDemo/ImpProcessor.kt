@@ -7,13 +7,13 @@ import javax.inject.Inject
 class ImpProcessor @Inject constructor() : Processor {
 
     init {
-        Log.d(Constant.TAG, "Processor Init...")
+        Log.d(Constant.TAG_HILT, "Processor Init...")
     }
 
     override fun getProcess() {
 
 
-            Log.d(Constant.TAG, "Processor Data Started...")
+            Log.d(Constant.TAG_HILT, "Processor Data Started...")
 
     }
 }

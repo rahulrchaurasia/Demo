@@ -87,14 +87,26 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Scanner.TextScannerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Scanner.ScannerDemoActivity"
+            android:exported="false"
+            android:label="Scanner Demo"
+            android:parentActivityName=".HomePage.HomePageActivity"
+            android:theme="@style/Theme.JetPackDemo" />
+        <activity
+            android:name=".Scanner.ScannerActivity"
+            android:exported="false"
+            android:label="Scanner Demo"
+            android:parentActivityName=".HomePage.HomePageActivity"
+            android:theme="@style/Theme.JetPackDemo" />
+        <activity
             android:name=".ServiceDemo.ServiceDemoActivity"
             android:exported="false"
             android:label="Service Demo"
             android:parentActivityName=".HomePage.HomePageActivity"
-            android:theme="@style/Theme.JetPackDemo"/>
-
-
-
+            android:theme="@style/Theme.JetPackDemo" />
         <activity
             android:name=".Notification.NotificationActivity"
             android:exported="false"
@@ -132,8 +144,7 @@
         <activity
             android:name=".HomePage.HomePageActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.JetPackDemo">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -149,11 +160,8 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-        </provider>
-
-<!--        // For Calling the Foreground Service-->
-        <service android:name=".ServiceDemo.Service.ForegroundService">
-        </service>
+        </provider> <!-- // For Calling the Foreground Service -->
+        <service android:name=".ServiceDemo.Service.ForegroundService" />
     </application>
 
 </manifest>

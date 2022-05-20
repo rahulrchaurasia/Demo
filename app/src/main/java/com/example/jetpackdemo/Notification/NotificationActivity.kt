@@ -22,7 +22,7 @@ import com.example.jetpackdemo.databinding.ActivityNotificationBinding
 class NotificationActivity : BaseActivity() {
 
  lateinit var binding:ActivityNotificationBinding
-    lateinit var toolbar: ActionBar
+
     lateinit var notificationManager: NotificationManager
     lateinit var notificationChannel: NotificationChannel
     lateinit var builder: Notification.Builder
@@ -36,14 +36,14 @@ class NotificationActivity : BaseActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        toolbar = supportActionBar!!
+
 
 
         supportActionBar!!.apply {
 
-            setDisplayShowHomeEnabled(false)
-            setDisplayHomeAsUpEnabled(false)
-            setTitle("Home")
+            setDisplayShowHomeEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+            setTitle("Notification Demo")
         }
 
         createNotificationChannels()

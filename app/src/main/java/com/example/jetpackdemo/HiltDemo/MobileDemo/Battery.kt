@@ -8,7 +8,7 @@ class Battery @Inject constructor(){
 
     fun BatteryData(){
 
-        Log.d(Constant.TAG, "Battery Data Started...")
+        Log.d(Constant.TAG_HILT, "Battery Data Started...")
     }
 
 }

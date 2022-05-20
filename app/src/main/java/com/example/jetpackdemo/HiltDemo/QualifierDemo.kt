@@ -19,7 +19,7 @@ class QualifierDemo @Inject constructor (
 
     fun getName(){
 
-        Log.d(Constant.TAG,"my name is $fName and $lName ")
+        Log.d(Constant.TAG_HILT,"my name is $fName and $lName ")
     }
 }
 

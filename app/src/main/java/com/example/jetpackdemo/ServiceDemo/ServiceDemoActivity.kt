@@ -1,18 +1,19 @@
 package com.example.jetpackdemo.ServiceDemo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.widget.Toolbar
+import android.widget.Toast
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
 import com.example.jetpackdemo.BaseActivity
-import com.example.jetpackdemo.R
 import com.example.jetpackdemo.ServiceDemo.Service.ForegroundService
 import com.example.jetpackdemo.databinding.ActivityServiceDemoBinding
 
+
 class ServiceDemoActivity : BaseActivity() , View.OnClickListener {
 
-    lateinit var toolbar: Toolbar
     private lateinit var binding : ActivityServiceDemoBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,7 @@ class ServiceDemoActivity : BaseActivity() , View.OnClickListener {
             setDisplayShowHomeEnabled(true)
             setDisplayHomeAsUpEnabled(true)
             setDisplayUseLogoEnabled(true)
-            //setTitle("Work Manger Demo")
+
         }
 
         val include= binding.includeService
@@ -48,5 +49,6 @@ class ServiceDemoActivity : BaseActivity() , View.OnClickListener {
            }
        }
     }
+
 
 }

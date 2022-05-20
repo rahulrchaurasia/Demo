@@ -21,7 +21,7 @@ class DemoImplementationOne @Inject constructor(): DemoOne {
 
     override fun demoOne() {
 
-        Log.d(Constant.TAG,"Demo One Implemented using Binds")
+        Log.d(Constant.TAG_HILT,"Demo One Implemented using Binds")
     }
 
 

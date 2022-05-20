@@ -21,7 +21,7 @@ class UploadWorkerDemo(context: Context, workerParams: WorkerParameters) : Worke
             val  count  = inputData.getInt(Constant.KEY_COUNT_VALUE,0)
             for(i : Int in 0 until count){
 
-                Log.d(Constant.TAG2,"Uploading..${i}")
+                Log.d(Constant.TAG_WORKER,"Uploading..${i}")
 
 
             }

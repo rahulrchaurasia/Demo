@@ -2,7 +2,6 @@ package com.example.jetpackdemo.WorkManager.Worker
 
 import android.content.Context
 import android.util.Log
-import androidx.work.Data
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.jetpackdemo.Utility.Constant
@@ -20,13 +19,13 @@ class DownloadingWorker(context: Context, workerParams: WorkerParameters) : Work
 
             for(i : Int in 0..500){
 
-                Log.d(Constant.TAG2,"Downloading..${i}")
+                Log.d(Constant.TAG_WORKER,"Downloading..${i}")
 
 
             }
             val time     = SimpleDateFormat("dd/m/yyyy hh:mm:ss")
             val currentData : String = time.format(Date())
-            Log.d(Constant.TAG2,"Completed ..${currentData}")
+            Log.d(Constant.TAG_WORKER,"Completed ..${currentData}")
 
 
             return Result.success()

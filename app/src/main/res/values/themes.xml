@@ -13,8 +13,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
+        <!--        // For Default button color -->
         <item name="colorButtonNormal">@color/red_light</item>
         <item name="colorControlHighlight">@color/red_custom</item>
+
+        <!--this item is invoked in app theme to override the contained material button-->
+        <!--        <item name="materialButtonStyle">@style/ButtonStyle</item>-->
+
+        <!--this item is invoked in app theme to override the outlined material button-->
+        <!--        <item name="materialButtonOutlinedStyle">@style/myCustomOutlinedButton</item>-->
         <!-- Customize your theme here. -->
     </style>
 
@@ -28,10 +35,17 @@
     </style>
 
 
-
     <style name="Theme.JetPackDemo.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="FullScreen">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+
     </style>
 
     <style name="Theme.JetPackDemo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -41,10 +55,11 @@
 
     <style name="PBarTheme">
 
-        <item name="colorSecondary"> @color/red_custom</item>
+        <item name="colorSecondary">@color/red_custom</item>
 
     </style>
-    <style name="ButtonStyle" parent="@android:style/Widget.Button">
+
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical|center_horizontal</item>
@@ -69,12 +84,68 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:paddingLeft">32dp</item>
         <item name="android:paddingRight">32dp</item>
-        <item name="android:background">@drawable/blue_border_lightblue_background</item>
+        <item name="android:background">@drawable/bg_darktblue_rect</item>
         <item name="backgroundTint">@color/tab_color</item>
         <item name="android:focusable">true</item>
         <item name="android:minHeight">42dp</item>
 
 
-
     </style>
+
+
+    <!--Base application theme ends here-->
+
+    <!--theming of contained button begins here-->
+    <!--parent name is to be give carefully-->
+    <style name="myCustomContainedButton" parent="Widget.MaterialComponents.Button">
+        <!--these all styles are implemented outside, because to get all the overridden attributes easily-->
+
+
+        <item name="android:background">@drawable/bg_lightblue_rect</item>
+        <item name="backgroundTint">@color/bg_screen3</item>
+        <item name="shapeAppearance">@style/customContainedButtonTheme</item>
+        <item name="android:textAppearance">@style/myCustomTextForMaterialButtons</item>
+    </style>
+    <!--overriding cornerSize and cornerFamily of the contained button-->
+    <style name="customContainedButtonTheme">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+    <!--theming of contained button ends here-->
+
+    <!--theming of outlined button begins here-->
+    <!--parent name is to be give carefully-->
+    <style name="myCustomOutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <!--these all styles are implemented outside, because to get all the overridden attributes easily-->
+        <item name="shapeAppearance">@style/customOutlinedButtonTheme</item>
+        <item name="android:textAppearance">@style/myCustomTextForMaterialButtons</item>
+    </style>
+    <!--overriding cornerSize and cornerFamily of the outlined button-->
+    <style name="customOutlinedButtonTheme">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+    <!--theming of outlined button ends here-->
+
+    <!--Font family and size of all the buttons in the entire application should be same-->
+    <!--so this child is common for all the material buttons in entire application-->
+    <style name="myCustomTextForMaterialButtons">
+        <item name="fontFamily">sans-serif-condensed-medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <!--        <item name="android:background">@drawable/bg_lightblue_rect</item>-->
+        <!--        <item name="android:textColor">#FFFFFFFF</item>-->
+    </style>
+
+    <style name="Theme.JetPackDemo.Fullscreen" parent="Theme.JetPackDemo">
+        <item name="android:actionBarStyle">@style/Widget.Theme.JetPackDemo.ActionBar.Fullscreen</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.JetPackDemo.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+
 </resources>

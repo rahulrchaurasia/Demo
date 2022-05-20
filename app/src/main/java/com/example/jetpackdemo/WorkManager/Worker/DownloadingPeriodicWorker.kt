@@ -35,13 +35,13 @@ class DownloadingPeriodicWorker(context: Context, workerParams: WorkerParameters
             Thread.sleep(2000)
             for(i : Int in 0..500){
 
-                Log.d(Constant.TAG2,"Downloading..${i}")
+                Log.d(Constant.TAG_WORKER,"Downloading..${i}")
 
 
             }
             val time     = SimpleDateFormat("dd/m/yyyy hh:mm:ss")
             val currentData : String = time.format(Date())
-            Log.d(Constant.TAG2,"Completed ..${currentData}")
+            Log.d(Constant.TAG_WORKER,"Completed ..${currentData}")
 
             val outPutData : Data = Data.Builder()
                 .putString(Constant.KEY_COUNT_VALUE1,currentData)

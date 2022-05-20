@@ -17,7 +17,7 @@ class CompressionWorker(context: Context, workerParams: WorkerParameters) : Work
 
             for(i : Int in 0..500){
 
-                Log.d(Constant.TAG2,"Compression..${i}")
+                Log.d(Constant.TAG_WORKER,"Compression..${i}")
 
 
             }

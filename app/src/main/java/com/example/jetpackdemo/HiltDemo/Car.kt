@@ -11,7 +11,7 @@ class Car @Inject constructor(private val engine: Engine , private val  wheel: W
 
         engine.getEngine()
         wheel.getWheel()
-        Log.d(Constant.TAG, "car is running")
+        Log.d(Constant.TAG_HILT, "car is running")
 
     }
 }

@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -13,7 +12,6 @@ import androidx.work.*
 import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.WorkManager.Worker.*
 import com.example.jetpackdemo.databinding.ActivityWorkManagerDemoBinding
-import com.google.android.material.snackbar.Snackbar
 import java.util.concurrent.TimeUnit
 
 
@@ -220,7 +218,7 @@ class WorkManagerDemoActivity : AppCompatActivity(), View.OnClickListener {
             .beginUniqueWork("ForegroundWorker", ExistingWorkPolicy.APPEND_OR_REPLACE,
                  OneTimeWorkRequest.from(ForegroundWorker::class.java)).enqueue().state
             .observe(this) { state ->
-                Log.d(Constant.TAG2, "ForegroundWorker: $state")
+                Log.d(Constant.TAG_WORKER, "ForegroundWorker: $state")
             }
 
 

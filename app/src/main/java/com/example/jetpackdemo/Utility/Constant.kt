@@ -2,11 +2,13 @@ package com.example.jetpackdemo.Utility
 
 object Constant {
 
-    val TAG : String = "HiltDEMO"
+    val TAG_HILT : String = "HiltDEMO"
 
-    val TAG1 : String = "KotlinDEMO"
+    val TAG_KOTLIN : String = "KotlinDEMO"
 
-    val TAG2 : String = "WorkerDEMO"
+    val TAG_WORKER : String = "WorkerDEMO"
+
+    val TAG_SCANNER : String = "ScannerDEMO"
 
     const val KEY_COUNT_VALUE = "key_count"
 

@@ -10,6 +10,6 @@ class Wheel {
     constructor()
     fun getWheel(){
 
-        Log.d(Constant.TAG," Wheel is running")
+        Log.d(Constant.TAG_HILT," Wheel is running")
     }
 }

@@ -63,7 +63,7 @@ class MainActivity : BaseActivity() {
         /////////////  Kotlin ///////////////
 
        // name = "trwrw"
-        Log.d(Constant.TAG, name!!.length.toString())
+        Log.d(Constant.TAG_HILT, name!!.length.toString())
 
     }
 }

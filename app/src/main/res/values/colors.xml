@@ -28,10 +28,10 @@
     <color name="orange_button">#f66c4f</color>
 
 
-    <color name ="yellow_color">#f9bf22</color>
-    <color name ="green_color">#c1b500</color>
-    <color name ="red_color">#f66b4f</color>
-    <color name ="button_color">#130f5e</color>
+    <color name="yellow_color">#f9bf22</color>
+    <color name="green_color">#c1b500</color>
+    <color name="red_color">#f66b4f</color>
+    <color name="button_color">#130f5e</color>
     <color name="header_color">#FFFFFF</color>
     <color name="colorOnSurface">#FFFFFF</color>
 
@@ -43,10 +43,6 @@
     <!--    <color name="primaryTextColor">#212121</color>-->
     <!--    <color name="secondaryTextColor">#757575</color>-->
     <!--    <color name="dividerColor">#BDBDBD</color>-->
-
-
-
-
 
 
     <!--    <color name="colorPrimary">#D32F2F</color>-->
@@ -143,7 +139,6 @@
     <color name="black_overlay">#66000000</color>
 
 
-
     <color name="progress">#ff50b100</color>
     <color name="text_small_color">#3d3d3d</color>
     <color name="header_color1">#153d70</color>
@@ -155,12 +150,8 @@
     <color name="bg_edit">#ebebeb</color>
 
 
-
     <color name="teallight">#19A79B</color>
     <color name="tealdark0">#116d65</color>
-
-
-
 
 
     <!--RBA-->
@@ -229,8 +220,6 @@
     <color name="yellow_text">#e2e20d</color>
 
 
-
-
     <!--<array name="array_dot_active">-->
     <!--<item>@color/dot_light_screen1</item>-->
     <!--<item>@color/dot_light_screen2</item>-->
@@ -258,4 +247,8 @@
         <item>@color/dot_dark_screen1</item>
 
     </array>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
 </resources>

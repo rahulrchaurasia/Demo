@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.ActionBar
-import com.example.jetpackdemo.R
 import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.databinding.ActivityKotlinBasicDemoBinding
 
@@ -45,18 +44,18 @@ class KotlinBasicDemoActivity : AppCompatActivity() {
 
         // safe call
 
-        Log.d(Constant.TAG1, name?.length.toString())
+        Log.d(Constant.TAG_KOTLIN, name?.length.toString())
 
         // safe call with let
 
         name?.let {
-            Log.d(Constant.TAG1, "length is ${name.length} ")
+            Log.d(Constant.TAG_KOTLIN, "length is ${name.length} ")
         }
 
         // Elvis Operator
 
         val len = lname?.length ?: "1"
-        Log.d(Constant.TAG1, len.toString())
+        Log.d(Constant.TAG_KOTLIN, len.toString())
 
 
       // var myData = arryName?.size
