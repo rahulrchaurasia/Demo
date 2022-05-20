@@ -87,6 +87,11 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Scanner.TextRecognizationActivity"
+            android:label="Text Recognization Demo"
+            android:parentActivityName=".HomePage.HomePageActivity"
+            android:exported="false" />
+        <activity
             android:name=".Scanner.TextScannerActivity"
             android:exported="false" />
         <activity
@@ -161,7 +166,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider> <!-- // For Calling the Foreground Service -->
-        <service android:name=".ServiceDemo.Service.ForegroundService" />
+        <service android:name=".ServiceDemo.Service.ForegroundService" /> <!-- //Google Milkit Text Vision -->
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
     </application>
 
 </manifest>

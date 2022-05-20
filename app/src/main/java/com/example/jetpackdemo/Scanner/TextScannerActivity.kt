@@ -8,6 +8,8 @@ import com.example.jetpackdemo.Scanner.ScannerUtil.Scanner
 import com.example.jetpackdemo.Scanner.ScannerUtil.ScannerListener
 import com.example.jetpackdemo.databinding.ActivityTextScannerBinding
 
+
+// Refer :https://github.com/googlesamples/mlkit/tree/master/android/translate-showcase
 class TextScannerActivity : AppCompatActivity() {
 
     lateinit var surfaceView: SurfaceView

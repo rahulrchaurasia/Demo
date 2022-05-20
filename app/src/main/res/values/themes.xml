@@ -100,7 +100,8 @@
     <style name="myCustomContainedButton" parent="Widget.MaterialComponents.Button">
         <!--these all styles are implemented outside, because to get all the overridden attributes easily-->
 
-
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
         <item name="android:background">@drawable/bg_lightblue_rect</item>
         <item name="backgroundTint">@color/bg_screen3</item>
         <item name="shapeAppearance">@style/customContainedButtonTheme</item>
@@ -146,6 +147,33 @@
     <style name="ThemeOverlay.JetPackDemo.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+
+
+
+    <style name="BaseText">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="SrcLangText" parent="BaseText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="TranslatedLangText" parent="SrcLangText">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="SrcText" parent="BaseText">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="TranslatedText" parent="BaseText">
+        <item name="android:textSize">38sp</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
 </resources>

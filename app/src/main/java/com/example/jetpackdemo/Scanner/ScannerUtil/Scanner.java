@@ -145,6 +145,8 @@ public class Scanner {
 
     }
 
+
+
     public void showToasts(boolean show){
         showToasts = show;
     }

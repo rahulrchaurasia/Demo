@@ -44,6 +44,13 @@ class ScannerActivity : BaseActivity() {
 
             startActivity(Intent(this, TextScannerActivity::class.java))
         }
+
+        binding.includeScanner.btnScanner3.setOnClickListener{
+
+            startActivity(Intent(this, TextRecognizationActivity::class.java))
+        }
+
+
     }
 
 
