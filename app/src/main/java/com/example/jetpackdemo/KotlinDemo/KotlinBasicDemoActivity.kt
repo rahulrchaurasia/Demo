@@ -10,7 +10,8 @@ import com.example.jetpackdemo.databinding.ActivityKotlinBasicDemoBinding
 class KotlinBasicDemoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityKotlinBasicDemoBinding
-    lateinit var toolbar: ActionBar
+
+    val fname : String = "umesh"
     val name : String? = null
     val lname : String? = null
 
@@ -33,14 +34,18 @@ class KotlinBasicDemoActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        toolbar = supportActionBar!!
+        setSupportActionBar(binding.toolbar)
 
         supportActionBar!!.apply {
 
             setDisplayShowHomeEnabled(true)
             setDisplayHomeAsUpEnabled(true)
-            //setTitle("Work Manger Demo")
+            setTitle("KOTLIN DEMO")
         }
+
+        // non-null asserted !!
+        Log.d(Constant.TAG_KOTLIN, fname!!.length.toString())
+
 
         // safe call
 

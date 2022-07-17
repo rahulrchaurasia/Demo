@@ -60,7 +60,7 @@ class TextRecognizationActivity : BaseActivity() {
     private  val TAG = "MainFragment"
 
     private var displayId: Int = -1
-    private val viewModel: TextRecognizationViewModel by viewModels()
+   // private val viewModel: TextRecognizationViewModel by viewModels()
     private var camera: Camera? = null
     private var imageAnalyzer: ImageAnalysis? = null
     private lateinit var container: ConstraintLayout
@@ -85,7 +85,7 @@ class TextRecognizationActivity : BaseActivity() {
         cameraExecutor = Executors.newCachedThreadPool()
         scopedExecutor = ScopedExecutor(cameraExecutor)
 
-        viewModel.executor = cameraExecutor
+        //viewModel.executor = cameraExecutor
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -105,27 +105,28 @@ class TextRecognizationActivity : BaseActivity() {
 
         // Get available language list and set up the target language spinner
         // with default selections.
-        val adapter = ArrayAdapter(
-            this.applicationContext,
-            android.R.layout.simple_spinner_dropdown_item, viewModel.availableLanguages
-        )
 
-        binding.targetLangSelector.adapter = adapter
-        binding.targetLangSelector.setSelection(adapter.getPosition(Language("en")))
-        binding.targetLangSelector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                viewModel.targetLang.value = adapter.getItem(position)
-            }
+//        val adapter = ArrayAdapter(
+//            this.applicationContext,
+//           // android.R.layout.simple_spinner_dropdown_item, viewModel.availableLanguages
+//        )
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
+//        binding.targetLangSelector.adapter = adapter
+//        binding.targetLangSelector.setSelection(adapter.getPosition(Language("en")))
+//        binding.targetLangSelector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(
+//                parent: AdapterView<*>,
+//                view: View?,
+//                position: Int,
+//                id: Long
+//            ) {
+//              //  viewModel.targetLang.value = adapter.getItem(position)
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>) {}
+//        }
 
-        viewModel.sourceLang.observe(this, Observer { binding.srcLang.text = it.displayName })
+        //viewModel.sourceLang.observe(this, Observer { binding.srcLang.text = it.displayName })
 
 
 //        viewModel.translatedText.observe(this, Observer { resultOrError ->
@@ -191,65 +192,65 @@ class TextRecognizationActivity : BaseActivity() {
 
     private fun bindCameraUseCases(cameraProvider: ProcessCameraProvider) {
         // Get screen metrics used to setup camera for full screen resolution
-        val metrics = DisplayMetrics().also { viewFinder.display.getRealMetrics(it) }
-        Log.d(TAG, "Screen metrics: ${metrics.widthPixels} x ${metrics.heightPixels}")
-
-        val screenAspectRatio = aspectRatio(metrics.widthPixels, metrics.heightPixels)
-        Log.d(TAG, "Preview aspect ratio: $screenAspectRatio")
-
-        val rotation = viewFinder.display.rotation
-
-        val preview = Preview.Builder()
-            .setTargetAspectRatio(screenAspectRatio)
-            .setTargetRotation(rotation)
-            .build()
-
-        // Build the image analysis use case and instantiate our analyzer
-        imageAnalyzer = ImageAnalysis.Builder()
-            // We request aspect ratio but no resolution
-            .setTargetAspectRatio(screenAspectRatio)
-            .setTargetRotation(rotation)
-            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-            .build()
-            .also {
-                it.setAnalyzer(
-                    scopedExecutor, TextAnalyzer(
-                       this,
-                        lifecycle,
-                        cameraExecutor,
-                        viewModel.sourceText,
-                        viewModel.imageCropPercentages
-                    )
-                )
-            }
-
-        // Imp 05
-        viewModel.sourceText.observe(this, Observer {
-            binding.srcText.text = it
-
-
-        })
-
-
-        viewModel.imageCropPercentages.observe(this,
-            Observer { drawOverlay(binding.overlay.holder, it.first, it.second) })
-
-        // Select back camera since text detection does not work with front camera
-        val cameraSelector =
-            CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
-
-        try {
-            // Unbind use cases before rebinding
-            cameraProvider.unbindAll()
-
-            // Bind use cases to camera
-            camera = cameraProvider.bindToLifecycle(
-                this, cameraSelector, preview, imageAnalyzer
-            )
-            preview.setSurfaceProvider(viewFinder.surfaceProvider)
-        } catch (exc: IllegalStateException) {
-            Log.e(TAG, "Use case binding failed. This must be running on main thread.", exc)
-        }
+//        val metrics = DisplayMetrics().also { viewFinder.display.getRealMetrics(it) }
+//        Log.d(TAG, "Screen metrics: ${metrics.widthPixels} x ${metrics.heightPixels}")
+//
+//        val screenAspectRatio = aspectRatio(metrics.widthPixels, metrics.heightPixels)
+//        Log.d(TAG, "Preview aspect ratio: $screenAspectRatio")
+//
+//        val rotation = viewFinder.display.rotation
+//
+//        val preview = Preview.Builder()
+//            .setTargetAspectRatio(screenAspectRatio)
+//            .setTargetRotation(rotation)
+//            .build()
+//
+//        // Build the image analysis use case and instantiate our analyzer
+//        imageAnalyzer = ImageAnalysis.Builder()
+//            // We request aspect ratio but no resolution
+//            .setTargetAspectRatio(screenAspectRatio)
+//            .setTargetRotation(rotation)
+//            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+//            .build()
+//            .also {
+//                it.setAnalyzer(
+//                    scopedExecutor, TextAnalyzer(
+//                       this,
+//                        lifecycle,
+//                        cameraExecutor,
+//                        viewModel.sourceText,
+//                        viewModel.imageCropPercentages
+//                    )
+//                )
+//            }
+//
+//        // Imp 05
+//        viewModel.sourceText.observe(this, Observer {
+//            binding.srcText.text = it
+//
+//
+//        })
+//
+//
+//        viewModel.imageCropPercentages.observe(this,
+//            Observer { drawOverlay(binding.overlay.holder, it.first, it.second) })
+//
+//        // Select back camera since text detection does not work with front camera
+//        val cameraSelector =
+//            CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
+//
+//        try {
+//            // Unbind use cases before rebinding
+//            cameraProvider.unbindAll()
+//
+//            // Bind use cases to camera
+//            camera = cameraProvider.bindToLifecycle(
+//                this, cameraSelector, preview, imageAnalyzer
+//            )
+//            preview.setSurfaceProvider(viewFinder.surfaceProvider)
+//        } catch (exc: IllegalStateException) {
+//            Log.e(TAG, "Use case binding failed. This must be running on main thread.", exc)
+//        }
     }
 
     private fun drawOverlay(
