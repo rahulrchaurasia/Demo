@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.jetpackdemo.R
@@ -15,7 +17,12 @@ import com.example.jetpackdemo.databinding.FragmentDemo1Binding
 
 class DemoFragment1 : Fragment() {
 
-    private var shareDemoViewModelInstance : ShareDemoViewModel ? = null
+   // private var shareDemoViewModelInstance : ShareDemoViewModel ? = null
+
+    // this is smallest way
+    // activityViewModels : because it coonected with activity. if connected with fragment than directly used viewModels()
+    private  val shareDemoViewModelInstance : ShareDemoViewModel by activityViewModels()
+
 
     // assign the _binding variable initially to null and
     // also when the view is destroyed again it has to be set to null
@@ -49,7 +56,9 @@ class DemoFragment1 : Fragment() {
 
         // Note : requireActivity() because we need activity instance. if we use this than it used frag
         // Activity instance is required because DemoViewmodelActivity has both the fragmnet.
-        shareDemoViewModelInstance = ViewModelProvider(requireActivity()).get(ShareDemoViewModel::class.java)
+
+        // Todo : we used diff way to create viewmodel
+      //  shareDemoViewModelInstance = ViewModelProvider(requireActivity()).get(ShareDemoViewModel::class.java)
 
 
         // observe the data inside the view model that is mutable
