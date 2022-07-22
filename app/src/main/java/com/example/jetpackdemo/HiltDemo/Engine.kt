@@ -4,11 +4,11 @@ import android.util.Log
 import com.example.jetpackdemo.Utility.Constant
 import javax.inject.Inject
 
-class Engine {
-    @Inject
-    constructor()
-    fun getEngine(){
-
-        Log.d(Constant.TAG_HILT,"Engine is running..")
-    }
-}
+//class Engine {
+//    @Inject
+//    constructor()
+//    fun getEngine(){
+//
+//        Log.d(Constant.TAG_HILT,"Engine is running..")
+//    }
+//}

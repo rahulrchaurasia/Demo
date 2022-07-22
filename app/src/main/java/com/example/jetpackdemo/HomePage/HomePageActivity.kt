@@ -20,6 +20,7 @@ import com.example.jetpackdemo.Notification.NotificationActivity
 import com.example.jetpackdemo.R
 import com.example.jetpackdemo.Scanner.ScannerActivity
 import com.example.jetpackdemo.ServiceDemo.ServiceDemoActivity
+import com.example.jetpackdemo.ViewModelDemo.ViewModelMainActivity
 import com.example.jetpackdemo.ViewModelShareDemo.DemoViewmodelActivity
 import com.example.jetpackdemo.WorkManager.WorkManagerDemoActivity
 import com.example.jetpackdemo.databinding.ActivityHomePageBinding
@@ -74,7 +75,7 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
 
             binding.includeHomepage.btnViewModelDemo.id!! -> {
 
-               startActivity(Intent(this@HomePageActivity, DemoViewmodelActivity::class.java))
+               startActivity(Intent(this@HomePageActivity, ViewModelMainActivity::class.java))
 
 
             }

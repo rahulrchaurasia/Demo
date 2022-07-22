@@ -4,8 +4,8 @@ import android.util.Log
 import com.example.jetpackdemo.Utility.Constant
 import javax.inject.Inject
 
-interface Processor {
-
-
-    fun getProcess()
-}
+//interface Processor {
+//
+//
+//    fun getProcess()
+//}

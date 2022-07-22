@@ -87,10 +87,23 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Scanner.TextRecognizationActivity"
-            android:label="Text Recognization Demo"
+            android:name=".ViewModelDemo.ViewModelMainActivity"
             android:parentActivityName=".HomePage.HomePageActivity"
             android:exported="false" />
+        <activity
+            android:name=".ViewModelDemo.ViewModeDemo2Activity"
+            android:parentActivityName=".ViewModelDemo.ViewModelMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewModelShareDemo.DemoViewmodelActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomePageActivity"
+            android:theme="@style/Theme.JetPackDemo" />
+        <activity
+            android:name=".Scanner.TextRecognizationActivity"
+            android:exported="false"
+            android:label="Text Recognization Demo"
+            android:parentActivityName=".HomePage.HomePageActivity" />
         <activity
             android:name=".Scanner.TextScannerActivity"
             android:exported="false" />
@@ -124,11 +137,7 @@
             android:label="Work Manager Demo"
             android:parentActivityName=".HomePage.HomePageActivity"
             android:theme="@style/Theme.JetPackDemo" />
-        <activity
-            android:name=".ViewModelShareDemo.DemoViewmodelActivity"
-            android:exported="false"
-            android:parentActivityName=".HomePage.HomePageActivity"
-            android:theme="@style/Theme.JetPackDemo" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false"

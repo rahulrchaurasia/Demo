@@ -4,11 +4,11 @@ import android.util.Log
 import com.example.jetpackdemo.Utility.Constant
 import javax.inject.Inject
 
-class Battery @Inject constructor(){
-
-    fun BatteryData(){
-
-        Log.d(Constant.TAG_HILT, "Battery Data Started...")
-    }
-
-}
+//class Battery @Inject constructor(){
+//
+//    fun BatteryData(){
+//
+//        Log.d(Constant.TAG_HILT, "Battery Data Started...")
+//    }
+//
+//}
