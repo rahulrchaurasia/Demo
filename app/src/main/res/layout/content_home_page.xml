@@ -25,7 +25,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:text="View Model Demo"/>
+            android:text="View Model and Live Data Demo"/>
+
+        <Button
+            android:id="@+id/btnRoom"
+            style="@style/myCustomGreenButton"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="ROOM Demo"/>
 
         <Button
             android:id="@+id/btnNotificationDemo"
@@ -58,7 +67,7 @@
 
         <Button
             android:id="@+id/btnScannerDemo"
-            style="@style/myCustomContainedButton"
+            style="@style/myCustomButton"
             android:layout_marginTop="@dimen/eight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

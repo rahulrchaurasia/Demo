@@ -18,6 +18,7 @@ import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.KotlinDemo.KotlinBasicDemoActivity
 import com.example.jetpackdemo.Notification.NotificationActivity
 import com.example.jetpackdemo.R
+import com.example.jetpackdemo.RoomDemo.RoomDemoMainActivity
 import com.example.jetpackdemo.Scanner.ScannerActivity
 import com.example.jetpackdemo.ServiceDemo.ServiceDemoActivity
 import com.example.jetpackdemo.ViewModelDemo.ViewModelMainActivity
@@ -59,6 +60,7 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
         include.btnNotificationDemo.setOnClickListener(this)
         include.btnServiceDemo.setOnClickListener(this)
         include.btnScannerDemo.setOnClickListener(this)
+        include.btnRoom.setOnClickListener(this)
 
     }
 
@@ -76,6 +78,13 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
             binding.includeHomepage.btnViewModelDemo.id!! -> {
 
                startActivity(Intent(this@HomePageActivity, ViewModelMainActivity::class.java))
+
+
+            }
+
+            binding.includeHomepage.btnRoom.id!! -> {
+
+                startActivity(Intent(this@HomePageActivity, RoomDemoMainActivity::class.java))
 
 
             }

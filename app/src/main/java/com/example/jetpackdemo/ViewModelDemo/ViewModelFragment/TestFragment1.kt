@@ -43,4 +43,9 @@ class TestFragment1 : Fragment() {
         @JvmStatic
         fun newInstance() = TestFragment1()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

@@ -87,13 +87,28 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ViewModelDemo.ViewModelMainActivity"
+            android:name=".RoomDemo.RoomDemoMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_room_demo_main"
             android:parentActivityName=".HomePage.HomePageActivity"
-            android:exported="false" />
+            android:theme="@style/AppTheme.CustomMaterialTheme" />
+        <activity
+            android:name=".RoomDemo.RoomDemoActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.CustomMaterialTheme"
+            android:parentActivityName=".RoomDemo.RoomDemoMainActivity"/>
+        <activity
+            android:name=".ViewModelDemo.ViewModelFactoryDemo.ViewModelDemo3Activity"
+            android:exported="false"
+            android:parentActivityName=".ViewModelDemo.ViewModelMainActivity" />
+        <activity
+            android:name=".ViewModelDemo.ViewModelMainActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomePageActivity" />
         <activity
             android:name=".ViewModelDemo.ViewModeDemo2Activity"
-            android:parentActivityName=".ViewModelDemo.ViewModelMainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ViewModelDemo.ViewModelMainActivity" />
         <activity
             android:name=".ViewModelShareDemo.DemoViewmodelActivity"
             android:exported="false"
@@ -137,7 +152,6 @@
             android:label="Work Manager Demo"
             android:parentActivityName=".HomePage.HomePageActivity"
             android:theme="@style/Theme.JetPackDemo" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false"
@@ -179,6 +193,9 @@
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="ocr" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

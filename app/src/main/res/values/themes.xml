@@ -97,13 +97,24 @@
 
     <!--theming of contained button begins here-->
     <!--parent name is to be give carefully-->
-    <style name="myCustomContainedButton" parent="Widget.MaterialComponents.Button">
+    <style name="myCustomButton" parent="Widget.MaterialComponents.Button">
         <!--these all styles are implemented outside, because to get all the overridden attributes easily-->
 
         <item name="android:paddingLeft">32dp</item>
         <item name="android:paddingRight">32dp</item>
         <item name="android:background">@drawable/bg_lightblue_rect</item>
         <item name="backgroundTint">@color/bg_screen3</item>
+        <item name="shapeAppearance">@style/customContainedButtonTheme</item>
+        <item name="android:textAppearance">@style/myCustomTextForMaterialButtons</item>
+    </style>
+
+    <style name="myCustomGreenButton" parent="Widget.MaterialComponents.Button">
+        <!--these all styles are implemented outside, because to get all the overridden attributes easily-->
+
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:background">@drawable/bg_lightgreen_rect</item>
+        <item name="backgroundTint">@color/green_descent</item>
         <item name="shapeAppearance">@style/customContainedButtonTheme</item>
         <item name="android:textAppearance">@style/myCustomTextForMaterialButtons</item>
     </style>
@@ -139,7 +150,8 @@
     </style>
 
     <style name="Theme.JetPackDemo.Fullscreen" parent="Theme.JetPackDemo">
-        <item name="android:actionBarStyle">@style/Widget.Theme.JetPackDemo.ActionBar.Fullscreen</item>
+        <item name="android:actionBarStyle">@style/Widget.Theme.JetPackDemo.ActionBar.Fullscreen
+        </item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowBackground">@null</item>
     </style>
@@ -148,7 +160,6 @@
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
-
 
 
     <style name="BaseText">

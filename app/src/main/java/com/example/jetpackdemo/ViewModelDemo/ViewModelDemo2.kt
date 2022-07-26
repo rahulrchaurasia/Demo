@@ -1,14 +1,21 @@
 package com.example.jetpackdemo.ViewModelDemo
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ViewModelDemo2 : ViewModel() {
 
-    val data = MutableLiveData<String>()
+   private val _data = MutableLiveData<String>()
+
+    // Required LiveData is only public therefore data ,  get() = _data means set mutabledata to it
+    val data : LiveData<String>
+     get() = _data
 
     fun setData(newData : String){
 
-        data.value = newData
+        _data.value = newData
+
     }
+
 }

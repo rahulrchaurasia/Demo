@@ -27,7 +27,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <androidx.appcompat.widget.AppCompatButton
         android:layout_marginTop="@dimen/eight"
-        style="@style/myCustomContainedButton"
+        style="@style/myCustomButton"
         android:id="@+id/btnDemo1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,10 +36,19 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_marginTop="@dimen/fab_margin"
         android:id="@+id/btnDemo2"
-        style="@style/myCustomContainedButton"
+        style="@style/myCustomButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:text="ViewModel Demo 2" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="@dimen/fab_margin"
+            android:id="@+id/btnDemo3"
+            style="@style/myCustomButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="ViewModel with Factory Demo 3" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

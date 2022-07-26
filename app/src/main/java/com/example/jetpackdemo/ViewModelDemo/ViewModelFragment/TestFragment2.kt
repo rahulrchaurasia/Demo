@@ -47,4 +47,9 @@ class TestFragment2 : Fragment() {
         fun newInstance() = TestFragment2()
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

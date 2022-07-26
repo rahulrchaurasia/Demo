@@ -20,6 +20,7 @@
     <string name="overlay_help">Center text in box grrg rgjgo3j3\n 3jti3jiotj3io4trio3\n 3toih3tioh3iot htoi3ht
     34t34t3k4pt3p4t 3t3t</string>
     <string name="downloading_model_files">Downloading model files…</string>
+    <string name="title_activity_room_demo_main">RoomDemoMainActivity</string>
 
 
 </resources>
