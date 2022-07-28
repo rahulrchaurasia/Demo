@@ -82,11 +82,29 @@ dependencies {
     // room
     //https://developer.android.com/jetpack/androidx/releases/room
 
-    implementation 'androidx.room:room-runtime:2.4.2'
-    annotationProcessor 'androidx.room:room-compiler:2.4.2'   // For Jave developer
-    kapt 'androidx.room:room-compiler:2.4.2'   //  To use Kotlin annotation processing tool (kapt)
-    implementation "androidx.room:room-ktx:2.4.2"   // optional - Kotlin Extensions and Coroutines support for Room
-    androidTestImplementation "androidx.room:room-testing:2.4.2"  //  optional - Test helpers
+
+//
+//    implementation 'androidx.room:room-runtime:2.4.2'
+//    annotationProcessor 'androidx.room:room-compiler:2.4.2'   // For Jave developer
+//    kapt 'androidx.room:room-compiler:2.4.2'   //  To use Kotlin annotation processing tool (kapt)
+//    implementation "androidx.room:room-ktx:2.4.2"   // optional - Kotlin Extensions and Coroutines support for Room
+  //  implementation "androidx.room:room-coroutines2.4.2"
+
+
+   // val roomVersion = "2.4.3"
+
+    implementation 'androidx.room:room-runtime:2.4.3'
+    annotationProcessor 'androidx.room:room-compiler:2.4.3'
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt 'androidx.room:room-compiler:2.4.3'
+    // To use Kotlin Symbol Processing (KSP)
+   // ksp 'androidx.room:room-compiler:2.4.3'
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation 'androidx.room:room-ktx:2.4.3'
+
+
 
 
     // Dagger2
