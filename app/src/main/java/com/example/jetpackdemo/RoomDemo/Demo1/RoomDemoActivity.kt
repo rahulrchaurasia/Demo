@@ -1,9 +1,14 @@
-package com.example.jetpackdemo.RoomDemo
+package com.example.jetpackdemo.RoomDemo.Demo1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.jetpackdemo.RoomDemo.Database.DemoDatabase
+import com.example.jetpackdemo.RoomDemo.Demo1.ViewModelRoom.RoomDemo1ViewModel
+import com.example.jetpackdemo.RoomDemo.Demo1.ViewModelRoom.RoomDemo1ViewModelFactory
 import com.example.jetpackdemo.RoomDemo.Entity.Contact
 import com.example.jetpackdemo.databinding.ActivityRoomDemoBinding
 import com.google.android.material.snackbar.Snackbar
@@ -12,8 +17,13 @@ import kotlinx.coroutines.launch
 
 class RoomDemoActivity : AppCompatActivity() {
 
+
     lateinit var binding : ActivityRoomDemoBinding
     lateinit var  database: DemoDatabase
+    lateinit var viewModel: RoomDemo1ViewModel
+    lateinit var viewModelFactory: RoomDemo1ViewModelFactory
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,7 +41,8 @@ class RoomDemoActivity : AppCompatActivity() {
         }
 
         database = DemoDatabase.getDatabase(this@RoomDemoActivity)
-
+        viewModelFactory = RoomDemo1ViewModelFactory(database)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(RoomDemo1ViewModel::class.java)
 
         binding.includeRoomDemo1.btnSubmit.setOnClickListener {
 
@@ -45,10 +56,43 @@ class RoomDemoActivity : AppCompatActivity() {
                        database.contactDao().insertContact(contact)
 
                        Snackbar.make(binding.includeRoomDemo1.btnSubmit, "Data Save Successfully !!", Snackbar.LENGTH_SHORT).show()
+                       clearData()
                    }
 
                 }
 
+        }
+
+
+
+
+        binding.fabView.setOnClickListener{
+//
+//            val data   = viewModel.contactList
+//            println("Data of contact${data}")
+//            var contactList  : LiveData<List<Contact>>
+//            contactList = viewModel.contactList
+//            Log.d("COROUTINE", contactList.value!!.get(0).name)
+           // Snackbar.make(binding.includeRoomDemo1.btnSubmit, "Required Name!!", Snackbar.LENGTH_SHORT).show()
+
+            lifecycleScope.launch {
+
+                val data  = viewModel.contactList
+
+                var contactList  : LiveData<List<Contact>>
+                contactList = viewModel.contactList
+                Log.d("COROUTINE", contactList.value!!.get(0).name)
+            }
+        }
+
+    }
+
+    fun clearData(){
+
+        binding.includeRoomDemo1.apply {
+            etName.setText("")
+            etAddress.setText("")
+            etMobile.setText("")
         }
 
     }

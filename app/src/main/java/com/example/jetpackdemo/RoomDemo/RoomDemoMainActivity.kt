@@ -5,12 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.jetpackdemo.R
-import com.example.jetpackdemo.ViewModelDemo.ViewModelMainActivity
+import com.example.jetpackdemo.RoomDemo.Demo1.RoomDemoActivity
 import com.example.jetpackdemo.databinding.ActivityRoomDemoMainBinding
 
 

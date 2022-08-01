@@ -93,7 +93,7 @@
             android:parentActivityName=".HomePage.HomePageActivity"
             android:theme="@style/AppTheme.CustomMaterialTheme" />
         <activity
-            android:name=".RoomDemo.RoomDemoActivity"
+            android:name=".RoomDemo.Demo1.RoomDemoActivity"
             android:exported="false"
             android:theme="@style/AppTheme.CustomMaterialTheme"
             android:parentActivityName=".RoomDemo.RoomDemoMainActivity"/>

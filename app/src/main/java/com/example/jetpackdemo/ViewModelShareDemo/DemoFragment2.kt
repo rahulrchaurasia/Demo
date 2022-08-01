@@ -65,10 +65,12 @@ class DemoFragment2 : Fragment() {
 
         // observe the data inside the view model that is mutable
         // live of type CharSequence and set the data for edit text
-        if(viewLifecycleOwner != null) {
-            shareDemoViewModelInstance!!.getData().observe(viewLifecycleOwner, Observer { etFrag2 ->
 
-                binding.editTextFromFragment2.setText(etFrag2.toString())
+        //etFrag1 : it is any string
+        if(viewLifecycleOwner != null) {
+            shareDemoViewModelInstance!!.getData().observe(viewLifecycleOwner, Observer { myShareData ->
+
+                binding.editTextFromFragment2.setText(myShareData.toString())
 
             })
         }

@@ -1,6 +1,7 @@
 package com.example.jetpackdemo.RoomDemo.Dao
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.jetpackdemo.RoomDemo.Entity.Contact
 
@@ -8,7 +9,7 @@ import com.example.jetpackdemo.RoomDemo.Entity.Contact
 interface ConatactDao {
 
 
-    @Insert
+    @Insert (onConflict = OnConflictStrategy.IGNORE)
    suspend fun insertContact(contact: Contact)
 
 
@@ -19,8 +20,8 @@ interface ConatactDao {
     suspend fun deleteContact(contact: Contact)
 
 
-//    @Query("select * from contact" )
-//    suspend fun getContact() : LiveData<List<Contact>>    // Since we use Live data its bydefault execute in background, no need suspend fun
+    @Query("select * from contact" )
+    suspend fun getContact() : List<Contact>  // Since we use Live data its bydefault execute in background, no need suspend fun
 
 
 }

@@ -65,9 +65,9 @@ class DemoFragment1 : Fragment() {
         // live of type CharSequence and set the data for edit text
 
         if(viewLifecycleOwner != null) {
-            shareDemoViewModelInstance!!.getData().observe(viewLifecycleOwner, Observer { etFrag1 ->
+            shareDemoViewModelInstance!!.getData().observe(viewLifecycleOwner, Observer { etFrag2 ->
 
-                binding.editTextFromFragment1.setText(etFrag1.toString())
+                binding.editTextFromFragment1.setText(etFrag2.toString())
             })
         }
 

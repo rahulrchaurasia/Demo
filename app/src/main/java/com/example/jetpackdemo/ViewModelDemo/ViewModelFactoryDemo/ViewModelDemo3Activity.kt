@@ -44,8 +44,6 @@ class ViewModelDemo3Activity : AppCompatActivity() {
 
 
 
-
-
             viewModelFactoryDemo3 =  ViewModelFactoryDemo3(10)
              viewModelDemo3 = ViewModelProvider(this,viewModelFactoryDemo3).get(ViewModelDemo3::class.java)
 
