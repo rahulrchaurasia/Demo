@@ -2,6 +2,7 @@ package com.example.jetpackdemo.RoomDemo.Entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "contact")
 data class Contact (
@@ -9,6 +10,6 @@ data class Contact (
     val id : Long,
     val name : String,
     val mobile : String,
-    val address : String
-
+    val address : String,
+    val createDate : Date
    )

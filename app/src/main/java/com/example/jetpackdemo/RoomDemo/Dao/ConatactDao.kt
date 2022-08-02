@@ -21,7 +21,7 @@ interface ConatactDao {
 
 
     @Query("select * from contact" )
-    suspend fun getContact() : List<Contact>  // Since we use Live data its bydefault execute in background, no need suspend fun
+     fun getContact() : LiveData<List<Contact>> // Since we use Live data its bydefault execute in background, no need suspend fun
 
 
 }

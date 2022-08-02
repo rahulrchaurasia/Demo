@@ -1,9 +1,8 @@
 package com.example.jetpackdemo.RoomDemo.Database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.example.jetpackdemo.RoomDemo.Convertors.Convertors
 import com.example.jetpackdemo.RoomDemo.Dao.ConatactDao
 import com.example.jetpackdemo.RoomDemo.Entity.Contact
 
@@ -13,7 +12,10 @@ import com.example.jetpackdemo.RoomDemo.Entity.Contact
 
  we have used Singleton pattern to Create RoomDatabase INSTANCE
  **********************************************/
+
+
 @Database(entities = [Contact::class], version = 1)
+@TypeConverters(Convertors::class)
 abstract class DemoDatabase : RoomDatabase() {
 
 

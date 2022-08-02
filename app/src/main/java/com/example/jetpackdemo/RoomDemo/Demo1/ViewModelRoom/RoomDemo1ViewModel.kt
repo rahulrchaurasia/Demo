@@ -14,27 +14,51 @@ class RoomDemo1ViewModel(val database: DemoDatabase) : ViewModel() {
 
 
 
-    private val _contactList = MutableLiveData<List<Contact>>()
+//    private val _contactList = MutableLiveData<List<Contact>>()
+//
+//    // Required LiveData is only public therefore data ,  get() = _data means set mutabledata to it
+//    val contactList :LiveData<List<Contact>>
+//        get() = _contactList
 
-    // Required LiveData is only public therefore data ,  get() = _data means set mutabledata to it
-    val contactList :LiveData<List<Contact>>
-        get() = _contactList
+
+//    init {
+//
+//        viewModelScope.launch {
+//
+//            _contactList.value =  getContactData()
+//        }
+//
+//    }
 
 
-    init {
+
+    fun insertContact(contact: Contact){
 
         viewModelScope.launch {
 
-            _contactList.value =  getContactData()
+            database.contactDao().insertContact(contact)   // This fun is suspended i.e (ConatactDao : insertContact
+                                                           //hence required coroutine Scope to execute it.
+
         }
 
     }
 
+    // because it is return LiveData no need to make it suspend function
+    fun getContactList() :LiveData<List<Contact>>{
 
-    private suspend fun getContactData() :List<Contact>{
 
-        return withContext(Dispatchers.IO){
-            database.contactDao().getContact()
-        }
+         return   database.contactDao().getContact()
+
     }
+
+
+
+
+//
+//    suspend fun getContactData() :List<Contact>{
+//
+//        return withContext(Dispatchers.IO){
+//            database.contactDao().getContact()
+//        }
+//    }
 }

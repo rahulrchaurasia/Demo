@@ -14,6 +14,7 @@ import com.example.jetpackdemo.databinding.ActivityRoomDemoBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 class RoomDemoActivity : AppCompatActivity() {
 
@@ -44,20 +45,47 @@ class RoomDemoActivity : AppCompatActivity() {
         viewModelFactory = RoomDemo1ViewModelFactory(database)
         viewModel = ViewModelProvider(this,viewModelFactory).get(RoomDemo1ViewModel::class.java)
 
+
+        viewModel.getContactList().observe(this, androidx.lifecycle.Observer {
+
+            var  count = it.size - 1
+            Log.d("COROUTINE", it.get(count).name)
+            Log.d("COROUTINE", it.toString())
+
+            binding.includeRoomDemo1.txtResult.text = it.toString()
+
+        })
+
         binding.includeRoomDemo1.btnSubmit.setOnClickListener {
 
                 if(validate()){
 
-                   GlobalScope.launch {
+                    //region commented
+                    //Note : We Don't have to use GlobalScope , because its use application context and exist untill app is exist
+                    // hence if Activity  is destroy it is still running.Memory leakage issue occour
+//                   GlobalScope.launch {
+//
+//                       val contact = Contact(id = 0, name = binding.includeRoomDemo1.etName.text.toString(),
+//                                             mobile = binding.includeRoomDemo1.etMobile.text.toString(),
+//                                            address = binding.includeRoomDemo1.etAddress.text.toString() ,
+//                                            createDate = Date()
+//                       )
+//                       database.contactDao().insertContact(contact)
+//
+//                       Snackbar.make(binding.includeRoomDemo1.btnSubmit, "Data Save Successfully !!", Snackbar.LENGTH_SHORT).show()
+//                       clearData()
+//                   }
+                    //endregion
 
-                       val contact = Contact(id = 0, name = binding.includeRoomDemo1.etName.text.toString(),
+                    val contact = Contact(id = 0, name = binding.includeRoomDemo1.etName.text.toString(),
                                              mobile = binding.includeRoomDemo1.etMobile.text.toString(),
-                                            address = binding.includeRoomDemo1.etAddress.text.toString() )
-                       database.contactDao().insertContact(contact)
+                                            address = binding.includeRoomDemo1.etAddress.text.toString() ,
+                                            createDate = Date()
+                       )
 
-                       Snackbar.make(binding.includeRoomDemo1.btnSubmit, "Data Save Successfully !!", Snackbar.LENGTH_SHORT).show()
-                       clearData()
-                   }
+                    viewModel.insertContact(contact)
+                    Snackbar.make(binding.includeRoomDemo1.btnSubmit, "Data Save Successfully !!", Snackbar.LENGTH_SHORT).show()
+                    clearData()
 
                 }
 
@@ -67,22 +95,29 @@ class RoomDemoActivity : AppCompatActivity() {
 
 
         binding.fabView.setOnClickListener{
+
+            /****************************************************************
+              Here getContactData() is suspend function to execute this function
+              we either required suspend function or coroutine Scope.
+
+             The best approach is execute in viewModel using viewModel Scope .
+             but if we want to execute any suspend fun in Activity than we have to used "lifecycleScope".
+             *****************************************************************/
+//            lifecycleScope.launch {
 //
-//            val data   = viewModel.contactList
-//            println("Data of contact${data}")
-//            var contactList  : LiveData<List<Contact>>
-//            contactList = viewModel.contactList
-//            Log.d("COROUTINE", contactList.value!!.get(0).name)
-           // Snackbar.make(binding.includeRoomDemo1.btnSubmit, "Required Name!!", Snackbar.LENGTH_SHORT).show()
+//                val data  = viewModel
+//
+//               // var contactList  : LiveData<List<Contact>>
+//              var  contactList = viewModel.getContactData()
+//                Log.d("COROUTINE", contactList.get(0).name)
+//            }
 
-            lifecycleScope.launch {
 
-                val data  = viewModel.contactList
+            var  contactList = viewModel.getContactList()
+           var  count = contactList.value!!.size - 1
+                Log.d("COROUTINE", contactList.value!!.get(count).name)
 
-                var contactList  : LiveData<List<Contact>>
-                contactList = viewModel.contactList
-                Log.d("COROUTINE", contactList.value!!.get(0).name)
-            }
+
         }
 
     }

@@ -87,6 +87,11 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ViewModelDemo.LiveDataDemo.LiveDataDemoActivity"
+            android:label="Live Data Demo"
+            android:parentActivityName=".RoomDemo.RoomDemoMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".RoomDemo.RoomDemoMainActivity"
             android:exported="false"
             android:label="@string/title_activity_room_demo_main"
@@ -95,8 +100,8 @@
         <activity
             android:name=".RoomDemo.Demo1.RoomDemoActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.CustomMaterialTheme"
-            android:parentActivityName=".RoomDemo.RoomDemoMainActivity"/>
+            android:parentActivityName=".RoomDemo.RoomDemoMainActivity"
+            android:theme="@style/AppTheme.CustomMaterialTheme" />
         <activity
             android:name=".ViewModelDemo.ViewModelFactoryDemo.ViewModelDemo3Activity"
             android:exported="false"
