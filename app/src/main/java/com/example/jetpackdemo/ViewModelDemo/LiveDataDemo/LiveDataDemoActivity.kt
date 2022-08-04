@@ -3,10 +3,12 @@ package com.example.jetpackdemo.ViewModelDemo.LiveDataDemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.R
 import com.example.jetpackdemo.databinding.ActivityLiveDataDemoBinding
 import com.example.jetpackdemo.databinding.ActivityRoomDemoBinding
+import kotlinx.coroutines.launch
 
 
 class LiveDataDemoActivity : BaseActivity() {
@@ -31,6 +33,9 @@ class LiveDataDemoActivity : BaseActivity() {
 
 
         viewModel = ViewModelProvider(this).get(LiveDataViewModel::class.java)
+
+
+
 
         //step 1
        // By Default Live data is   set  as factLiveData : "This is fact"
