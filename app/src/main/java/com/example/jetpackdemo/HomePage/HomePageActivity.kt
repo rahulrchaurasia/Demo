@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.jetpackdemo.BaseActivity
+import com.example.jetpackdemo.CoroutineDemo.CoroutineDemo1Activity
 
 import com.example.jetpackdemo.KotlinDemo.KotlinBasicDemoActivity
 import com.example.jetpackdemo.Notification.NotificationActivity
@@ -56,6 +57,7 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
         val  include = binding.includeHomepage
         include.btnKotlinBasic.setOnClickListener(this)
         include.btnViewModelDemo.setOnClickListener(this)
+        include.btnCoroutine.setOnClickListener(this)
         include.btnWorkManagerDemo.setOnClickListener(this)
         include.btnNotificationDemo.setOnClickListener(this)
         include.btnServiceDemo.setOnClickListener(this)
@@ -79,6 +81,12 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
 
                startActivity(Intent(this@HomePageActivity, ViewModelMainActivity::class.java))
 
+
+            }
+
+            binding.includeHomepage.btnCoroutine.id ->{
+
+                startActivity(Intent(this@HomePageActivity, CoroutineDemo1Activity::class.java))
 
             }
 

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CoroutineDemo.CoroutineDemo1Activity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.JetPackDemo.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.JetPackDemo.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/eight">
+
+            <TextView
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/txtDemo"
+                android:gravity="center"
+                style="@style/TextViewStyle.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/eight"
+                style="@style/myCustomButton"
+                android:id="@+id/btnDemo1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Global Scope basic "/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/btnDemo2"
+                style="@style/myCustomButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="lobal Scope Issue" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/btnDemo3"
+                style="@style/myCustomButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="LifeCycleScope and ViewModel Demo" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/btnDemo4"
+                style="@style/myCustomGreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Job Demo 1 " />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/btnDemo5"
+                style="@style/myCustomGreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Job Join Demo " />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/btnDemo6"
+                style="@style/myCustomGreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text=" Job Synchronous Demo  " />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/btnDemo16"
+                style="@style/myCustomGreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Join Cancel Demo  " />
+
+            <View
+                android:layout_marginTop="@dimen/fab_margin"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/description_text"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/btnDemo7"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Async Demo " />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/btnDemo8"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Async Execute Parallel Demo " />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="@dimen/fab_margin"
+                android:id="@+id/btnDemo10"
+                style="@style/ButtonBlue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Dispatcher " />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDemo11"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:background="@color/purple"
+                android:backgroundTint="@color/purple"
+                android:text="Context Demo"
+
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -10,6 +10,8 @@ object Constant {
 
     val TAG_KOTLIN : String = "KotlinDEMO"
 
+    val TAG_Coroutine : String = "COROUTINE"
+
     val TAG_WORKER : String = "WorkerDEMO"
 
     val TAG_SCANNER : String = "ScannerDEMO"

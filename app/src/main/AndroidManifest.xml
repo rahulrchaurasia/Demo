@@ -87,10 +87,14 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ViewModelDemo.LiveDataDemo.LiveDataDemoActivity"
-            android:label="Live Data Demo"
-            android:parentActivityName=".RoomDemo.RoomDemoMainActivity"
+            android:name=".CoroutineDemo.CoroutineDemo1Activity"
+            android:parentActivityName=".HomePage.HomePageActivity"
             android:exported="false" />
+        <activity
+            android:name=".ViewModelDemo.LiveDataDemo.LiveDataDemoActivity"
+            android:exported="false"
+            android:label="Live Data Demo"
+            android:parentActivityName=".RoomDemo.RoomDemoMainActivity" />
         <activity
             android:name=".RoomDemo.RoomDemoMainActivity"
             android:exported="false"
