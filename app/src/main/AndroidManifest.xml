@@ -23,9 +23,6 @@
         </intent>
 
 
-
-
-
         <!-- Browser -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
