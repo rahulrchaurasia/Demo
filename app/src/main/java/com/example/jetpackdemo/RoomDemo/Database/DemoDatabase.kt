@@ -2,8 +2,12 @@ package com.example.jetpackdemo.RoomDemo.Database
 
 import android.content.Context
 import androidx.room.*
+import com.example.jetpackdemo.MVVMDemo.Dao.ConstantDao
+import com.example.jetpackdemo.MVVMDemo.Data.QuoteEntity
 import com.example.jetpackdemo.RoomDemo.Convertors.Convertors
 import com.example.jetpackdemo.RoomDemo.Dao.ConatactDao
+import com.example.jetpackdemo.MVVMDemo.Dao.QuoteDao
+import com.example.jetpackdemo.MVVMDemo.Data.DashboardData.ConstantEntity
 import com.example.jetpackdemo.RoomDemo.Entity.Contact
 
 /***************** Defination****************************
@@ -14,12 +18,16 @@ import com.example.jetpackdemo.RoomDemo.Entity.Contact
  **********************************************/
 
 
-@Database(entities = [Contact::class], version = 1)
+@Database(entities = [Contact::class,QuoteEntity::class, ConstantEntity::class], version = 1, exportSchema = false)
 @TypeConverters(Convertors::class)
 abstract class DemoDatabase : RoomDatabase() {
 
 
     abstract fun contactDao() : ConatactDao
+
+    abstract fun  quoteDao() : QuoteDao
+
+    abstract fun  constantDao() : ConstantDao
 
     companion object{
 

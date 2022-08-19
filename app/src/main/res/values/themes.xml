@@ -72,6 +72,7 @@
         <item name="backgroundTint">@color/orange_button</item>
         <item name="android:focusable">true</item>
         <item name="android:textSize">17sp</item>
+        <item name="android:minHeight">42dp</item>
 
 
     </style>
@@ -99,7 +100,7 @@
     <!--parent name is to be give carefully-->
     <style name="myCustomButton" parent="Widget.MaterialComponents.Button">
         <!--these all styles are implemented outside, because to get all the overridden attributes easily-->
-
+        <item name="android:minHeight">42dp</item>
         <item name="android:paddingLeft">32dp</item>
         <item name="android:paddingRight">32dp</item>
         <item name="android:background">@drawable/bg_lightblue_rect</item>
@@ -111,12 +112,14 @@
     <style name="myCustomGreenButton" parent="Widget.MaterialComponents.Button">
         <!--these all styles are implemented outside, because to get all the overridden attributes easily-->
 
+        <item name="android:minHeight">42dp</item>
         <item name="android:paddingLeft">32dp</item>
         <item name="android:paddingRight">32dp</item>
         <item name="android:background">@drawable/bg_lightgreen_rect</item>
         <item name="backgroundTint">@color/green_descent</item>
         <item name="shapeAppearance">@style/customContainedButtonTheme</item>
         <item name="android:textAppearance">@style/myCustomTextForMaterialButtons</item>
+
     </style>
     <!--overriding cornerSize and cornerFamily of the contained button-->
     <style name="customContainedButtonTheme">

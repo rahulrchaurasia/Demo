@@ -17,6 +17,15 @@
 
     <queries>
 
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:mimeType="*/*" />
+        </intent>
+
+
+
+
+
         <!-- Browser -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -87,9 +96,21 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".CoroutineDemo.CoroutineDemo1Activity"
-            android:parentActivityName=".HomePage.HomePageActivity"
+            android:name=".MVVMDemo.UI.MVVMMainActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomePageActivity" />
+        <activity
+            android:name=".MVVMDemo.UI.MVVMGetConstantActivity"
+            android:parentActivityName=".MVVMDemo.UI.MVVMMainActivity"
             android:exported="false" />
+        <activity
+            android:name=".MVVMDemo.UI.MVVMDemoActivity"
+            android:exported="false"
+            android:parentActivityName=".MVVMDemo.UI.MVVMMainActivity" />
+        <activity
+            android:name=".CoroutineDemo.CoroutineDemo1Activity"
+            android:exported="false"
+            android:parentActivityName=".HomePage.HomePageActivity" />
         <activity
             android:name=".ViewModelDemo.LiveDataDemo.LiveDataDemoActivity"
             android:exported="false"

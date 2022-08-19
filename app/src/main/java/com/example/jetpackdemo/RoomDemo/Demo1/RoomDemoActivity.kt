@@ -48,11 +48,21 @@ class RoomDemoActivity : AppCompatActivity() {
 
         viewModel.getContactList().observe(this, androidx.lifecycle.Observer {
 
-            var  count = it.size - 1
-            Log.d("COROUTINE", it.get(count).name)
-            Log.d("COROUTINE", it.toString())
 
-            binding.includeRoomDemo1.txtResult.text = it.toString()
+                if(it.size > 0){
+
+                    var  count = it.size - 1
+
+                        Log.d("COROUTINE", it.get(count).name)
+
+
+                    Log.d("COROUTINE", it.toString())
+
+                    binding.includeRoomDemo1.txtResult.text = it.toString()
+
+                }
+
+
 
         })
 

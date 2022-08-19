@@ -1,29 +1,21 @@
 package com.example.jetpackdemo.HomePage
 
-import android.app.Dialog
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.CoroutineDemo.CoroutineDemo1Activity
 
 import com.example.jetpackdemo.KotlinDemo.KotlinBasicDemoActivity
+import com.example.jetpackdemo.MVVMDemo.UI.MVVMMainActivity
 import com.example.jetpackdemo.Notification.NotificationActivity
-import com.example.jetpackdemo.R
 import com.example.jetpackdemo.RoomDemo.RoomDemoMainActivity
 import com.example.jetpackdemo.Scanner.ScannerActivity
 import com.example.jetpackdemo.ServiceDemo.ServiceDemoActivity
 import com.example.jetpackdemo.ViewModelDemo.ViewModelMainActivity
-import com.example.jetpackdemo.ViewModelShareDemo.DemoViewmodelActivity
 import com.example.jetpackdemo.WorkManager.WorkManagerDemoActivity
 import com.example.jetpackdemo.databinding.ActivityHomePageBinding
 
@@ -63,6 +55,7 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
         include.btnServiceDemo.setOnClickListener(this)
         include.btnScannerDemo.setOnClickListener(this)
         include.btnRoom.setOnClickListener(this)
+        include.btnMVVMDemo.setOnClickListener(this)
 
     }
 
@@ -123,8 +116,13 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
                 startActivity(Intent(this@HomePageActivity, ScannerActivity::class.java))
 
             }
+            binding.includeHomepage.btnMVVMDemo.id!! -> {
 
+                startActivity(Intent(this@HomePageActivity, MVVMMainActivity::class.java))
 
+            }
+
+            //MVVMDemoActivity
         }
 
 

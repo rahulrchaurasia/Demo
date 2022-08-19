@@ -12,4 +12,10 @@
     <external-files-path
         name="files_root"
         path="/" />
+
+
+
+    <external-path name="appdownloads" path="Download/" />
+    <external-path name="files" path="/" />
+    <root-path name="root" path="." />
 </paths>

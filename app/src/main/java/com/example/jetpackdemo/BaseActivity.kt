@@ -24,32 +24,32 @@ open class BaseActivity : AppCompatActivity() {
 
         }
 
-//        open fun showDialog(msg: String){
-//
-//            if(!dialog.isShowing) {
-//                val dialogLoadingBinding = DialogLoadingBinding.inflate(layoutInflater)
-//                dialog.setContentView(dialogLoadingBinding.root)
-//                if (dialog.window != null) {
-//
-//                    dialog!!.window!!.setBackgroundDrawable(ColorDrawable(0))
-//
-//                }
-//                if(msg.isNotEmpty()){
-//                    dialogLoadingBinding.txtMessage.text = msg
-//
-//                }
-//                dialog.setCancelable(false)
-//                dialog.show()
-//            }
-//        }
-//
-//        fun cancelDialog(){
-//
-//            if(dialog.isShowing){
-//
-//                dialog.dismiss()
-//            }
-//        }
+        open fun showDialog(msg: String = "Loading Please Wait!!"){
+
+            if(!dialog.isShowing) {
+                val dialogLoadingBinding = DialogLoadingBinding.inflate(layoutInflater)
+                dialog.setContentView(dialogLoadingBinding.root)
+                if (dialog.window != null) {
+
+                    dialog!!.window!!.setBackgroundDrawable(ColorDrawable(0))
+
+                }
+                if(msg.isNotEmpty()){
+                    dialogLoadingBinding.txtMessage.text = msg
+
+                }
+                dialog.setCancelable(false)
+                dialog.show()
+            }
+        }
+
+        fun cancelDialog(){
+
+            if(dialog.isShowing){
+
+                dialog.dismiss()
+            }
+        }
 
 
         fun showAlert(msg : String){

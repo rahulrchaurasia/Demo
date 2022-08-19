@@ -7,7 +7,9 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,7 +85,27 @@
             android:layout_height="wrap_content"
 
             android:text="Scanner Demo"/>
+
+        <View
+            android:layout_marginTop="@dimen/eight"
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black_dark"/>
+
+        <Button
+            android:id="@+id/btnMVVMDemo"
+            style="@style/myCustomGreenButton"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="MVVM Demo"/>
+
+
     </LinearLayout>
+</ScrollView>
+
 
 
 
