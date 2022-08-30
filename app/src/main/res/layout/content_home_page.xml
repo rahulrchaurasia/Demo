@@ -102,6 +102,16 @@
 
             android:text="MVVM Demo"/>
 
+        <Button
+            android:id="@+id/btnStateFlowBasic"
+            style="@style/ButtonBlue"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="State Flow Basic"/>
+
+
 
     </LinearLayout>
 </ScrollView>

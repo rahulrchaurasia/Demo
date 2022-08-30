@@ -456,7 +456,7 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
         Log.d(Constant.TAG_Coroutine, "Coroutine Start  :")
         val job = lifecycleScope.launch{
 
-            delay(2000)
+            delay(5000)
             Log.d(Constant.TAG_Coroutine, "Job Done :")
         }
 
@@ -606,12 +606,12 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
                 lifecycleScope.launch{
 
                     val s1 = async {networkCall1()  }
-
+                  //  s1.await()
                     val s2 = async { networkCall2() }
-
+                  //  s2.await()
                     val s3 = async { networkCall3() }
-
-
+                   // s3.await()
+                  //  Log.d(Constant.TAG_Coroutine, "Continue async sequential result")
 
                     Log.d(Constant.TAG_Coroutine, "Continue async parellel result : FOR 1> ${s1.await()} ,2> ${s2.await()} and 3> ${s3.await()} ")
                 }
@@ -639,6 +639,18 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
             }
 
+            binding.btnbasic.id ->{
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    task1()
+                }
+
+                CoroutineScope(Dispatchers.Main).launch {
+
+                    task2()
+                }
+
+            }
             binding.btnDemo11.id -> {
 
 
@@ -660,18 +672,7 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
              *         Cheezy Code
              *********************************************************************************************/
 
-            binding.btnbasic.id ->{
 
-                CoroutineScope(Dispatchers.Main).launch {
-                    task1()
-                }
-
-                CoroutineScope(Dispatchers.Main).launch {
-
-                    task2()
-                }
-
-            }
             binding.btnDemo12.id ->{
 
                 CoroutineScope(Dispatchers.IO).launch {

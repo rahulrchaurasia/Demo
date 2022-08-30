@@ -31,7 +31,7 @@ open class BaseActivity : AppCompatActivity() {
                 dialog.setContentView(dialogLoadingBinding.root)
                 if (dialog.window != null) {
 
-                    dialog!!.window!!.setBackgroundDrawable(ColorDrawable(0))
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
 
                 }
                 if(msg.isNotEmpty()){

@@ -16,12 +16,11 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <queries>
-
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <data android:mimeType="*/*" />
         </intent>
-
 
         <!-- Browser -->
         <intent>
@@ -93,13 +92,17 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".StateFlowBasic.StateFlowBasicDemoActivity"
+            android:exported="false"
+           android:parentActivityName=".HomePage.HomePageActivity" />
+        <activity
             android:name=".MVVMDemo.UI.MVVMMainActivity"
             android:exported="false"
             android:parentActivityName=".HomePage.HomePageActivity" />
         <activity
             android:name=".MVVMDemo.UI.MVVMGetConstantActivity"
-            android:parentActivityName=".MVVMDemo.UI.MVVMMainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MVVMDemo.UI.MVVMMainActivity" />
         <activity
             android:name=".MVVMDemo.UI.MVVMDemoActivity"
             android:exported="false"

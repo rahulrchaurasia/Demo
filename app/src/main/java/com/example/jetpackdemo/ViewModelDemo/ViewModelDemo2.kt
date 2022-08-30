@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class ViewModelDemo2 : ViewModel() {
 
-   private val _data = MutableLiveData<String>()
+
+
+   private val _data   = MutableLiveData<String>()
 
     // Required LiveData is only public therefore data ,  get() = _data means set mutabledata to it
     val data : LiveData<String>

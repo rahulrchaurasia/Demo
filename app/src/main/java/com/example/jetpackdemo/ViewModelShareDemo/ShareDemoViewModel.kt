@@ -12,7 +12,7 @@ class ShareDemoViewModel : ViewModel() {
 
     fun setData(input : String) {
 
-        mutableLiveData.value = input
+        mutableLiveData.value = "MeFirst "+ input
     }
 
     fun getData() : MutableLiveData<String> = mutableLiveData

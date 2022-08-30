@@ -38,12 +38,15 @@
         <entry key="app/src/main/res/layout/activity_coroutine_demo1.xml" value="0.17819976806640625" />
         <entry key="app/src/main/res/layout/activity_demo_viewmodel.xml" value="0.182518115942029" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_kotlin_basic_demo.xml" value="0.21965579710144928" />
         <entry key="app/src/main/res/layout/activity_live_data_demo.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14673913043478262" />
         <entry key="app/src/main/res/layout/activity_mvvmdemo.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/activity_mvvmget_constant.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/activity_mvvmmain.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/activity_room_demo.xml" value="0.20594482421875002" />
         <entry key="app/src/main/res/layout/activity_room_demo_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_state_flow_basic_demo.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_view_mode_demo2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_view_model_demo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_view_model_demo3.xml" value="0.125" />
@@ -54,7 +57,7 @@
         <entry key="app/src/main/res/layout/content_mvvm_demo_main.xml" value="0.17237535559612766" />
         <entry key="app/src/main/res/layout/content_room_demo1.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_room_demo_main.xml" value="0.20606884057971014" />
-        <entry key="app/src/main/res/layout/content_viewmodel_demo2.xml" value="0.182518115942029" />
+        <entry key="app/src/main/res/layout/content_viewmodel_demo2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/content_viewmodel_demo3.xml" value="0.125" />
         <entry key="app/src/main/res/layout/content_work_page.xml" value="0.182518115942029" />
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.11195542046605876" />

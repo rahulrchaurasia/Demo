@@ -15,6 +15,7 @@ import com.example.jetpackdemo.Notification.NotificationActivity
 import com.example.jetpackdemo.RoomDemo.RoomDemoMainActivity
 import com.example.jetpackdemo.Scanner.ScannerActivity
 import com.example.jetpackdemo.ServiceDemo.ServiceDemoActivity
+import com.example.jetpackdemo.StateFlowBasic.StateFlowBasicDemoActivity
 import com.example.jetpackdemo.ViewModelDemo.ViewModelMainActivity
 import com.example.jetpackdemo.WorkManager.WorkManagerDemoActivity
 import com.example.jetpackdemo.databinding.ActivityHomePageBinding
@@ -56,7 +57,7 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
         include.btnScannerDemo.setOnClickListener(this)
         include.btnRoom.setOnClickListener(this)
         include.btnMVVMDemo.setOnClickListener(this)
-
+        include.btnStateFlowBasic.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -119,6 +120,12 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
             binding.includeHomepage.btnMVVMDemo.id!! -> {
 
                 startActivity(Intent(this@HomePageActivity, MVVMMainActivity::class.java))
+
+            }
+
+            binding.includeHomepage.btnStateFlowBasic.id -> {
+
+                startActivity(Intent(this@HomePageActivity, StateFlowBasicDemoActivity::class.java))
 
             }
 

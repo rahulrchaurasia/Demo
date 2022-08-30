@@ -12,12 +12,12 @@ class KotlinBasicDemoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityKotlinBasicDemoBinding
 
     val fname : String = "umesh"
-    val name : String? = null
+    val name : String? = "Rudra"
     val lname : String? = null
 
     var arryName : ArrayList<String>? = null
 
-    var list : MutableList<String> = ArrayList()    // mostly used
+    var list : MutableList<String> = ArrayList()    // mostly used : list is emply declare
 
 
 
@@ -44,7 +44,7 @@ class KotlinBasicDemoActivity : AppCompatActivity() {
         }
 
         // non-null asserted !!
-        Log.d(Constant.TAG_KOTLIN, fname!!.length.toString())
+        Log.d(Constant.TAG_KOTLIN, fname.length.toString())
 
 
         // safe call
@@ -54,7 +54,7 @@ class KotlinBasicDemoActivity : AppCompatActivity() {
         // safe call with let
 
         name?.let {
-            Log.d(Constant.TAG_KOTLIN, "length is ${name.length} ")
+            Log.d(Constant.TAG_KOTLIN, "length is ${it.length} ")
         }
 
         // Elvis Operator
@@ -65,7 +65,9 @@ class KotlinBasicDemoActivity : AppCompatActivity() {
 
       // var myData = arryName?.size
 
-        list.size
+       // list.size
+
+        Log.d(Constant.TAG_KOTLIN,"List size "+ list.size.toString())
 
 
 
