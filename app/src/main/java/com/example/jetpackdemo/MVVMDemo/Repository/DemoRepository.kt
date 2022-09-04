@@ -34,7 +34,7 @@ class DemoRepository(
 
 
 
-    suspend fun getUserConstandDataFromAPI(@Body body: HashMap<String, String>) =   demoAPI.getConstant(body)
+    suspend fun getUserConstandDataFromAPI(@Body body: HashMap<String, String>) : Response<ConstantDataResponse> =   demoAPI.getConstant(body)
 
 
     // For Using URL Encoded Example

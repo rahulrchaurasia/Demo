@@ -45,6 +45,9 @@ class MVVMGetConstantActivity : BaseActivity(), View.OnClickListener {
         var retrofitApi = RetrofitHelper.getInstance().create(DemoAPI::class.java)
         val database = DemoDatabase.getDatabase(this)
         var repository = DemoRepository(retrofitApi,database)
+
+
+
         viewModelFactory = DemoViewModelFactory(repository)
         viewModel = ViewModelProvider(this,viewModelFactory).get(DemoViewModel::class.java)
 
@@ -80,11 +83,15 @@ class MVVMGetConstantActivity : BaseActivity(), View.OnClickListener {
 
 
                 }
+
                 is Response.Error -> {
                     cancelDialog()
                     Snackbar.make(binding.toolbar,it.errorMessage.toString(), Snackbar.LENGTH_SHORT).show()
                     Log.d(Constant.TAG_Coroutine, it.errorMessage.toString())
                 }
+
+
+
             }
 
         })

@@ -5,6 +5,11 @@
     <string name="network_failure">Network Failure</string>
     <string name="conversion_error">Conversion Error</string>
 
+
+    <string name="signup">Not a Member? <b><u>Sign up now!</u></b></string>
+    <string name="noInternet">No Internet Connection</string>
+    <string name="forgot_password"><u><i>Forgot Password?</i></u></string>
+
     <string name="ok">OK</string>
     <string name="title_activity_home">HomeActivity</string>
     <!-- Strings used for fragments for navigation -->

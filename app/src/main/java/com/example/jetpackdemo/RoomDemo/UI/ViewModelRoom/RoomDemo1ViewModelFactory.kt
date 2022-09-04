@@ -1,4 +1,4 @@
-package com.example.jetpackdemo.RoomDemo.Demo1.ViewModelRoom
+package com.example.jetpackdemo.RoomDemo.UI.ViewModelRoom
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

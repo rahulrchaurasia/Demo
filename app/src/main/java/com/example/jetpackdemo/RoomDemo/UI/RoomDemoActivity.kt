@@ -1,21 +1,35 @@
-package com.example.jetpackdemo.RoomDemo.Demo1
+package com.example.jetpackdemo.RoomDemo.UI
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.LiveData
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jetpackdemo.RoomDemo.Database.DemoDatabase
-import com.example.jetpackdemo.RoomDemo.Demo1.ViewModelRoom.RoomDemo1ViewModel
-import com.example.jetpackdemo.RoomDemo.Demo1.ViewModelRoom.RoomDemo1ViewModelFactory
+import com.example.jetpackdemo.RoomDemo.UI.DisplayRoomData.DisplayRoomAdapter
+import com.example.jetpackdemo.RoomDemo.UI.ViewModelRoom.RoomDemo1ViewModel
+import com.example.jetpackdemo.RoomDemo.UI.ViewModelRoom.RoomDemo1ViewModelFactory
 import com.example.jetpackdemo.RoomDemo.Entity.Contact
 import com.example.jetpackdemo.databinding.ActivityRoomDemoBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.util.*
 
+/**************************************************************************************************************
+
+ 1> Room Insert Operation : Using Live Data
+ 2> Display Room Data in Recyclerview
+
+ Note : Recyclerview is Used with Nested Scrollview For common Scroll
+   for this apply
+        <androidx.recyclerview.widget.RecyclerView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+         ...........
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+https://medium.com/android-news/recyclerview-within-nestedscrollview-scrolling-issue-3180b5ad2542
+ ************************************************************************************************************/
 class RoomDemoActivity : AppCompatActivity() {
 
 
@@ -23,6 +37,8 @@ class RoomDemoActivity : AppCompatActivity() {
     lateinit var  database: DemoDatabase
     lateinit var viewModel: RoomDemo1ViewModel
     lateinit var viewModelFactory: RoomDemo1ViewModelFactory
+
+    lateinit var displayRoomAdapter: DisplayRoomAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +54,7 @@ class RoomDemoActivity : AppCompatActivity() {
 
             setDisplayShowHomeEnabled(true)
             setDisplayHomeAsUpEnabled(true)
-            setTitle("Room Demo 1")
+            setTitle("Room Insert Demo ")
         }
 
         database = DemoDatabase.getDatabase(this@RoomDemoActivity)
@@ -46,21 +62,52 @@ class RoomDemoActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this,viewModelFactory).get(RoomDemo1ViewModel::class.java)
 
 
+        initData()
+
         viewModel.getContactList().observe(this, androidx.lifecycle.Observer {
 
 
-                if(it.size > 0){
+//                if(it.size > 0){
+//
+//                    var  count = it.size - 1
+//
+//                        Log.d("COROUTINE", it.get(count).name)
+//
+//
+//                    Log.d("COROUTINE", it.toString())
+//
+//                    binding.includeRoomDemo1.txtResult.text = it.toString()
+//
+//                }
 
-                    var  count = it.size - 1
+            it?.let {
 
-                        Log.d("COROUTINE", it.get(count).name)
+                displayRoomAdapter.setData(it)
 
+//                displayRoomAdapter = DisplayRoomAdapter(it)      // Set Data to Empty
+//
+//                binding.includeRoomDemo1.rvDisplay.adapter = displayRoomAdapter
+//
+//
+//                binding.includeRoomDemo1.rvDisplay.scrollToPosition(displayRoomAdapter.itemCount -1)
 
-                    Log.d("COROUTINE", it.toString())
+                    // binding.includeRoomDemo1.svParent.s(displayRoomAdapter.itemCount -1)
 
-                    binding.includeRoomDemo1.txtResult.text = it.toString()
+              //  binding.includeRoomDemo1.svParent.scrollTo(0, 5)
+               // binding.includeRoomDemo1.svParent.fullScroll(View.FOCUS_DOWN)
 
-                }
+               // binding.includeRoomDemo1.rvDisplay.smoothScrollToPosition(displayRoomAdapter.itemCount -1)
+
+//                binding.includeRoomDemo1.svParent.getParent().requestChildFocus(binding.includeRoomDemo1.svParent,
+//                    binding.includeRoomDemo1.svParent);
+
+                binding.includeRoomDemo1.svParent.postDelayed(Runnable {
+
+                    binding.includeRoomDemo1.svParent.fullScroll(View.FOCUS_DOWN)
+                   // binding.includeRoomDemo1.rvDisplay.scrollToPosition(displayRoomAdapter.itemCount -1)
+                }, 1000)
+            }
+
 
 
 
@@ -104,6 +151,7 @@ class RoomDemoActivity : AppCompatActivity() {
 
 
 
+
         binding.fabView.setOnClickListener{
 
             /****************************************************************
@@ -132,6 +180,20 @@ class RoomDemoActivity : AppCompatActivity() {
 
     }
 
+    fun initData(){
+
+        displayRoomAdapter = DisplayRoomAdapter(ArrayList())      // Set Data to Empty
+
+        binding.includeRoomDemo1.rvDisplay.apply {
+
+            setHasFixedSize(true)
+            layoutManager=  LinearLayoutManager(this@RoomDemoActivity)
+            adapter = displayRoomAdapter
+           // isNestedScrollingEnabled = false
+
+        }
+
+    }
     fun clearData(){
 
         binding.includeRoomDemo1.apply {

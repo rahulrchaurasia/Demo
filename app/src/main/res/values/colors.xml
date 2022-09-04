@@ -28,6 +28,12 @@
     <color name="orange_button">#f66c4f</color>
 
 
+    <color name="blue_card">#b1eafe</color>
+    <color name="blue_menu">#d2f2fd</color>
+    <color name="blue_bg_light">#e3f2fd</color>
+    <color name="blue_bg">#ebf8ff</color>
+    <color name="blue_card_bg">#afe2f5</color>
+
     <color name="yellow_color">#f9bf22</color>
     <color name="green_color">#c1b500</color>
     <color name="red_color">#f66b4f</color>

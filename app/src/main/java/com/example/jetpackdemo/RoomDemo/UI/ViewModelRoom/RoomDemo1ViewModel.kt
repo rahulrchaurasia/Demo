@@ -1,7 +1,5 @@
-package com.example.jetpackdemo.RoomDemo.Demo1.ViewModelRoom
+package com.example.jetpackdemo.RoomDemo.UI.ViewModelRoom
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetpackdemo.RoomDemo.Database.DemoDatabase
@@ -44,21 +42,22 @@ class RoomDemo1ViewModel(val database: DemoDatabase) : ViewModel() {
     }
 
     // because it is return LiveData no need to make it suspend function
-    fun getContactList() :LiveData<List<Contact>>{
-
-
-         return   database.contactDao().getContact()
-
-    }
-
-
-
-
+//    fun getContactList() :LiveData<List<Contact>>{
 //
-//    suspend fun getContactData() :List<Contact>{
 //
-//        return withContext(Dispatchers.IO){
-//            database.contactDao().getContact()
-//        }
+//         return   database.contactDao().getContact()
+//
 //    }
+
+
+
+    fun getContactList() = database.contactDao().getContact()
+
+
+    suspend fun getContactData() :List<Contact>{
+
+        return withContext(Dispatchers.IO){
+            database.contactDao().getContact1()
+        }
+    }
 }

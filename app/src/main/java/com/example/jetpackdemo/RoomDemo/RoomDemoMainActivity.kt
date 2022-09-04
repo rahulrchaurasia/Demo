@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import com.example.jetpackdemo.RoomDemo.Demo1.RoomDemoActivity
+import com.example.jetpackdemo.RoomDemo.UI.DisplayRoomData.DisplayRoomDataActivity
+import com.example.jetpackdemo.RoomDemo.UI.RoomDemoActivity
 import com.example.jetpackdemo.databinding.ActivityRoomDemoMainBinding
 
 
@@ -52,7 +53,7 @@ class RoomDemoMainActivity : AppCompatActivity(), View.OnClickListener {
 
             binding.includeRoomMain.btnDemo2.id ->
             {
-                startActivity(Intent(this@RoomDemoMainActivity, RoomDemoActivity::class.java))
+                startActivity(Intent(this@RoomDemoMainActivity, DisplayRoomDataActivity::class.java))
 
             }
         }

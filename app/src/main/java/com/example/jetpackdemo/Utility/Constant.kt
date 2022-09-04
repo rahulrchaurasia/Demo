@@ -20,6 +20,10 @@ object Constant {
 
     const val KEY_COUNT_VALUE1 = "key_count1"
 
+    val ErrorMessage : String = "Error Occoured"
+
+    val ErrorDefault : String = "Unknown Error"
+
 
     fun hideKeyBoard(view: View?, context: Context) {
         if (view != null) {

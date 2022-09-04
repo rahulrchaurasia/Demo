@@ -1,10 +1,7 @@
 package com.example.jetpackdemo.MVVMDemo.ViewModel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.jetpackdemo.MVVMDemo.Data.DashboardData.ConstantDataResponse
 import com.example.jetpackdemo.MVVMDemo.Repository.DemoRepository
 import com.example.jetpackdemo.Response
@@ -42,7 +39,9 @@ class DemoViewModel(private  val repository: DemoRepository) : ViewModel() {
                 withContext(Dispatchers.Main){
                     if(result.isSuccessful){
                         if(result.body()?.StatusNo == 0){
+
                             _constantData.postValue(Response.Success(result.body()) )
+
 
                         }else{
                             _constantData.postValue(Response.Error(result.body()!!.Message) )
@@ -103,25 +102,25 @@ class DemoViewModel(private  val repository: DemoRepository) : ViewModel() {
         body["fbaid"] = fbaID
         body["appTypeId"] = "4"
        viewModelScope.launch(Dispatchers.IO) {
+
            try {
                val result = repository.getUserConstandDataUsingWithFromAPI(body)
+               withContext(Dispatchers.Main){
+                   if(result.isSuccessful){
+                       if(result.body()?.StatusNo == 0){
+                           _constantData.postValue(Response.Success(result.body()) )
 
-               withContext(Dispatchers.Main) {
-                   if (result.isSuccessful) {
-                       if (result.body()?.StatusNo == 0) {
-                           _constantData.postValue(Response.Success(result.body()))
-
-                       } else {
-                           _constantData.postValue(Response.Error(result.body()!!.Message))
+                       }else{
+                           _constantData.postValue(Response.Error(result.body()!!.Message) )
                        }
 
-                   } else {
+                   }else{
                        Log.d(Constant.TAG_Coroutine, result.message())
-                       _constantData.postValue(Response.Error(result.errorBody().toString()))
+                       _constantData.postValue(Response.Error(result.errorBody().toString()) )
 
                    }
                }
-           }catch (exception: Exception) {
+           } catch (exception: Exception) {
                _constantData.postValue(Response.Error( "Error Occurred!" + exception.message) )
            }
         }

@@ -1,5 +1,6 @@
 package com.example.jetpackdemo
 
+import com.example.jetpackdemo.LoginModule.API.APIService
 import com.example.jetpackdemo.MVVMDemo.API.DemoAPI
 import com.example.jetpackdemo.MVVMDemo.API.QuoteAPI
 import com.google.android.gms.common.internal.service.Common.API
@@ -86,8 +87,8 @@ object RetrofitHelper {
             .build()
     }
 
-    val retrofitApi by lazy {
-        retrofitInstance.create(DemoAPI::class.java)
+    val retrofitLoginApi by lazy {
+        retrofitInstance.create(APIService::class.java)
 
     }
 

@@ -29,20 +29,20 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
 
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-          //  requestWindowFeature(Window.FEATURE_NO_TITLE)
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
+//        @Suppress("DEPRECATION")
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            window.insetsController?.hide(WindowInsets.Type.statusBars())
+//        } else {
+//          //  requestWindowFeature(Window.FEATURE_NO_TITLE)
+//            window.setFlags(
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN
+//            )
+//        }
         binding = ActivityHomePageBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+       // setSupportActionBar(binding.toolbar)
 
        // supportActionBar?.hide()
       // theme.applyStyle(R.style.FullScreen,false)

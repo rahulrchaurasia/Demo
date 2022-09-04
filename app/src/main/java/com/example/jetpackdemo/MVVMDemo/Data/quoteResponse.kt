@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 
 
-data class quoteResponse(
+data class  quoteResponse(
 
     val count: Int,
     val lastItemIndex: Int,

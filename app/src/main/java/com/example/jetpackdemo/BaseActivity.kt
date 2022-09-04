@@ -4,9 +4,11 @@ import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.example.jetpackdemo.databinding.ActivityBaseBinding
 import com.example.jetpackdemo.databinding.DialogLoadingBinding
+import com.google.android.material.snackbar.Snackbar
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -45,10 +47,14 @@ open class BaseActivity : AppCompatActivity() {
 
         fun cancelDialog(){
 
-            if(dialog.isShowing){
+            if(dialog != null){
 
-                dialog.dismiss()
+                if(dialog.isShowing){
+
+                    dialog.dismiss()
+                }
             }
+
         }
 
 
@@ -66,5 +72,11 @@ open class BaseActivity : AppCompatActivity() {
 
             builder.show()
         }
+
+    fun showSnackBar(view : View, strMessage: String){
+
+        Snackbar.make(view, strMessage, Snackbar.LENGTH_SHORT).show()
+
+    }
 
 }
