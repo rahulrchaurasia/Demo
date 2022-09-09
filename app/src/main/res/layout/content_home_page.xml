@@ -111,6 +111,23 @@
 
             android:text="State Flow Basic"/>
 
+        <Button
+            android:id="@+id/btnFileDemo"
+            android:layout_marginTop="@dimen/eight"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="File Demo"/>
+
+        <Button
+            android:id="@+id/btnActivityLauncher"
+            style="@style/myCustomGreenButton"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Activity Result Launcher Demo"/>
 
 
     </LinearLayout>

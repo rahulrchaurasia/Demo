@@ -5,6 +5,11 @@
     <string name="network_failure">Network Failure</string>
     <string name="conversion_error">Conversion Error</string>
 
+    <string name="permission_required">Required Permssion to access it</string>
+    <string name="camera_permission_available">Camera permission is available. Starting preview.</string>
+    <string name="camera_permission_denied">Camera  Permssion was denied.we need camera permission!!</string>
+    <string name="camera_permission_not_available">Permission is not available. Requesting camera permission.</string>
+
 
     <string name="signup">Not a Member? <b><u>Sign up now!</u></b></string>
     <string name="noInternet">No Internet Connection</string>
@@ -30,6 +35,7 @@
     34t34t3k4pt3p4t 3t3t</string>
     <string name="downloading_model_files">Downloading model files…</string>
     <string name="title_activity_room_demo_main">RoomDemoMainActivity</string>
+    <string name="title_activity_file_demo">File Demo</string>
 
 
 </resources>

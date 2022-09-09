@@ -1,8 +1,12 @@
 package com.example.jetpackdemo.Utility
 
 import android.content.Context
+import android.net.Uri
+import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.core.content.FileProvider
+import java.io.File
 
 object Constant {
 
@@ -20,9 +24,13 @@ object Constant {
 
     const val KEY_COUNT_VALUE1 = "key_count1"
 
+     val KEY_DATA : String = "keydata"
+
     val ErrorMessage : String = "Error Occoured"
 
     val ErrorDefault : String = "Unknown Error"
+
+    val NetworkError : String = "No Inerenet Connection!!"
 
 
     fun hideKeyBoard(view: View?, context: Context) {
@@ -31,4 +39,6 @@ object Constant {
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
+
+
 }

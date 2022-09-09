@@ -9,7 +9,24 @@ import kotlinx.coroutines.launch
 
 class CoroutineViewModel : ViewModel(){
 
-   fun getData() {
+    private var Count :Int
+
+   init {
+
+      Count = 0
+   }
+
+   fun setCount(mCount : Int)  {
+        Count = mCount
+    }
+
+    fun getCount() : Int {
+       // Count = mCount
+        Count = Count + 1
+       return Count
+    }
+
+    fun getData() {
 
        viewModelScope.launch {
 

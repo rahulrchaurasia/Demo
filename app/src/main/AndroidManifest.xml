@@ -9,7 +9,11 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Location permission -->
+    <!-- Always include this permission -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Audio permission -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- Network permission -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -83,7 +87,7 @@
 
     <application
         android:name=".BaseApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
@@ -92,9 +96,27 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CameraGalleryDemo.PermissionActivity"
+            android:exported="false"
+            android:label="@string/title_activity_file_demo"
+            android:parentActivityName=".CameraGalleryDemo.ActivityResultLauncherDemoActivity"
+            android:theme="@style/Theme.JetPackDemo.NoActionBar" />
+        <activity
+            android:name=".CameraGalleryDemo.ActivityResultLauncherDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_file_demo"
+            android:parentActivityName=".HomePage.HomePageActivity"
+            android:theme="@style/Theme.JetPackDemo.NoActionBar" />
+        <activity
+            android:name=".FileDemo.FileDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_file_demo"
+            android:parentActivityName=".HomePage.HomePageActivity"
+            android:theme="@style/Theme.JetPackDemo.NoActionBar" />
+        <activity
             android:name=".RoomDemo.UI.DisplayRoomData.DisplayRoomDataActivity"
-            android:parentActivityName=".RoomDemo.RoomDemoMainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".RoomDemo.RoomDemoMainActivity" />
         <activity
             android:name=".LoginModule.LoginActivity"
             android:exported="true">
@@ -201,12 +223,6 @@
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.JetPackDemo" />
         <activity
-            android:name=".NavigationDemo.NavDemoActivity"
-            android:exported="false"
-            android:label="Home"
-            android:parentActivityName=".HomePage.HomePageActivity"
-            android:theme="@style/Theme.JetPackDemo" />
-        <activity
             android:name=".KotlinDemo.KotlinBasicDemoActivity"
             android:exported="false"
             android:parentActivityName=".HomePage.HomePageActivity"
@@ -228,7 +244,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.jetpackdemo"
+            android:authorities="com.example.jetpackdemo.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

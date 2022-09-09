@@ -1,13 +1,12 @@
 package com.example.jetpackdemo.HomePage
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
+import com.example.jetpackdemo.CameraGalleryDemo.ActivityResultLauncherDemoActivity
 import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.CoroutineDemo.CoroutineDemo1Activity
+import com.example.jetpackdemo.FileDemo.FileDemoActivity
 
 import com.example.jetpackdemo.KotlinDemo.KotlinBasicDemoActivity
 import com.example.jetpackdemo.MVVMDemo.UI.MVVMMainActivity
@@ -58,6 +57,8 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
         include.btnRoom.setOnClickListener(this)
         include.btnMVVMDemo.setOnClickListener(this)
         include.btnStateFlowBasic.setOnClickListener(this)
+        include.btnFileDemo.setOnClickListener(this)
+        include.btnActivityLauncher.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -128,7 +129,18 @@ class HomePageActivity : BaseActivity(), View.OnClickListener {
                 startActivity(Intent(this@HomePageActivity, StateFlowBasicDemoActivity::class.java))
 
             }
+            binding.includeHomepage.btnFileDemo.id -> {
 
+                startActivity(Intent(this@HomePageActivity, FileDemoActivity::class.java))
+
+            }
+
+            binding.includeHomepage.btnActivityLauncher.id -> {
+
+                startActivity(Intent(this@HomePageActivity, ActivityResultLauncherDemoActivity::class.java))
+            }
+
+            //ActivityResultLauncherDemoActivity
             //MVVMDemoActivity
         }
 

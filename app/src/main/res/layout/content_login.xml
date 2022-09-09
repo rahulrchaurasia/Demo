@@ -24,7 +24,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="260dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/login"/>
 
@@ -50,7 +50,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:layout_marginTop="@dimen/four"
+            android:layout_marginTop="@dimen/fab_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email/User Id"

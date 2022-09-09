@@ -13,7 +13,37 @@ class NetworkUtils {
 
     companion object{
 
-      open  fun isNetworkAvailable(context: Context): Boolean {
+
+
+       open fun isNetworkAvailable(context: Context?): Boolean {
+            if (context == null) return false
+            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+                if (capabilities != null) {
+                    when {
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                            return true
+                        }
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                            return true
+                        }
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                            return true
+                        }
+                    }
+                }
+            } else {
+                val activeNetworkInfo = connectivityManager.activeNetworkInfo
+                if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+                    return true
+                }
+            }
+            return false
+        }
+
+
+        open  fun isNetworkAvailable1(context: Context): Boolean {
             val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -26,11 +56,12 @@ class NetworkUtils {
                 }
                 return false
             } else {
-               @Suppress("DEPRICATION")
+                @Suppress("DEPRICATION")
                 val netInfo = cm.activeNetworkInfo
                 return netInfo != null && netInfo.isConnectedOrConnecting
             }
         }
+
 
     }
 }

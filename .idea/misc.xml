@@ -36,6 +36,8 @@
         <entry key="app/src/main/res/drawable/edittext_focused.xml" value="0.111" />
         <entry key="app/src/main/res/drawable/edittext_normal.xml" value="0.111" />
         <entry key="app/src/main/res/drawable/ic_arrow_drop_up_24.xml" value="0.1225" />
+        <entry key="app/src/main/res/drawable/ic_close_24.xml" value="0.2515" />
+        <entry key="app/src/main/res/drawable/ic_close_black_24.xml" value="0.2465" />
         <entry key="app/src/main/res/drawable/ic_correct_tick.xml" value="0.167" />
         <entry key="app/src/main/res/drawable/ic_email_24.xml" value="0.167" />
         <entry key="app/src/main/res/drawable/ic_lock_24.xml" value="0.167" />
@@ -49,6 +51,7 @@
         <entry key="app/src/main/res/layout/activity_coroutine_demo1.xml" value="0.17819976806640625" />
         <entry key="app/src/main/res/layout/activity_demo_viewmodel.xml" value="0.182518115942029" />
         <entry key="app/src/main/res/layout/activity_display_room_data.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_file_demo.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_kotlin_basic_demo.xml" value="0.21965579710144928" />
         <entry key="app/src/main/res/layout/activity_live_data_demo.xml" value="0.23020833333333332" />
@@ -57,14 +60,18 @@
         <entry key="app/src/main/res/layout/activity_mvvmdemo.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/activity_mvvmget_constant.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/activity_mvvmmain.xml" value="0.21331521739130435" />
+        <entry key="app/src/main/res/layout/activity_nav_demo.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/activity_result_launcher_demo.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_room_demo.xml" value="0.20594482421875002" />
         <entry key="app/src/main/res/layout/activity_room_demo_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_second.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/activity_state_flow_basic_demo.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_view_mode_demo2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_view_model_demo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_view_model_demo3.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_view_model_main.xml" value="0.182518115942029" />
         <entry key="app/src/main/res/layout/activity_work_manager_demo.xml" value="0.11195542046605876" />
+        <entry key="app/src/main/res/layout/content_file_demo.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/content_home_page.xml" value="0.15235606760218523" />
         <entry key="app/src/main/res/layout/content_login.xml" value="0.1732283464566929" />
         <entry key="app/src/main/res/layout/content_mvvm_constant.xml" value="0.11955420466058764" />
@@ -78,7 +85,8 @@
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.11195542046605876" />
         <entry key="app/src/main/res/layout/fragment_demo1.xml" value="0.182518115942029" />
         <entry key="app/src/main/res/layout/fragment_demo2.xml" value="0.182518115942029" />
-        <entry key="app/src/main/res/layout/fragment_first2.xml" value="0.20606884057971014" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/fragment_first2.xml" value="0.26869806094182824" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.20606884057971014" />
         <entry key="app/src/main/res/layout/fragment_second2.xml" value="0.20606884057971014" />
         <entry key="app/src/main/res/layout/fragment_test1.xml" value="0.16822916666666668" />

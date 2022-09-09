@@ -1,6 +1,7 @@
-package com.example.jetpackdemo.NavigationDemo
+package com.example.jetpackdemo.FileDemo
 
 import android.os.Bundle
+import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -8,23 +9,30 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.jetpackdemo.R
 
-import com.example.jetpackdemo.databinding.ActivityNavDemoBinding
-import com.google.android.material.snackbar.Snackbar
+import com.example.jetpackdemo.databinding.ActivityFileDemoBinding
 
-class NavDemoActivity : AppCompatActivity() {
+class FileDemoActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityNavDemoBinding
+    private lateinit var binding: ActivityFileDemoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityNavDemoBinding.inflate(layoutInflater)
+        binding = ActivityFileDemoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_home)
+//        supportActionBar!!.apply {
+//
+//            setDisplayShowHomeEnabled(true)
+//            setDisplayHomeAsUpEnabled(true)
+//
+//        }
+
+
+        val navController = findNavController(R.id.nav_host_fragment_content_file_demo)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -35,7 +43,7 @@ class NavDemoActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_home)
+        val navController = findNavController(R.id.nav_host_fragment_content_file_demo)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }

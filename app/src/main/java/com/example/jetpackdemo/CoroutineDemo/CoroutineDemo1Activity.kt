@@ -2,6 +2,8 @@ package com.example.jetpackdemo.CoroutineDemo
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Switch
@@ -12,6 +14,7 @@ import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.ViewModelDemo.ViewModelMainActivity
 import com.example.jetpackdemo.databinding.ActivityCoroutineDemo1Binding
 import kotlinx.coroutines.*
+import java.lang.Runnable
 import kotlin.coroutines.CoroutineContext
 
 /**************************************************************************************************************
@@ -28,6 +31,25 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
     private val viewModel: CoroutineViewModel by viewModels()
 
+    lateinit var sliderRun : Runnable
+    var runnable: Runnable? = null
+    var sliderHandler = Handler(Looper.getMainLooper())
+
+
+
+    override fun onPause() {
+        super.onPause()
+
+            if (sliderRun != null) {
+
+                if(this::sliderRun.isInitialized)
+
+                    sliderHandler.removeCallbacks(sliderRun)
+
+            }
+
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCoroutineDemo1Binding.inflate(layoutInflater)
@@ -72,6 +94,11 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
         binding.btnDemo20.setOnClickListener(this)
 
         binding.btnDemo21.setOnClickListener(this)
+
+        binding.btnHandler.setOnClickListener(this)
+        binding.btnHandlerCancel.setOnClickListener(this)
+        binding.btnCoroutineHandler.setOnClickListener(this)
+        binding.btnHandlerCoroutineCancel.setOnClickListener(this)
 
 
         //region Comment LifeCycle DEmo
@@ -483,6 +510,47 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
     }
 
+    /// handler Demo ////
+
+    private val taskHandler: Handler by lazy {
+        Handler(Looper.getMainLooper()) // Main looper just for example
+    }
+    fun initiateTask() {
+
+        sliderRun = Runnable {
+
+
+            Log.d(Constant.TAG_Coroutine, "Handler Task Started each 3 sec " + viewModel.getCount() )
+
+            taskHandler.postDelayed(sliderRun, 3000)
+        }
+
+
+        taskHandler.postDelayed(sliderRun,3000)
+
+// For Complex Code in kotlin
+
+//        taskHandler.postDelayed(Runnable {
+//            taskHandler.postDelayed(runnable!!, 3000)
+//          Log.d(Constant.TAG_Coroutine, "Handler Task Started each 3 sec " + viewModel.Count + 1)
+//        }.also { runnable = it }, 3000)
+
+
+
+
+    }
+
+    fun cancelHandlerTask() {
+        //taskHandler.removeCallbacksAndMessages(null)
+
+        if (sliderRun != null) {
+
+            if(this::sliderRun.isInitialized)
+
+                taskHandler.removeCallbacks(sliderRun)
+
+        }
+    }
     //endregion
 
     override fun onClick(view: View?) {
@@ -771,7 +839,23 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
                 }
 
+            binding.btnHandler.id -> {
+
+                initiateTask()
+            }
+
+            binding.btnHandlerCancel.id -> {
+
+                cancelHandlerTask()
+            }
+//            binding.btnHandler.setOnClickListener(this)
+//                    binding.btnHandlerCancel.setOnClickListener(this)
+//                    binding.btnCoroutineHandler.setOnClickListener(this)
+//                    binding.btnHandlerCoroutineCancel.setOnClickListener(this)
+
         }
+
+
     }
 
 

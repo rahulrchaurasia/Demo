@@ -47,13 +47,11 @@ open class BaseActivity : AppCompatActivity() {
 
         fun cancelDialog(){
 
-            if(dialog != null){
-
                 if(dialog.isShowing){
 
                     dialog.dismiss()
                 }
-            }
+
 
         }
 
@@ -73,10 +71,10 @@ open class BaseActivity : AppCompatActivity() {
             builder.show()
         }
 
-    fun showSnackBar(view : View, strMessage: String){
+      fun showSnackBar(view : View, strMessage: String){
 
         Snackbar.make(view, strMessage, Snackbar.LENGTH_SHORT).show()
 
-    }
+     }
 
 }

@@ -19,9 +19,7 @@ import kotlinx.coroutines.launch
 class LoginViewModel (var loginRepository: LoginRepository) : ViewModel(){
 
 
-    private val loginMutableStateFlow  :  MutableStateFlow<APIState<LoginResponse>> =
-
-        MutableStateFlow<APIState<LoginResponse>>(APIState.Empty())
+    private val loginMutableStateFlow  :  MutableStateFlow<APIState<LoginResponse>> =  MutableStateFlow<APIState<LoginResponse>>(APIState.Empty())
 
     val LoginStateFlow : StateFlow<APIState<LoginResponse>>
     get() = loginMutableStateFlow
@@ -34,11 +32,14 @@ class LoginViewModel (var loginRepository: LoginRepository) : ViewModel(){
     get() = loginMutableLiveData
 
 
+
+
     fun getLoginUsingFlow(loginRequestEntity: LoginRequestEntity) = viewModelScope.launch {
 
         loginMutableStateFlow.value = APIState.Loading()
 
         try {
+
 
             loginRepository.getLogin(loginRequestEntity)
 

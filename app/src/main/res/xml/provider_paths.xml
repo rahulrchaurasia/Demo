@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
+    
+    <files-path
+        name="camera_photo"
+        path="."/>
+
     <external-path name="external_files" path="." />
+
 
     <external-cache-path
         name="external_cache_files"
@@ -18,4 +24,7 @@
     <external-path name="appdownloads" path="Download/" />
     <external-path name="files" path="/" />
     <root-path name="root" path="." />
+
+
+
 </paths>

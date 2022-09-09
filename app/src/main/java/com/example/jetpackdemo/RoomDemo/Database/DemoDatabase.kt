@@ -52,7 +52,7 @@ abstract class DemoDatabase : RoomDatabase() {
                                                                                     // chance  create multiple instance of Room Database.
                     INSTANCE = Room.databaseBuilder(context.applicationContext,    // Synchronize lock the particular instance.
                         DemoDatabase::class.java, "DemoDB")
-                        .fallbackToDestructiveMigration()
+                       .fallbackToDestructiveMigration()
                         .build()
                 }
 

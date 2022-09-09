@@ -1,4 +1,4 @@
-package com.example.jetpackdemo.NavigationDemo
+package com.example.jetpackdemo.FileDemo
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.jetpackdemo.R
+import com.example.jetpackdemo.databinding.FragmentSecond2Binding
 
-import com.example.jetpackdemo.databinding.FragmentSecondBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class Demo2Fragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentSecond2Binding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,7 +26,7 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentSecond2Binding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -35,7 +35,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            findNavController().navigate(R.id.action_Second2Fragment_to_First2Fragment)
         }
     }
 
