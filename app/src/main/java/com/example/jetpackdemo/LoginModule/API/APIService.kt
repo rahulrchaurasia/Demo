@@ -1,6 +1,7 @@
 package com.example.jetpackdemo.LoginModule.API
 
 import com.example.jetpackdemo.LoginModule.DataModel.RequestEntity.LoginRequestEntity
+import com.example.jetpackdemo.LoginModule.DataModel.ResponseEntity.DashboardResponse
 import com.example.jetpackdemo.LoginModule.DataModel.ResponseEntity.LoginResponse
 import com.example.jetpackdemo.MVVMDemo.Data.DashboardData.ConstantDataResponse
 import com.example.jetpackdemo.RetrofitHelper
@@ -29,6 +30,16 @@ interface APIService {
     suspend fun getLogin(
         @Body body: LoginRequestEntity
     ) : Response<LoginResponse>
+
+
+    @Headers("token:"+ RetrofitHelper.token)
+    @POST("/quote/Postfm/user-constant-pb1")
+    suspend fun getConstant(@Body body: HashMap<String, String>) : Response<ConstantDataResponse>
+
+
+    @Headers("token:"+ RetrofitHelper.token)
+    @POST("/quote/Postfm/get-dynamic-app-pb")
+    suspend fun getDynamicDashBoard(@Body body: HashMap<String,String>) : Response<DashboardResponse>
 
 
 }

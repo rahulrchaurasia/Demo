@@ -9,13 +9,16 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.jetpackdemo.APIState
 import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.HomePage.HomePageActivity
 import com.example.jetpackdemo.LoginModule.DataModel.RequestEntity.LoginRequestEntity
 import com.example.jetpackdemo.LoginModule.Repository.LoginRepository
+import com.example.jetpackdemo.LoginModule.UI.HomeDashboardActivity
 import com.example.jetpackdemo.LoginModule.ViewModel.LoginViewModel
 import com.example.jetpackdemo.LoginModule.ViewmodelFactory.LoginViewModelFactory
 import com.example.jetpackdemo.RetrofitHelper
@@ -24,6 +27,7 @@ import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.Utility.NetworkUtils
 import com.example.jetpackdemo.databinding.ActivityLoginBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 
 class LoginActivity : BaseActivity() {
@@ -74,48 +78,53 @@ class LoginActivity : BaseActivity() {
         //region Observing Live and Flow Data
 
           // region Flow Observing
-       lifecycleScope.launchWhenStarted {
+        // lifecycleScope.launchWhenStarted {
+       lifecycleScope.launch {
 
-           viewModel.LoginStateFlow.collect{
+           repeatOnLifecycle(Lifecycle.State.STARTED){
 
-               when(it){
+               viewModel.LoginStateFlow.collect{
 
-                   is APIState.Loading -> {
-                       showDialog()
+                   when(it){
+
+                       is APIState.Loading -> {
+                           showDialog()
+                       }
+
+                       is APIState.Success -> {
+                           cancelDialog()
+                           it.data?.let {
+
+                               // Log.d(Constant.TAG_Coroutine, it.MasterData.EmailID)
+
+                               //  Log.d(Constant.TAG_Coroutine, it.MasterData.toString())
+
+                               // showSnackBar(viewParent, "Dear ${it.MasterData.FullName}, You Login Successfully!!")
+
+                               startActivity(Intent(this@LoginActivity, HomeDashboardActivity::class.java))
+                           }
+
+
+
+
+                       }
+                       is APIState.Failure -> {
+
+                           cancelDialog()
+
+                           showSnackBar(viewParent,it.errorMessage?: Constant.ErrorMessage)
+                           Log.d(Constant.TAG_Coroutine, it.errorMessage.toString())
+                       }
+                       is APIState.Empty -> {
+                           cancelDialog()
+
+                       }
+
                    }
-
-                   is APIState.Success -> {
-                       cancelDialog()
-                      it.data?.let {
-
-                         // Log.d(Constant.TAG_Coroutine, it.MasterData.EmailID)
-
-                        //  Log.d(Constant.TAG_Coroutine, it.MasterData.toString())
-
-                         // showSnackBar(viewParent, "Dear ${it.MasterData.FullName}, You Login Successfully!!")
-
-                          startActivity(Intent(this@LoginActivity, HomePageActivity::class.java))
-                      }
-
-
-
-
-                   }
-                   is APIState.Failure -> {
-
-                       cancelDialog()
-
-                       showSnackBar(viewParent,it.errorMessage?: Constant.ErrorMessage)
-                       Log.d(Constant.TAG_Coroutine, it.errorMessage.toString())
-                   }
-                   is APIState.Empty -> {
-                       cancelDialog()
-                       Log.d(Constant.TAG_Coroutine,"Using FlowData" + it.errorMessage.toString())
-
-                   }
-
                }
            }
+
+
        }
 
         //endregion
@@ -216,7 +225,7 @@ class LoginActivity : BaseActivity() {
                                                          //  so tha Observer is triggered at activity
             /************************************************************************************************************/
 
-             // viewModel.getLoginUsingLiveData(loginRequestEntity)
+            // viewModel.getLoginUsingLiveData(loginRequestEntity)
 
 
             }

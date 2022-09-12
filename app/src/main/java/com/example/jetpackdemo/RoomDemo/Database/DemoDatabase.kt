@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.jetpackdemo.LoginModule.DataModel.ResponseEntity.LoginEntity
+import com.example.jetpackdemo.LoginModule.DataModel.model.LoginEntity
 import com.example.jetpackdemo.MVVMDemo.Dao.ConstantDao
 import com.example.jetpackdemo.MVVMDemo.Dao.LoginDao
 import com.example.jetpackdemo.MVVMDemo.Dao.QuoteDao

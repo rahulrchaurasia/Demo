@@ -96,6 +96,10 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".LoginModule.UI.HomeDashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.JetPackDemo.NoActionBar"/>
+        <activity
             android:name=".CameraGalleryDemo.PermissionActivity"
             android:exported="false"
             android:label="@string/title_activity_file_demo"

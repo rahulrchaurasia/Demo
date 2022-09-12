@@ -6,16 +6,16 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.Switch
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.ViewModelDemo.ViewModelMainActivity
 import com.example.jetpackdemo.databinding.ActivityCoroutineDemo1Binding
 import kotlinx.coroutines.*
 import java.lang.Runnable
-import kotlin.coroutines.CoroutineContext
 
 /**************************************************************************************************************
 
@@ -31,25 +31,16 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
     private val viewModel: CoroutineViewModel by viewModels()
 
+    var jobRepeat: Job? = null
+
+
     lateinit var sliderRun : Runnable
     var runnable: Runnable? = null
     var sliderHandler = Handler(Looper.getMainLooper())
 
 
 
-    override fun onPause() {
-        super.onPause()
 
-            if (sliderRun != null) {
-
-                if(this::sliderRun.isInitialized)
-
-                    sliderHandler.removeCallbacks(sliderRun)
-
-            }
-
-
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCoroutineDemo1Binding.inflate(layoutInflater)
@@ -156,6 +147,11 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
         Log.d(Constant.TAG_Coroutine,"Task 2 End")
     }
 
+    private suspend fun getData(){
+
+            Log.d(Constant.TAG_Coroutine,"Task  Start :" + viewModel.getCount() )
+
+    }
     private suspend fun printFollowers(){
 
         var fbFollowers = 0
@@ -335,7 +331,8 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
                 try {
                     Log.d(Constant.TAG_Coroutine,"Child Job Started.. ${coroutineContext}")
 
-                    delay(5000)
+                    //delay(5000)
+                    executeLongRunningTask()
                     Log.d(Constant.TAG_Coroutine,"Child Job Ended")
                 }catch (ex : CancellationException){
                     Log.d(Constant.TAG_Coroutine,"Child is Cancelled via Exception")
@@ -376,7 +373,7 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
                 Log.d(Constant.TAG_Coroutine,"i is ${i.toString()}")
             }
         }
-        delay(100)
+        delay(1000)
         Log.d(Constant.TAG_Coroutine," Cancel Job")
         parentJob.cancel()
         parentJob.join()
@@ -384,7 +381,8 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
     }
 
-    private  fun executeLongRunningTask(){
+    private  fun  executeLongRunningTask(){
+
 
 
             for( i in 1..100000000){
@@ -400,7 +398,7 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
         // because cpu is very busy and stuck to execute the Longrunning task so it can not realize
         val parentJob = lifecycleScope.launch(Dispatchers.IO){
 
-            for( i in 1..1000){
+            for( i in 1..10000){
 
                 if(isActive){
 
@@ -410,7 +408,7 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
             }
         }
-        delay(100)
+        delay(1000)
         Log.d(Constant.TAG_Coroutine," Cancel Job")
         parentJob.cancel()
         parentJob.join()
@@ -551,15 +549,32 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
         }
     }
+
+
+    private fun startRepeatingJob(timeInterval: Long): Job {
+
+     return this.lifecycleScope.launch(Dispatchers.Default){
+
+             while (isActive){
+                 getData()
+                 delay(timeInterval)
+             }
+
+
+        }
+
+
+    }
+
+
     //endregion
 
     override fun onClick(view: View?) {
 
-        when(view!!.id){
+        when(view!!.id) {
 
 
-
-            binding.btnDemo1.id ->{
+            binding.btnDemo1.id -> {
 
                 Log.d(Constant.TAG_Coroutine, "Start :")
                 GlobalScope.launch {
@@ -570,13 +585,13 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
                 Log.d(Constant.TAG_Coroutine, "End :")
             }
 
-            binding.btnDemo2.id ->{
+            binding.btnDemo2.id -> {
 
                 //  So GlobalScope, simply means the scope of this coroutines is the entire application.
                 //  It will not get finished, if it is running in the background it won’t stop unless the whole application stop.
                 GlobalScope.launch {
 
-                    while (true){
+                    while (true) {
                         Log.d(Constant.TAG_Coroutine, "Continue Start GlobalScope :")
                         delay(300)
                     }
@@ -584,9 +599,8 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
                 }
 
-                startActivity(Intent(this, ViewModelMainActivity:: class.java))
+                startActivity(Intent(this, ViewModelMainActivity::class.java))
                 this.finish()
-
 
 
             }
@@ -595,24 +609,23 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
             binding.btnDemo3.id -> {
 
 
-
-                startActivity(Intent(this, ViewModelMainActivity:: class.java))
+                startActivity(Intent(this, ViewModelMainActivity::class.java))
                 this.finish()
 
             }
             ///////////////  Job //////////////////
 
-         //   Job : job will be returned when a new coroutine will be launched.
+            //   Job : job will be returned when a new coroutine will be launched.
 
 //                    start()
 //                    join()
 //                    cancel()
 
 
-             binding.btnDemo4.id -> {
+            binding.btnDemo4.id -> {
 
 
-                lifecycleScope.launch{
+                lifecycleScope.launch {
                     JobDemo()
                 }
 
@@ -626,7 +639,7 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
             binding.btnDemo5.id -> {
 
 
-                lifecycleScope.launch{
+                lifecycleScope.launch {
                     test2JobJoin()
                 }
 
@@ -635,18 +648,18 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
             binding.btnDemo6.id -> {
 
 
-                lifecycleScope.launch{
+                lifecycleScope.launch {
 
                     val job1 = launch { networkCall1() }
 
 
                     job1.join()
 
-                    val job2 =  launch { networkCall2() }
+                    val job2 = launch { networkCall2() }
 
                     job2.join()
 
-                    val job3 =  launch { networkCall3() }
+                    val job3 = launch { networkCall3() }
 
                     job3.join()
 
@@ -656,13 +669,12 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
                 }
 
 
-
             }
 
             binding.btnDemo7.id -> {
 
 
-                lifecycleScope.launch{
+                lifecycleScope.launch {
                     test3Async()
                 }
             }
@@ -671,21 +683,22 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
             binding.btnDemo8.id -> {
 
 
-                lifecycleScope.launch{
+                lifecycleScope.launch {
 
-                    val s1 = async {networkCall1()  }
-                  //  s1.await()
+                    val s1 = async { networkCall1() }
+                     // s1.await()
                     val s2 = async { networkCall2() }
-                  //  s2.await()
+                     // s2.await()
                     val s3 = async { networkCall3() }
-                   // s3.await()
-                  //  Log.d(Constant.TAG_Coroutine, "Continue async sequential result")
+                   //  s3.await()
+                      Log.d(Constant.TAG_Coroutine, "Continue async sequential result")
 
-                    Log.d(Constant.TAG_Coroutine, "Continue async parellel result : FOR 1> ${s1.await()} ,2> ${s2.await()} and 3> ${s3.await()} ")
+                    Log.d(
+                        Constant.TAG_Coroutine,
+                        "Continue async parellel result : FOR 1> ${s1.await()} ,2> ${s2.await()} and 3> ${s3.await()} "
+                    )
                 }
             }
-
-
 
 
             binding.btnDemo10.id -> {
@@ -700,14 +713,14 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
                  */
 
-                lifecycleScope.launch(Dispatchers.IO){
-                   val result =  networkCall()
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val result = networkCall()
                     Log.d(Constant.TAG_Coroutine, "Continue result : ${result}")
                 }
 
             }
 
-            binding.btnbasic.id ->{
+            binding.btnbasic.id -> {
 
                 CoroutineScope(Dispatchers.Main).launch {
                     task1()
@@ -722,12 +735,12 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
             binding.btnDemo11.id -> {
 
 
-                lifecycleScope.launch(Dispatchers.IO){
-                    val result =  networkCall()
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val result = networkCall()
                     Log.d(Constant.TAG_Coroutine, "Continue my result : ${result}")
-                   // binding.txtDemo.setText(result.toString())  // We required Main thread to bind the view
+                    // binding.txtDemo.setText(result.toString())  // We required Main thread to bind the view
 
-                   withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         binding.txtDemo.setText(result.toString())
                     }
                 }
@@ -741,21 +754,21 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
              *********************************************************************************************/
 
 
-            binding.btnDemo12.id ->{
+            binding.btnDemo12.id -> {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     printFollowers()
                 }
             }
 
-            binding.btnDemo13.id ->{
+            binding.btnDemo13.id -> {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     printFollowerswithJoin()
                 }
             }
 
-            binding.btnDemo14.id ->{
+            binding.btnDemo14.id -> {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     printFollowersJobMultiple()
@@ -771,7 +784,7 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
             binding.btnDemo16.id -> {
 
-                lifecycleScope.launch(Dispatchers.Main){
+                lifecycleScope.launch(Dispatchers.Main) {
                     executeData()
                 }
             }
@@ -779,7 +792,7 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
             binding.btnDemo17.id -> {
 
 
-                lifecycleScope.launch(Dispatchers.Main){
+                lifecycleScope.launch(Dispatchers.Main) {
                     executeCancelDEmo()
                 }
             }
@@ -790,54 +803,55 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
             binding.btnDemo18.id -> {
 
 
-                lifecycleScope.launch(Dispatchers.Main){
+                lifecycleScope.launch(Dispatchers.Main) {
                     executeChildCancelDEmo()
                 }
             }
+
+            //LongRunning - Cancel  Demo
             binding.btnDemo19.id -> {
 
 
-                lifecycleScope.launch(Dispatchers.Main){
+                lifecycleScope.launch(Dispatchers.Main) {
                     executeTask()
                 }
             }
             binding.btnDemo20.id -> {
 
 
-
-                lifecycleScope.launch(Dispatchers.Main){
+                lifecycleScope.launch(Dispatchers.Main) {
                     executeTaskIsActive()
                 }
 
             }
 
-           // WithContext : Blocking in nature : ie run in Sequentially
+            // WithContext : Blocking in nature : ie run in Sequentially
             // Mostly used for switching the scope
             binding.btnDemo21.id -> {
 
-                Log.d(Constant.TAG_Coroutine,"Start work")
+                Log.d(Constant.TAG_Coroutine, "Start work")
 
 
-                   lifecycleScope.launch{
+                lifecycleScope.launch {
 
-                       Log.d(Constant.TAG_Coroutine," Coroutine Start ")
-                       var  data = networkCall()
+                    Log.d(Constant.TAG_Coroutine, " Coroutine Start ")
+                    var data = networkCall()
 
-                       Log.d(Constant.TAG_Coroutine,"After network")
+                    Log.d(Constant.TAG_Coroutine, "After network")
 
-                       withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
 
-                           //
-                           Log.d(Constant.TAG_Coroutine,"Run Sequntially...")
-                           binding.txtDemo.text = "Data From solution " +data.toString()
-                       }
-                       Log.d(Constant.TAG_Coroutine,"End Task")
-                   }
-
-
-                Log.d(Constant.TAG_Coroutine,"Finish Work")
-
+                        //
+                        Log.d(Constant.TAG_Coroutine, "Run Sequntially...")
+                        binding.txtDemo.text = "Data From solution " + data.toString()
+                    }
+                    Log.d(Constant.TAG_Coroutine, "End Task")
                 }
+
+
+                Log.d(Constant.TAG_Coroutine, "Finish Work")
+
+            }
 
             binding.btnHandler.id -> {
 
@@ -848,15 +862,43 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
 
                 cancelHandlerTask()
             }
+
+            binding.btnCoroutineHandler.id -> {
+
+                //region Commented
+//                jobRepeat =    this.lifecycleScope.launch {
+//
+//                   lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+//
+//                       while (true){
+//                           if(isActive){
+//                               getData()
+//                           }
+//                           delay(2000)
+//                       }
+//                   }
+//                }
+                //endregion
+
+              //  jobRepeat = startRepeatingJob(2000)
+
+            }
+
+
+                binding.btnHandlerCoroutineCancel.id -> {
+
+                    jobRepeat?.cancel()
+                    jobRepeat = null
+                }
 //            binding.btnHandler.setOnClickListener(this)
 //                    binding.btnHandlerCancel.setOnClickListener(this)
 //                    binding.btnCoroutineHandler.setOnClickListener(this)
 //                    binding.btnHandlerCoroutineCancel.setOnClickListener(this)
 
+            }
+
+
         }
-
-
-    }
 
 
 }
