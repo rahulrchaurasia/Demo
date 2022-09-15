@@ -11,7 +11,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="match_parent"
         android:background="@drawable/backgroun">
 
     </ImageView>
@@ -134,7 +134,8 @@
                 android:id="@+id/rvImgSlide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fab_margin"
+
+                android:layout_marginTop="@dimen/twenty_four"
                 android:background="@color/bg_dashboard"
                 android:nestedScrollingEnabled="false"
                 android:visibility="visible">

@@ -73,3 +73,9 @@ class KotlinBasicDemoActivity : AppCompatActivity() {
 
     }
 }
+
+class Case<out T> {
+    private val contents = mutableListOf<T>()
+    fun produce(): T = contents.last()         // Producer: OK
+  //  fun consume(item: T) = contents.add(item)  // Consumer: Error
+}
