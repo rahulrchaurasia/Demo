@@ -7,7 +7,8 @@
     android:id="@+id/lyDashboardParent"
     android:background="@color/bg_dashboard"
     android:visibility="visible"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ImageView
         android:layout_width="match_parent"
@@ -32,6 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/eight"
+
             android:orientation="horizontal">
             <TextView
                 style="@style/TextViewStyle.BannerRegular"
@@ -99,23 +102,18 @@
 
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/svContainer"
-        android:layout_below="@+id/lyHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible">
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:id="@+id/svContainer"-->
+<!--        android:layout_below="@+id/lyHeader"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="visible">-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/lyHeader"
             android:orientation="vertical">
-
-
-
-
-
-
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
@@ -142,9 +140,22 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/rvProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutAnimation="@anim/layout_animation"
+                android:layout_marginTop="@dimen/four"
+                android:background="@color/bg_dashboard"
+                android:nestedScrollingEnabled="false"
+                android:visibility="visible">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+<!--    </androidx.core.widget.NestedScrollView>-->
 
 
 

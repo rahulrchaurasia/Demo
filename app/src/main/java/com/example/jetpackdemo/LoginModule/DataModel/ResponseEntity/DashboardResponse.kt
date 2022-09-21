@@ -11,6 +11,6 @@ data class DashboardResponse(
 
 
 data class DashboardMasterData(
-    val Dashboard: List<DashboardEntity>,
-    val Menu: List<Any>
+    val Dashboard: MutableList<DashboardEntity>,
+    val Menu: MutableList<Any>
 )

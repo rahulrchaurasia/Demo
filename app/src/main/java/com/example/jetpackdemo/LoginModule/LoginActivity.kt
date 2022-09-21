@@ -26,6 +26,7 @@ import com.example.jetpackdemo.RoomDemo.Database.DemoDatabase
 import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.Utility.NetworkUtils
 import com.example.jetpackdemo.databinding.ActivityLoginBinding
+import com.example.jetpackdemo.webView.CommonWebViewActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
@@ -77,7 +78,9 @@ class LoginActivity : BaseActivity() {
 
         //region Observing Live and Flow Data
 
-          // region Flow Observing
+          // region Flow Observing  : For fragment : viewLifeycleOwner.lifecycleScope.launch {
+        //                                           viewLifeycleOwner   repeatOnLifecycle(Lifecycle.State.STARTED){
+        //                                          .... }
         // lifecycleScope.launchWhenStarted {
        lifecycleScope.launch {
 
@@ -99,9 +102,12 @@ class LoginActivity : BaseActivity() {
 
                                //  Log.d(Constant.TAG_Coroutine, it.MasterData.toString())
 
-                               // showSnackBar(viewParent, "Dear ${it.MasterData.FullName}, You Login Successfully!!")
+                                showSnackBar(viewParent, "Dear ${it.MasterData.FullName}, You Login Successfully!!")
+
 
                                startActivity(Intent(this@LoginActivity, HomeDashboardActivity::class.java))
+                               this@LoginActivity.finish()
+                              // startActivity(Intent(this@LoginActivity, CommonWebViewActivity::class.java))
                            }
 
 

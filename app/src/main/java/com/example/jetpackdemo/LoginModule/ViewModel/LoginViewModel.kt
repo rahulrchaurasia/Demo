@@ -45,9 +45,11 @@ class LoginViewModel (var loginRepository: LoginRepository) : ViewModel(){
 
                 .catch { ex ->
 
-                    // emit(APIState.Failure(ex.message ?: "Unknown Error"))
+                                 // emit(APIState.Failure(ex.message ?: "Unknown Error"))
+
                     loginMutableStateFlow.value = APIState.Failure(ex.message ?: "Unknown Error")
 
+                    //loginMutableStateFlow.emit(APIState.Failure(ex.message ?: "Unknown Error"))
 
                 }.collect{ data ->
 
@@ -56,13 +58,15 @@ class LoginViewModel (var loginRepository: LoginRepository) : ViewModel(){
 
 
                             loginMutableStateFlow.value = APIState.Success(data =  data.body()!!)
+                           // loginMutableStateFlow.emit(APIState.Success(data =  data.body()!!))
                         }else{
 
                             loginMutableStateFlow.value = APIState.Failure(data.body()?.Message ?: Constant.ErrorMessage)
-
+                          //  loginMutableStateFlow.emit(APIState.Failure(data.body()?.Message ?: Constant.ErrorMessage))
                         }
                     }else{
                         loginMutableStateFlow.value = APIState.Failure(data.message() ?: Constant.ErrorMessage)
+                       // loginMutableStateFlow.emit(APIState.Failure(data.body()?.Message ?: Constant.ErrorMessage))
                     }
 
 
@@ -72,7 +76,8 @@ class LoginViewModel (var loginRepository: LoginRepository) : ViewModel(){
 
         }catch (ex : Exception){
 
-            loginMutableStateFlow.value = APIState.Failure(ex.message ?: "Unknown Error")
+            loginMutableStateFlow.value = APIState.Failure(ex.message ?: Constant.ErrorDefault)
+            //loginMutableStateFlow.emit(APIState.Failure(ex.message ?: Constant.ErrorDefault))
 
         }
 

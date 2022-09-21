@@ -16,9 +16,15 @@
 
 package com.example.jetpackdemo.Utility
 
+import android.content.Context
+import android.content.DialogInterface
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.example.jetpackdemo.R
 import com.google.android.material.snackbar.Snackbar
 
+/**************** For Snackbar *********************************************/
 fun View.showSnackbar(msgId: Int, length: Int) {
     showSnackbar(context.getString(msgId), length)
 }
@@ -48,4 +54,45 @@ fun View.showSnackbar(
             action(this)
         }.show()
     }
+}
+
+/**************** For AlertDialog with Action *********************************************/
+
+ fun View.toast(context: Context ,text: String) = Toast.makeText( context, text, Toast.LENGTH_SHORT).show()
+
+fun basicAlert(view: View){
+
+    val builder = AlertDialog.Builder(view.context)
+
+//    with(builder)
+//    {
+//        setTitle("Androidly Alert")
+//        setMessage("We have a message")
+//        setPositiveButton("OK", DialogInterface.OnClickListener(function = positiveButtonClick))
+//        setNegativeButton(android.R.string.no, negativeButtonClick)
+//        setNeutralButton("Maybe", neutralButtonClick)
+//        show()
+//    }
+
+
+}
+
+fun View.showAlerDialog(context : Context) {
+    val alertDialog = AlertDialog.Builder(context)
+
+    alertDialog.apply {
+        setIcon(R.drawable.ic_email_24)
+        setTitle("Logout")
+        setMessage("Do you want to Logout!")
+        setPositiveButton("Positive") { _, _ ->
+
+
+        }
+//        setNegativeButton("Negative") { _, _ ->
+//            toast("clicked negative button")
+//        }
+//        setNeutralButton("Neutral") { _, _ ->
+//            toast("clicked neutral button")
+//        }
+    }.create().show()
 }

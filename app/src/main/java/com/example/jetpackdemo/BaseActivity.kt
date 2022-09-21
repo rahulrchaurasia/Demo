@@ -1,14 +1,25 @@
 package com.example.jetpackdemo
 
 import android.app.Dialog
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.jetpackdemo.databinding.ActivityBaseBinding
 import com.example.jetpackdemo.databinding.DialogLoadingBinding
 import com.google.android.material.snackbar.Snackbar
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -25,6 +36,8 @@ open class BaseActivity : AppCompatActivity() {
 
 
         }
+
+        open fun toast( text: String) = Toast.makeText( this, text, Toast.LENGTH_SHORT).show()
 
         open fun showDialog(msg: String = "Loading Please Wait!!"){
 
@@ -45,7 +58,7 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
 
-        fun cancelDialog(){
+          open fun cancelDialog(){
 
                 if(dialog.isShowing){
 
@@ -71,10 +84,39 @@ open class BaseActivity : AppCompatActivity() {
             builder.show()
         }
 
-      fun showSnackBar(view : View, strMessage: String){
+       open fun showAlert(title : String ,msg : String,
+                          action: (strType: String) -> Unit) {
+           val alertDialog = AlertDialog.Builder(this)
+
+           alertDialog.apply {
+               setIcon(R.drawable.ic_email_24)
+               setTitle(title)
+               setMessage(msg)
+               setPositiveButton("OK") { _, _ ->
+
+                action("Y")
+
+               }
+
+                setNegativeButton("Cancel") { _, _ ->
+
+                    action("N")
+                }
+//        setNeutralButton("Neutral") { _, _ ->
+//            toast("clicked neutral button")
+//        }
+           }.create().show()
+       }
+
+
+
+    open fun showSnackBar(view : View, strMessage: String){
 
         Snackbar.make(view, strMessage, Snackbar.LENGTH_SHORT).show()
 
      }
+
+
+
 
 }

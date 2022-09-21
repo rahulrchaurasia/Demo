@@ -1,12 +1,11 @@
 package com.example.jetpackdemo.LoginModule.UI
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,21 +13,26 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.demo.kotlindemoapp.HomeMain.CarouselViewPager.CarouselTransformer
 import com.example.jetpackdemo.BaseActivity
+import com.example.jetpackdemo.CameraGalleryDemo.ActivityResultLauncherDemoActivity
+import com.example.jetpackdemo.CameraGalleryDemo.MultiplePermissionActivity
+import com.example.jetpackdemo.HomePage.HomePageActivity
 import com.example.jetpackdemo.LoginModule.DataModel.model.DashboardEntity
+import com.example.jetpackdemo.LoginModule.DataModel.model.DashboardMenu
+import com.example.jetpackdemo.LoginModule.Repository.DBDashboardMenuRepository
 import com.example.jetpackdemo.LoginModule.Repository.DashboardRepository
-import com.example.jetpackdemo.LoginModule.Repository.LoginRepository
+import com.example.jetpackdemo.LoginModule.UI.Adapter.DashBoardAdapter
+import com.example.jetpackdemo.LoginModule.UI.Adapter.DashBoardMenuAdapter
 import com.example.jetpackdemo.LoginModule.ViewModel.DashboardViewModel
-import com.example.jetpackdemo.LoginModule.ViewModel.LoginViewModel
 import com.example.jetpackdemo.LoginModule.ViewmodelFactory.DashboardViewModelFactory
-import com.example.jetpackdemo.LoginModule.ViewmodelFactory.LoginViewModelFactory
-import com.example.jetpackdemo.R
 import com.example.jetpackdemo.Response
 import com.example.jetpackdemo.RetrofitHelper
 import com.example.jetpackdemo.RoomDemo.Database.DemoDatabase
 import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.Utility.NetworkUtils
+import com.example.jetpackdemo.Utility.showAlerDialog
 import com.example.jetpackdemo.databinding.ActivityHomeDashboardBinding
 import com.example.jetpackdemo.databinding.ContentHomeMainBinding
+import com.example.jetpackdemo.webView.CommonWebViewActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 import java.lang.Runnable
@@ -41,12 +45,14 @@ import java.lang.Runnable
  ****************************************************************************************************/
 class HomeDashboardActivity : BaseActivity() {
 
+    //region Declaration
     lateinit var bindingRoot : ActivityHomeDashboardBinding
     lateinit var binding : ContentHomeMainBinding
     lateinit var layout: View
     lateinit var viewModel: DashboardViewModel
 
     lateinit var dashBoardAdapter: DashBoardAdapter
+    lateinit var dashBoardMenuAdapter: DashBoardMenuAdapter
 
     lateinit var viewPager2 : ViewPager2
     lateinit var sliderHandler : Handler
@@ -56,6 +62,8 @@ class HomeDashboardActivity : BaseActivity() {
 
     // var sliderHandler = Handler(Looper.myLooper())
    //  var sliderRun : Runnable? = null
+
+    //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,32 +93,64 @@ class HomeDashboardActivity : BaseActivity() {
 
     }
 
+    //region Event
     override fun onPause() {
         super.onPause()
 
+        //region commented
 //        if (sliderRun != null) {
 //
 //            sliderHandler.removeCallbacks(sliderRun)
 //        }
+        //endregion
     }
 
     override fun onResume() {
         super.onResume()
+
+        //region comment
 //        if (sliderRun != null) {
 //
 //            sliderHandler.postDelayed(sliderRun,3000)
 //        }
-
+        //endregion
+//
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        this.finish()
+      //  super.onBackPressed()
+
+      //  layout.showAlerDialog(this)
+
+
+        showAlert("Exit","Do you want to exit!!"){ type ->
+
+            when(type){
+                "Y" -> {
+                    toast("Logout Successfully...!!")
+                    this@HomeDashboardActivity.finish()
+                }
+                "N" -> {
+                    toast("Cancel logout")
+                }
+
+            }
+
+
+
+        }
+       // this.finish()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
 
+        dashBoardAdapter.cancelJob()
+    }
 
+    //endregion
 
+    //region Init method
     private fun init(){
 
         var demoDatabase = DemoDatabase.getDatabase(applicationContext)
@@ -125,27 +165,6 @@ class HomeDashboardActivity : BaseActivity() {
 
     }
 
-     fun initJOB() {
-
-        cancelJob()
-
-         viewpager2Job =   lifecycleScope.launch(Dispatchers.IO){
-
-         delay((3*1000))
-             Log.d("VIEWPAGER", "Coroutine viewPager Current Item position " + viewPager2.currentItem)
-
-             viewPager2.setCurrentItem(viewPager2.currentItem + 1, true)
-
-
-
-         }
-
-
-    }
-    fun cancelJob() {
-        viewpager2Job?.cancel()
-    }
-
     private fun initData(){
 
         dashBoardAdapter = DashBoardAdapter(ArrayList())
@@ -156,19 +175,30 @@ class HomeDashboardActivity : BaseActivity() {
            adapter = dashBoardAdapter
        }
 
+        dashBoardMenuAdapter = DashBoardMenuAdapter(this,ArrayList()){ it : DashboardMenu ->
+
+            // Here we'll receive callback of
+            // every recyclerview item click
+            // Now, perform any action here.
+            // for ex: navigate to different screen
+
+            navigateDashboardMenu(it)
+
+
+        }
+        binding.rvProduct.apply {
+
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@HomeDashboardActivity)
+            adapter = dashBoardMenuAdapter
+        }
+        binding.rvProduct.scheduleLayoutAnimation()
+
     }
 
-    // for creating Runnable
-  private val  sliderRun = Runnable {
+    //endregion
 
-        Log.d("VIEWPAGER", "viewPager Current Item position " + viewPager2.currentItem)
-
-        viewPager2.setCurrentItem(viewPager2.currentItem + 1, true)
-
-
-
-    }
-
+    //region Api Response
     private fun getDashboardResponse(){
 
         viewModel.dashBoardDataLiveData.observe(this, {
@@ -186,8 +216,9 @@ class HomeDashboardActivity : BaseActivity() {
                     it.data?.let {
                         Log.d(Constant.TAG_Coroutine +" Dasbboard :", it.toString())
                         loadViewPager(it.MasterData.Dashboard)
-                       // dashBoardAdapter.setData(it.MasterData.Dashboard)
-                        binding.rvImgSlide.scheduleLayoutAnimation()
+
+                        dashBoardMenuAdapter.setData(DBDashboardMenuRepository.getDashBoardMenu())
+                        binding.rvProduct.scheduleLayoutAnimation()
 
                     }
                 }
@@ -232,13 +263,71 @@ class HomeDashboardActivity : BaseActivity() {
         })
 
     }
+    //endregion
+
+    //region Job {Couroutine }  for handling Viewpager2 to run continously
+    fun initJOB() {
+
+        cancelJob()
+
+//        viewpager2Job =   lifecycleScope.launch(Dispatchers.Main){
+//
+//
+//
+//           var delayViewpage2 = delayViewpager2()
+//
+//
+//            viewPager2.setCurrentItem(viewPager2.currentItem + 1, true)
+//
+//        }
+
+        //////////////
+
+        viewpager2Job =   lifecycleScope.launch(Dispatchers.Main){
+
+            val job = CoroutineScope(Dispatchers.IO).launch{
+                delayViewpager2()
+            }
+
+            job.join()
+
+            viewPager2.setCurrentItem(viewPager2.currentItem + 1, true)
+
+        }
 
 
-    private fun loadViewPager(listInsur: List<DashboardEntity>){
+
+
+        // Note : For UI update we must to come the other thered To "Main Thread" Only
+//        withContext(Dispatchers.Main){
+//
+//            viewPager2.setCurrentItem(viewPager2.currentItem + 1, true)
+//
+//        }
 
 
 
-        dashBoardAdapter = DashBoardAdapter(listInsur)
+
+    }
+
+    suspend fun delayViewpager2(){
+        delay((4*1000))
+        Log.d("VIEWPAGER", "Coroutine viewPager Current Item position " + viewPager2.currentItem)
+
+
+    }
+
+    fun cancelJob() {
+        viewpager2Job?.cancel()
+    }
+    //endregion
+
+    //region ViewPager2 Setup
+    private fun loadViewPager(listInsur: MutableList<DashboardEntity>){
+
+
+
+        dashBoardAdapter = DashBoardAdapter(listInsur,viewPager2)
         viewPager2.adapter = dashBoardAdapter
 
 
@@ -269,6 +358,7 @@ class HomeDashboardActivity : BaseActivity() {
 
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
+                   // Log.d("VIEWPAGER", "Coroutine viewPager page Selection triggered " + position)
 
 //                    sliderHandler.removeCallbacks(sliderRun)
 //                    sliderHandler.postDelayed(sliderRun, 3000)
@@ -281,6 +371,42 @@ class HomeDashboardActivity : BaseActivity() {
             }
 
         )
+
+    }
+
+    //endregion
+
+    fun navigateDashboardMenu(menuEntity: DashboardMenu){
+
+
+        when(menuEntity.id){
+
+            "1" -> {
+                startActivity(Intent(this, HomePageActivity::class.java))
+            }
+            "2" -> {
+                startActivity(Intent(this, CommonWebViewActivity::class.java))
+            }
+            "3" -> {
+                startActivity(Intent(this, ActivityResultLauncherDemoActivity::class.java))
+            }
+            "4" -> {
+                startActivity(Intent(this, MultiplePermissionActivity::class.java))
+            }
+        }
+
+    }
+
+
+    //region Runnable Not in Used
+    // for creating Runnable
+    private val  sliderRun = Runnable {
+
+        Log.d("VIEWPAGER", "viewPager Current Item position " + viewPager2.currentItem)
+
+        viewPager2.setCurrentItem(viewPager2.currentItem + 1, true)
+
+
 
     }
 
@@ -340,4 +466,8 @@ class HomeDashboardActivity : BaseActivity() {
 
     }
     //getParallelAPIForUser_Dasbboard
+
+    //endregion
+
+
 }
