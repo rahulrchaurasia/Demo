@@ -28,7 +28,7 @@ class DashBoardMenuAdapter(private var context : Context,
     ) :
  RecyclerView.Adapter<DashBoardMenuAdapter.MenuHolder>(){
 
-    private lateinit var binding: DashboardProdItemModelBinding
+     //private lateinit var binding: DashboardProdItemModelBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuHolder {
 

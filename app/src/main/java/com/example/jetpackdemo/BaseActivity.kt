@@ -2,6 +2,7 @@ package com.example.jetpackdemo
 
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.ColorDrawable
@@ -85,22 +86,25 @@ open class BaseActivity : AppCompatActivity() {
         }
 
        open fun showAlert(title : String ,msg : String,
-                          action: (strType: String) -> Unit) {
+
+                          action: (strType: String,dialog : DialogInterface) -> Unit) {
            val alertDialog = AlertDialog.Builder(this)
 
            alertDialog.apply {
                setIcon(R.drawable.ic_email_24)
                setTitle(title)
                setMessage(msg)
-               setPositiveButton("OK") { _, _ ->
+               setCancelable(false)
+               setPositiveButton("OK") {dialog, whichButton ->
 
-                action("Y")
+                //dialog.dismiss()
+                action("Y",dialog)
 
                }
 
-                setNegativeButton("Cancel") { _, _ ->
-
-                    action("N")
+                setNegativeButton("Cancel") { dialog, whichButton ->
+                   // dialog.dismiss()
+                    action("N", dialog)
                 }
 //        setNeutralButton("Neutral") { _, _ ->
 //            toast("clicked neutral button")

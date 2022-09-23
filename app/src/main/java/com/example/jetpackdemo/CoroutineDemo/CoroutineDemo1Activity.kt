@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.jetpackdemo.BaseActivity
@@ -90,6 +91,7 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
         binding.btnHandlerCancel.setOnClickListener(this)
         binding.btnCoroutineHandler.setOnClickListener(this)
         binding.btnHandlerCoroutineCancel.setOnClickListener(this)
+        binding.btnDispatchersMain.setOnClickListener(this)
 
 
         //region Comment LifeCycle DEmo
@@ -885,15 +887,32 @@ class CoroutineDemo1Activity : BaseActivity(), View.OnClickListener {
             }
 
 
-                binding.btnHandlerCoroutineCancel.id -> {
+            binding.btnHandlerCoroutineCancel.id -> {
 
                     jobRepeat?.cancel()
                     jobRepeat = null
                 }
-//            binding.btnHandler.setOnClickListener(this)
-//                    binding.btnHandlerCancel.setOnClickListener(this)
-//                    binding.btnCoroutineHandler.setOnClickListener(this)
-//                    binding.btnHandlerCoroutineCancel.setOnClickListener(this)
+
+            binding.btnDispatchersMain.id -> {
+
+                lifecycle.coroutineScope.launch(Dispatchers.Main) {
+
+                    Log.d(Constant.TAG_Coroutine, " Coroutine Start ")
+                    delay(1500)
+
+                    val job = CoroutineScope(Dispatchers.IO).launch {
+                        Log.d(Constant.TAG_Coroutine, " Coroutine Middle ")
+                        networkCall()
+                    }
+
+                    //job.join()
+
+                    Log.d(Constant.TAG_Coroutine, " Coroutine End ")
+                    delay(800)
+                    Log.d(Constant.TAG_Coroutine, " Coroutine Finish ")
+
+                }
+            }
 
             }
 

@@ -18,6 +18,7 @@ import androidx.core.content.FileProvider
 import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.R
 import com.example.jetpackdemo.Utility.Constant
+import com.example.jetpackdemo.Utility.Utility
 import com.example.jetpackdemo.Utility.showSnackbar
 import com.example.jetpackdemo.databinding.ActivityResultLauncherDemoBinding
 import com.google.android.material.snackbar.Snackbar
@@ -45,7 +46,7 @@ class ActivityResultLauncherDemoActivity : BaseActivity(), View.OnClickListener,
                 Log.d(Constant.TAG_Coroutine,"Permission Granted via Launcher")
                 showSnackBar(layout,"Permission Granted via Launcher")
 
-                imgUri = createImageUri()!!
+                imgUri = Utility.createImageUri(this)
                 cameraContracts.launch(imgUri)
 
             }else{
@@ -116,16 +117,6 @@ class ActivityResultLauncherDemoActivity : BaseActivity(), View.OnClickListener,
     }
 
 
-   private fun createImageUri() : Uri? {
-
-       val image = File(applicationContext.filesDir,"camera_photo.png")
-
-       return FileProvider.getUriForFile(applicationContext,
-           "com.example.jetpackdemo.fileprovider",
-             image
-           )
-
-   }
 
     fun settingDialog(){
 
@@ -176,7 +167,7 @@ class ActivityResultLauncherDemoActivity : BaseActivity(), View.OnClickListener,
                 Log.d(Constant.TAG_Coroutine,"Permission Granted via Req : Use Camera")
                 showSnackBar(layout,"Permission Granted via Req : Use Camera")
 
-                imgUri = createImageUri()!!
+                imgUri = Utility.createImageUri(this)
                 cameraContracts.launch(imgUri)
 
             }
@@ -211,6 +202,10 @@ class ActivityResultLauncherDemoActivity : BaseActivity(), View.OnClickListener,
 
         }
     }
+
+
+
+
 
     override fun onClick(view: View?) {
 

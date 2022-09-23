@@ -1,13 +1,13 @@
 package com.example.jetpackdemo.LoginModule.UI
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -42,6 +42,9 @@ import java.lang.Runnable
 // https://www.youtube.com/watch?v=dTqOVsdj0pY&t=555s
 //https://discuss.kotlinlang.org/t/how-to-measure-execution-time-of-an-aync-query-request-inside-kotlin-coroutines/23352
 
+ Use of LifecycleScope, we have  two way : lifecycle.coroutineScope.launch {..}
+                                           or
+                                        lifecycleScope.launch {....}
  ****************************************************************************************************/
 class HomeDashboardActivity : BaseActivity() {
 
@@ -93,6 +96,8 @@ class HomeDashboardActivity : BaseActivity() {
 
     }
 
+
+
     //region Event
     override fun onPause() {
         super.onPause()
@@ -123,7 +128,7 @@ class HomeDashboardActivity : BaseActivity() {
       //  layout.showAlerDialog(this)
 
 
-        showAlert("Exit","Do you want to exit!!"){ type ->
+        showAlert("Exit","Do you want to exit!!") { type  : String, dialog : DialogInterface ->
 
             when(type){
                 "Y" -> {
@@ -131,6 +136,7 @@ class HomeDashboardActivity : BaseActivity() {
                     this@HomeDashboardActivity.finish()
                 }
                 "N" -> {
+                    dialog.dismiss()
                     toast("Cancel logout")
                 }
 
@@ -175,6 +181,8 @@ class HomeDashboardActivity : BaseActivity() {
            adapter = dashBoardAdapter
        }
 
+
+        // Callback using Heigher Order fun ie Lemda we can pass
         dashBoardMenuAdapter = DashBoardMenuAdapter(this,ArrayList()){ it : DashboardMenu ->
 
             // Here we'll receive callback of
@@ -268,8 +276,9 @@ class HomeDashboardActivity : BaseActivity() {
     //region Job {Couroutine }  for handling Viewpager2 to run continously
     fun initJOB() {
 
-        cancelJob()
+        //cancelJob()
 
+        //region comment
 //        viewpager2Job =   lifecycleScope.launch(Dispatchers.Main){
 //
 //
@@ -281,19 +290,50 @@ class HomeDashboardActivity : BaseActivity() {
 //
 //        }
 
-        //////////////
+        //endregion
+        // Since COroutine Not Stop when I move from current page to another page,we use lifecycleScope which cancel
+        //coroutine when Activity destroy but in our case DashBoard Activity Not Destroy it was in stack and new activity come on Top.
 
-        viewpager2Job =   lifecycleScope.launch(Dispatchers.Main){
+        // repeatOnLifecycle launches the block in a new coroutine every time the
+        // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
 
-            val job = CoroutineScope(Dispatchers.IO).launch{
-                delayViewpager2()
-            }
 
-            job.join()
+        viewpager2Job =   lifecycleScope.launchWhenResumed {
 
-            viewPager2.setCurrentItem(viewPager2.currentItem + 1, true)
+               val job = CoroutineScope(Dispatchers.IO).launch {
+                    delayViewpager2()
+                }
+
+                job.join()
+
+                viewPager2.setCurrentItem(viewPager2.currentItem + 1, true)
+
 
         }
+
+          //  or
+        // region Comment :  lifecycle.coroutineScope.launch or lifecycleScope.launch
+         /*
+        lifecycle.coroutineScope.launch(Dispatchers.Main) {
+
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+
+                val job = CoroutineScope(Dispatchers.IO).launch {
+                    delayViewpager2()
+                }
+
+                job.join()
+
+                viewPager2.setCurrentItem(viewPager2.currentItem + 1, true)
+            }
+
+        }
+
+          */
+
+
+
 
 
 
@@ -364,6 +404,22 @@ class HomeDashboardActivity : BaseActivity() {
 //                    sliderHandler.postDelayed(sliderRun, 3000)
 
                       initJOB()
+
+//                    lifecycleScope.launchWhenStarted {
+//
+//                        Log.d("VIEWPAGER", "launchWhenStarted " + position)
+//                    }
+//
+//                    lifecycleScope.launchWhenResumed {
+//
+//                        Log.d("VIEWPAGER", "launchWhenResumed " + position)
+//                    }
+//
+//                    lifecycleScope.launchWhenCreated {
+//
+//                        Log.d("VIEWPAGER", "launchWhenCreated " + position)
+//                    }
+//
 
                 }
 

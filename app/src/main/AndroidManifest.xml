@@ -104,10 +104,12 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".CameraGalleryDemo.MultiplePermissionActivity"
+            android:parentActivityName=".LoginModule.UI.HomeDashboardActivity"
             android:exported="false"
             android:theme="@style/Theme.JetPackDemo"/>
         <activity
             android:name=".webView.CommonWebViewActivity"
+            android:parentActivityName=".LoginModule.UI.HomeDashboardActivity"
             android:exported="false"
             android:theme="@style/Theme.JetPackDemo" />
         <activity

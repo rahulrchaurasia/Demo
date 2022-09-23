@@ -79,6 +79,8 @@ class PermissionActivity : BaseActivity() {
         }
     }
 
+
+
     private fun showCameraDialog() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_GRANTED) {
@@ -113,13 +115,7 @@ class PermissionActivity : BaseActivity() {
         } else {
             // For First time Ask Permission
             // You can directly ask for the permission.
-            layout.showSnackbar(
-                R.string.camera_permission_not_available,
-                Snackbar.LENGTH_LONG,
-                R.string.ok
-            ) {
-                requestPermissionLauncher.launch(Manifest.permission.CAMERA)
-            }
+            requestPermissionLauncher.launch(Manifest.permission.CAMERA)
 
         }
     }
@@ -155,7 +151,7 @@ class PermissionActivity : BaseActivity() {
         // create dialog box
         val alert = dialogBuilder.create()
         // set title for alert dialog box
-        alert.setTitle("AlertDialogExample")
+        alert.setTitle("Permission")
         // show alert dialog
         alert.show()
     }

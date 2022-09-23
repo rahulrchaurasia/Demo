@@ -88,10 +88,6 @@ class Demo1Fragment : BaseFragment() {
 
                        binding.pdfView.fromUri(it).load()
 
-//                       val file = DocumentFileCompat.fromUri(context, treeUri);
-//                       file.absolutePath // => e.g. /storage/emulated/0/MyFolder/MyFile.mp4
-//                       file.basePath // => e.g. MyFolder/MyFile.mp4
-
                        val shareIntent = Intent().apply {
 
                            action = Intent.ACTION_SEND
