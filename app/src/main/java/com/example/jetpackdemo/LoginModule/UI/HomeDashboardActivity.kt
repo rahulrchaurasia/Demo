@@ -132,12 +132,12 @@ class HomeDashboardActivity : BaseActivity() {
 
             when(type){
                 "Y" -> {
-                    toast("Logout Successfully...!!")
+                   // toast("Logout Successfully...!!")
                     this@HomeDashboardActivity.finish()
                 }
                 "N" -> {
                     dialog.dismiss()
-                    toast("Cancel logout")
+                    toast("Cancel Exit")
                 }
 
             }

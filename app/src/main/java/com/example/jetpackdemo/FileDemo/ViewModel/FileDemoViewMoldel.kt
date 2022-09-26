@@ -156,6 +156,8 @@ class FileDemoViewMoldel(val fileDir : File) : ViewModel() {
                     put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
                     put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
                     put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
+
+                   // put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DCIM )
                 }
                 val resolver = context.contentResolver
                 val uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
