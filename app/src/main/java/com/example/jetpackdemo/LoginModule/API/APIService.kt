@@ -33,7 +33,7 @@ interface APIService {
 
 
     @Headers("token:"+ RetrofitHelper.token)
-    @POST("/quote/Postfm/user-constant-pb1")
+    @POST("/quote/Postfm/user-constant-pb")
     suspend fun getConstant(@Body body: HashMap<String, String>) : Response<ConstantDataResponse>
 
 

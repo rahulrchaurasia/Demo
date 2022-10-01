@@ -27,6 +27,12 @@
 
 
     <queries>
+        <package android:name="com.utility.finmartcontact" />
+
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="image/jpeg" />
+        </intent>
         <intent>
             <action android:name="android.intent.action.VIEW" />
 

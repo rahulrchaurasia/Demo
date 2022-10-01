@@ -24,6 +24,33 @@ tools:context=".KotlinDemo.KotlinBasicDemoActivity">
 
 </com.google.android.material.appbar.AppBarLayout>
 
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/fab_margin"
+       app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnEnum"
+            android:text="ENUM Demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnGeneric"
+            android:text="Generic Demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btnSealed"
+            android:layout_marginTop="@dimen/eight"
+            android:text="Sealed Demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

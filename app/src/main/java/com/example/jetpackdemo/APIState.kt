@@ -1,14 +1,33 @@
 package com.example.jetpackdemo
 
+
 sealed class APIState<T> ( val data: T? = null,
                            val errorMessage: String? = null){
-     class Loading<T> : APIState<T>()
-     class Success<T>(data: T? = null) : APIState<T>(data = data)
-     class Failure<T>( errorMessage: String) : APIState<T>(errorMessage = errorMessage)
-     class Empty<T>: APIState<T>()
+    class Loading<T> : APIState<T>()
+    class Success<T>(data: T? = null) : APIState<T>(data = data)
+    class Failure<T>( errorMessage: String) : APIState<T>(errorMessage = errorMessage)
+    class Empty<T>: APIState<T>()
 }
 
+/*********************************************************************
+  note : Below is not handled when we used Generic parameter so for
+       that we must used Sealed class also have parameterized
+ ************************************************************* */
+//sealed class APIState<T> ( ){          // Not handled in Generic Type data used
+//     class Loading<T> : APIState<T>()
+//     class Success<T>(data: T? = null) : APIState<T>()
+//     class Failure<T>( errorMessage: String) : APIState<T>()
+//     class Empty<T>: APIState<T>()
+//}
 
+
+//sealed class APIStatePract<T> ( val data: T,
+//                           val errorMessage: String? = null, val num : Int){
+//    class Loading<T>(data: T) : APIStatePract<T>(data)
+//    class Success<T>(data: T) : APIStatePract<T>(data = data)
+//    class Failure<T>( errorMessage: String) : APIStatePract<T>(errorMessage = errorMessage)
+//    class Empty<T>(data: T) : APIStatePract<T>(data)
+//}
 
 // Old  : Unable to handle Empty {Best for live Data}
 //sealed class NetworkResult1<T> {

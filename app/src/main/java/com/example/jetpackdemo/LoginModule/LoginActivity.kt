@@ -2,6 +2,8 @@ package com.example.jetpackdemo.LoginModule
 
 import android.Manifest
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -16,7 +18,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.jetpackdemo.APIState
 import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.HomePage.HomePageActivity
-import com.example.jetpackdemo.LoginModule.DataModel.RequestEntity.LoginRequestEntity
 import com.example.jetpackdemo.LoginModule.Repository.LoginRepository
 import com.example.jetpackdemo.LoginModule.UI.HomeDashboardActivity
 import com.example.jetpackdemo.LoginModule.ViewModel.LoginViewModel
@@ -26,8 +27,8 @@ import com.example.jetpackdemo.RoomDemo.Database.DemoDatabase
 import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.Utility.NetworkUtils
 import com.example.jetpackdemo.databinding.ActivityLoginBinding
-import com.example.jetpackdemo.webView.CommonWebViewActivity
 import com.google.android.material.snackbar.Snackbar
+
 import kotlinx.coroutines.launch
 
 
@@ -96,6 +97,7 @@ class LoginActivity : BaseActivity() {
 
                        is APIState.Success -> {
                            cancelDialog()
+
                            it.data?.let {
 
                                // Log.d(Constant.TAG_Coroutine, it.MasterData.EmailID)
@@ -194,6 +196,9 @@ class LoginActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
+            openExternalApp()
+
+            /*
             if(validate()){
 
             var loginRequestEntity  =    LoginRequestEntity(
@@ -236,6 +241,8 @@ class LoginActivity : BaseActivity() {
 
             }
 
+             */
+
 
 
         }
@@ -254,6 +261,36 @@ class LoginActivity : BaseActivity() {
         viewModel = ViewModelProvider(this,viewModelFactory).get(LoginViewModel::class.java)
 
 
+    }
+
+    //Note : In manifest we add package Visibilty of SyncCalllog app.
+    private fun openExternalApp(){
+
+        var packageName1 = "com.utility.finmartcontact"  //"com.utility.finmartcontact/.login.LoginActivity"
+        var packageName = "com.policyboss.policybosspro"  //"com.google.android.youtube"
+        val launchIntent = packageManager.getLaunchIntentForPackage(packageName1)
+        if (launchIntent != null) {
+            startActivity(launchIntent.putExtra("fbaid","1976",)
+                .putExtra("ssid","15921")
+                .putExtra("parentid","0")
+                .addFlags(FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK)
+            )
+        } else {
+
+            showAlert("There is no package available in android")
+        }
+//Intent  cmp=com.policyboss.policybosspro/.splashscreen.SplashScreenActivity }
+        //com.example.jetpackdemo/com.utility.finmartcontact
+        //".login.LoginActivity"
+       // var packageName = "com.utility.finmartcontact"
+//        var className = "LoginActivity"
+//
+//        val intent = Intent(Intent.ACTION_MAIN)
+//        intent.addCategory(Intent.CATEGORY_LAUNCHER)
+//        intent.setPackage(packageName)
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//        intent.setClassName(packageName, className)
+//        startActivity(intent)
     }
     private fun requestPermission(){
         isReadPermissionGranted = ContextCompat.checkSelfPermission(
