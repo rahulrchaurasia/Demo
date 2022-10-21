@@ -17,26 +17,27 @@ import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import com.example.jetpackdemo.HomePage.HomePageActivity
 import com.example.jetpackdemo.R
+import com.example.jetpackdemo.TrucallerModel.CallerDialogActivity
 import java.security.Provider
 
 /**
  * Created by Rahul on 13/05/2022.
  */
-class ForegroundService : Service() {
-    private val CHANNEL_ID = "com.example.jetpackdemo.notifications444"
+class CallerForegroundService : Service() {
+    private val CHANNEL_ID = "com.example.jetpackdemo.notifications445"
 
     companion object {
 
         fun startService(context: Context, message: String){
 
-         val startIntent = Intent(context, ForegroundService::class.java)
+         val startIntent = Intent(context, CallerForegroundService::class.java)
             startIntent.putExtra("inputExtra",message)
             ContextCompat.startForegroundService(context,startIntent)
         }
 
         fun stopService(context: Context){
 
-            val stopIntent = Intent(context, ForegroundService::class.java)
+            val stopIntent = Intent(context, CallerForegroundService::class.java)
             context.stopService(stopIntent)
         }
     }
@@ -45,25 +46,25 @@ class ForegroundService : Service() {
         //do heavy work on a background thread
         val input = intent?.getStringExtra("inputExtra")
         createNotificationChannel()
-        val notificationIntent = Intent(this, HomePageActivity::class.java)
 
-        val flag = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            PendingIntent.FLAG_IMMUTABLE
-        }else {0 }
-        val pendingIntent = PendingIntent.getActivity(
+
+
+        val fullScreenIntent = Intent(this, CallerDialogActivity::class.java)
+        val fullScreenPendingIntent = PendingIntent.getActivity(
             this,
-            0, notificationIntent, flag
+            0, fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT
         )
-
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Foreground Service Kotlin Example")
-            .setContentText(input)
+            .setContentTitle("Incoming call")
+            .setContentText("(919) 555-1234")
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentIntent(pendingIntent)
-//            .setFullScreenIntent(pendingIntent,true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_CALL)
             .setColor(Color.GREEN)
+            .setFullScreenIntent(fullScreenPendingIntent,true)
             .build()
-        startForeground(1, notification)
+        startForeground(2, notification)
         return START_NOT_STICKY
     }
     override fun onBind(p0: Intent?): IBinder? {

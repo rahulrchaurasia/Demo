@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
@@ -61,6 +62,7 @@ public class CommonWebViewActivity extends BaseActivity {
 
     WebView webView;
     ImageView imgPic;
+    Toolbar toolbar;
 
     String lat = "";
     String lon = "";
@@ -86,9 +88,9 @@ public class CommonWebViewActivity extends BaseActivity {
     File file;
     Uri imageUri;
 
-    private String URL = "http://mgfm.co.in/andr.html";
+   // private String URL = "http://mgfm.co.in/andr.html";
 
-
+    private String URL =  "http://api.magicfinmart.com/images/android.html";
 
     String[] perms = {
             "android.permission.CAMERA",
@@ -97,12 +99,7 @@ public class CommonWebViewActivity extends BaseActivity {
 
     };
 
-    String[] permsAll = {
-            "android.permission.CAMERA",
-            "android.permission.WRITE_EXTERNAL_STORAGE",
-            "android.permission.READ_EXTERNAL_STORAGE"
 
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +109,10 @@ public class CommonWebViewActivity extends BaseActivity {
         webView = (WebView) findViewById(R.id.webview);
         imgPic = (ImageView) findViewById(R.id.imgPic);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Webview Demo");
 
         settingWebview();
 
@@ -173,7 +174,7 @@ public class CommonWebViewActivity extends BaseActivity {
 
         });
         webView.getSettings().setBuiltInZoomControls(true);
-        webView.addJavascriptInterface(new MyJavaScriptInterface(), "AndroidInterface");   // comment : Interface bridge name Here
+        webView.addJavascriptInterface(new MyJavaScriptInterface(), "Android");   // comment : Interface bridge name Here
 
         webView.loadUrl(URL);
 
@@ -186,6 +187,7 @@ public class CommonWebViewActivity extends BaseActivity {
     class MyJavaScriptInterface {
 
 
+        // region For URL1
         // Web to Android
         @JavascriptInterface
         public void showToast(String msg) {
@@ -198,6 +200,30 @@ public class CommonWebViewActivity extends BaseActivity {
         // Android to Web
         @JavascriptInterface
         public String getLatLon() {
+
+            String latlon = lat  +","+lon ;
+            if (!checkPermissions()) {
+                requestPermissions();
+            }else{
+                getLastLocation();
+            }
+            return latlon ;
+        }
+
+        //endregion
+
+        @JavascriptInterface
+        public String getraccamera(String crnid) {
+
+            // Toast.makeText(CommonWebViewActivity.this, "msg", Toast.LENGTH_SHORT).show();
+            galleryCamPopUp();
+
+            return "5";
+        }
+
+        // Android to Web
+        @JavascriptInterface
+        public String savecameraimage() {
 
             String latlon = lat  +","+lon ;
             if (!checkPermissions()) {
@@ -443,7 +469,7 @@ public class CommonWebViewActivity extends BaseActivity {
 
     private String bitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 30, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
@@ -574,6 +600,7 @@ public class CommonWebViewActivity extends BaseActivity {
                 String  bitmapToBase64  = bitmapToBase64(mphoto);
 
                 Log.d(TAG, "Base64String :"+bitmapToBase64 );
+
 
                 // getUploadImage("123",bitmapToBase64);
                 // getUploadImage("123","aGjk0000kkkg");

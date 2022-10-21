@@ -24,15 +24,18 @@ import com.example.jetpackdemo.LoginModule.UI.Adapter.DashBoardAdapter
 import com.example.jetpackdemo.LoginModule.UI.Adapter.DashBoardMenuAdapter
 import com.example.jetpackdemo.LoginModule.ViewModel.DashboardViewModel
 import com.example.jetpackdemo.LoginModule.ViewmodelFactory.DashboardViewModelFactory
+import com.example.jetpackdemo.OpenAnotherApp.OpenAnotherActivity
 import com.example.jetpackdemo.Response
 import com.example.jetpackdemo.RetrofitHelper
 import com.example.jetpackdemo.RoomDemo.Database.DemoDatabase
+import com.example.jetpackdemo.TrucallerModel.CallerDialogActivity
 import com.example.jetpackdemo.Utility.Constant
 import com.example.jetpackdemo.Utility.NetworkUtils
 import com.example.jetpackdemo.Utility.showAlerDialog
 import com.example.jetpackdemo.databinding.ActivityHomeDashboardBinding
 import com.example.jetpackdemo.databinding.ContentHomeMainBinding
 import com.example.jetpackdemo.webView.CommonWebViewActivity
+import com.example.jetpackdemo.webView.WebViewDemoActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 import java.lang.Runnable
@@ -444,11 +447,25 @@ class HomeDashboardActivity : BaseActivity() {
                 startActivity(Intent(this, CommonWebViewActivity::class.java))
             }
             "3" -> {
+                startActivity(Intent(this, WebViewDemoActivity::class.java))
+            }
+
+            "4" -> {
                 startActivity(Intent(this, ActivityResultLauncherDemoActivity::class.java))
             }
-            "4" -> {
+            "5" -> {
                 startActivity(Intent(this, MultiplePermissionActivity::class.java))
             }
+
+            "6" -> {
+                startActivity(Intent(this, OpenAnotherActivity::class.java))
+              //  startActivity(Intent(this, CallerDialogActivity::class.java))
+
+
+                //CallerDialogActivity
+            }
+
+
         }
 
     }

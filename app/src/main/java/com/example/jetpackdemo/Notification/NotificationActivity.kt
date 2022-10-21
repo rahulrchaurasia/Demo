@@ -46,7 +46,7 @@ class NotificationActivity : BaseActivity() {
             setTitle("Notification Demo")
         }
 
-        createNotificationChannels()
+       // createNotificationChannels()
         val intentHome = Intent(this, HomePageActivity::class.java)
         val pendingIntent = TaskStackBuilder.create(this).run {
 

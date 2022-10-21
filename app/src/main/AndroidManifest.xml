@@ -12,25 +12,37 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Location permission -->
     <!-- Always include this permission -->
-
-    <!--  For Location  -->
+    <!-- For Location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Audio permission -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> <!-- Background permission -->
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- Network permission -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- For Call Log Handling Permission -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" /> <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" -->
+    <!-- android:maxSdkVersion="29" /> -->
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        tools:remove="android:maxSdkVersion" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission
+        android:name="android.permission.MODIFY_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
     <queries>
         <package android:name="com.utility.finmartcontact" />
 
         <intent>
             <action android:name="android.intent.action.SEND" />
+
             <data android:mimeType="image/jpeg" />
         </intent>
         <intent>
@@ -109,21 +121,27 @@
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".CameraGalleryDemo.MultiplePermissionActivity"
+            android:name=".webView.WebViewDemoActivity"
             android:parentActivityName=".LoginModule.UI.HomeDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OpenAnotherApp.OpenAnotherActivity"
             android:exported="false"
-            android:theme="@style/Theme.JetPackDemo"/>
+            android:parentActivityName=".LoginModule.UI.HomeDashboardActivity" />
+        <activity
+            android:name=".CameraGalleryDemo.MultiplePermissionActivity"
+            android:exported="false"
+            android:parentActivityName=".LoginModule.UI.HomeDashboardActivity"
+            android:theme="@style/Theme.JetPackDemo" />
         <activity
             android:name=".webView.CommonWebViewActivity"
-            android:parentActivityName=".LoginModule.UI.HomeDashboardActivity"
             android:exported="false"
+            android:label="WebView"
+            android:parentActivityName=".LoginModule.UI.HomeDashboardActivity"
             android:theme="@style/Theme.JetPackDemo" />
         <activity
             android:name=".LoginModule.UI.HomeDashboardActivity"
-            android:exported="false"
-          />
-
-
+            android:exported="false" />
         <activity
             android:name=".CameraGalleryDemo.PermissionActivity"
             android:exported="false"
@@ -280,13 +298,41 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider> <!-- // For Calling the Foreground Service -->
-        <service android:name=".ServiceDemo.Service.ForegroundService" /> <!-- //Google Milkit Text Vision -->
+        <service android:name=".ServiceDemo.Service.ForegroundService" />
+        <service android:name=".ServiceDemo.Service.CallerForegroundService" />
+
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="ocr" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <receiver
+            android:name=".TrucallerModel.BroadCastReceiver.CallReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".TrucallerModel.ExitActivity"
+            android:autoRemoveFromRecents="true"
+            android:theme="@android:style/Theme.NoDisplay" />
+        <activity
+            android:name=".TrucallerModel.MyCustomDialog"
+            android:noHistory="true"
+            android:taskAffinity=".MyCustomDialog"
+            android:theme="@style/MyDialogTheme" />
+        <activity
+            android:name=".TrucallerModel.CallerDialogActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:showOnLockScreen="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.JetPackDemo" />
     </application>
 
 </manifest>

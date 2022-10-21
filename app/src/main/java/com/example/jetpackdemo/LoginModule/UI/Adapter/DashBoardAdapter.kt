@@ -35,6 +35,7 @@ class DashBoardAdapter (private var listDashBoard: MutableList<DashboardEntity> 
 
     override fun onBindViewHolder(holder: DasbboardHolder, position: Int) {
        var dashboardEntity = listDashBoard[position]
+
         binding.apply {
 
             txtProductName.text = dashboardEntity.menuname

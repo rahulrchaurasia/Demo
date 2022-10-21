@@ -123,7 +123,7 @@ class KotlinBasicDemoActivity : AppCompatActivity() {
 
             // For generic
 
-//            val tileRed : TileState<String,String,Int>  = TileState.Red(type = "RED")     // call generic method
+      //      val tileRed : TileState<String,String,Int>  = TileState.Red(type = "RED")     // call generic method
 //
 //            val tileBlue = TileState.Blue(type = "BLUE" , quantity = 20)
 //

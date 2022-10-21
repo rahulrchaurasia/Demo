@@ -16,6 +16,8 @@ object Constant {
 
     val TAG_Coroutine : String = "COROUTINE"
 
+    val TAG_WEBVIEW : String = "WebViewDEMO"
+
     val TAG_WORKER : String = "WorkerDEMO"
 
     val TAG_SCANNER : String = "ScannerDEMO"
@@ -31,6 +33,8 @@ object Constant {
     val ErrorDefault : String = "Unknown Error"
 
     val NetworkError : String = "No Inerenet Connection!!"
+
+    val PUSH_BROADCAST_ACTION : String = "com.example.jetpackdemo.callDialog"
 
 
     fun hideKeyBoard(view: View?, context: Context) {

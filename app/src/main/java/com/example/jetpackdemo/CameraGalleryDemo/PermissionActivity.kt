@@ -28,6 +28,7 @@ class PermissionActivity : BaseActivity() {
     private lateinit var layout: View
     lateinit var imgUri : Uri
 
+    // CAMERA  ////////
     lateinit var cameraContracts : ActivityResultLauncher<Uri>   // Open Camera Using Uri
 
     private val requestPermissionLauncher =
@@ -59,6 +60,10 @@ class PermissionActivity : BaseActivity() {
         layout = binding.root
 
 
+        // CAMERA ////////
+
+        //region camera result
+
         cameraContracts = registerForActivityResult(ActivityResultContracts.TakePicture()){
 
             // binding.imgProfile.setImageURI(null)
@@ -66,6 +71,7 @@ class PermissionActivity : BaseActivity() {
 
         }
 
+        //endregion
 
         binding.btnClose.setOnClickListener {
 
@@ -81,6 +87,7 @@ class PermissionActivity : BaseActivity() {
 
 
 
+    // region Camera Opening
     private fun showCameraDialog() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_GRANTED) {
@@ -95,8 +102,6 @@ class PermissionActivity : BaseActivity() {
             requestCameraPermission()
         }
     }
-
-
 
     private fun requestCameraPermission() {
         if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
@@ -155,6 +160,8 @@ class PermissionActivity : BaseActivity() {
         // show alert dialog
         alert.show()
     }
+
+    //endregion
 
     override fun onBackPressed() {
        // super.onBackPressed()

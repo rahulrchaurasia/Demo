@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
+import android.util.Base64
 import android.util.Base64.encodeToString
 import android.util.Log
 import androidx.core.content.FileProvider
@@ -43,6 +44,10 @@ object Utility {
         )
 
     }
+
+
+
+
 
 
     fun openSetting(context: Context){
@@ -92,7 +97,7 @@ object Utility {
     }
 
     // URI TO Bitmap
-    open fun getBitmapFromContentResolver(selectedFileUri: Uri?, context: Context): Bitmap? {
+     fun getBitmapFromContentResolver(selectedFileUri: Uri?, context: Context): Bitmap? {
         return try {
             val parcelFileDescriptor = context.contentResolver.openFileDescriptor(
                 selectedFileUri!!, "r"
@@ -103,8 +108,16 @@ object Utility {
             image
         } catch (e: IOException) {
             e.printStackTrace()
+
             null
         }
+    }
+
+   open  fun bitmapToBase64(bitmap: Bitmap): String {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        return encodeToString(byteArray, Base64.DEFAULT)
     }
 
 //    private fun bitmapToBase64(bitmap: Bitmap): String? {
@@ -115,5 +128,13 @@ object Utility {
 //    }
 
 
+    fun loadWebViewUrlInBrowser(context: Context, url: String?) {
+        Log.d("URL", url!!)
+        val browserIntent = Intent(Intent.ACTION_VIEW)
+        if (Uri.parse(url) != null) {
+            browserIntent.data = Uri.parse(url)
+        }
+        context.startActivity(browserIntent)
+    }
 
 }

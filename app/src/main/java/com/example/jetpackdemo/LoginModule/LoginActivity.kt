@@ -18,6 +18,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.jetpackdemo.APIState
 import com.example.jetpackdemo.BaseActivity
 import com.example.jetpackdemo.HomePage.HomePageActivity
+import com.example.jetpackdemo.LoginModule.DataModel.RequestEntity.LoginRequestEntity
 import com.example.jetpackdemo.LoginModule.Repository.LoginRepository
 import com.example.jetpackdemo.LoginModule.UI.HomeDashboardActivity
 import com.example.jetpackdemo.LoginModule.ViewModel.LoginViewModel
@@ -45,6 +46,13 @@ class LoginActivity : BaseActivity() {
     private var isLocationPermissionGranted = false
     private var isRecordPermissionGranted = false
 
+    private var isReadPhoneStatePermissionGranted = false
+    private var isReadContactsPermissionGranted = false
+    private var isSystemAlertWindowPermissionGranted = false
+    private var isCallPhonePermissionGranted = false
+    private var isWakeLockPermissionGranted = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,7 +70,18 @@ class LoginActivity : BaseActivity() {
             isLocationPermissionGranted = permission[Manifest.permission.ACCESS_FINE_LOCATION ] ?: isLocationPermissionGranted
             isRecordPermissionGranted = permission[Manifest.permission.RECORD_AUDIO ] ?: isRecordPermissionGranted
 
-            if (isReadPermissionGranted && isCameraPermissionGranted && isLocationPermissionGranted && isRecordPermissionGranted){
+            /////////CALL LOG ///////////////
+            isReadPhoneStatePermissionGranted = permission[Manifest.permission.READ_PHONE_STATE ] ?: isReadPhoneStatePermissionGranted
+            isReadContactsPermissionGranted = permission[Manifest.permission.READ_CONTACTS ] ?: isReadContactsPermissionGranted
+            isSystemAlertWindowPermissionGranted = permission[Manifest.permission.SYSTEM_ALERT_WINDOW ] ?: isSystemAlertWindowPermissionGranted
+            isCallPhonePermissionGranted = permission[Manifest.permission.CALL_PHONE ] ?: isCallPhonePermissionGranted
+            isWakeLockPermissionGranted = permission[Manifest.permission.WAKE_LOCK ] ?: isWakeLockPermissionGranted
+
+           /////end Call Log /////
+
+            if (isReadPermissionGranted && isCameraPermissionGranted && isLocationPermissionGranted && isRecordPermissionGranted
+                && isReadPhoneStatePermissionGranted    && isReadContactsPermissionGranted   && isSystemAlertWindowPermissionGranted
+                && isCallPhonePermissionGranted  && isWakeLockPermissionGranted){
 
                 showSnackBar(binding.lyparent,"All Permission Granted")
             }else{
@@ -75,7 +94,7 @@ class LoginActivity : BaseActivity() {
 
 
 
-       // requestPermission()
+        requestPermission()
 
         //region Observing Live and Flow Data
 
@@ -196,9 +215,8 @@ class LoginActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
-            openExternalApp()
 
-            /*
+
             if(validate()){
 
             var loginRequestEntity  =    LoginRequestEntity(
@@ -241,7 +259,7 @@ class LoginActivity : BaseActivity() {
 
             }
 
-             */
+
 
 
 
@@ -263,35 +281,7 @@ class LoginActivity : BaseActivity() {
 
     }
 
-    //Note : In manifest we add package Visibilty of SyncCalllog app.
-    private fun openExternalApp(){
 
-        var packageName1 = "com.utility.finmartcontact"  //"com.utility.finmartcontact/.login.LoginActivity"
-        var packageName = "com.policyboss.policybosspro"  //"com.google.android.youtube"
-        val launchIntent = packageManager.getLaunchIntentForPackage(packageName1)
-        if (launchIntent != null) {
-            startActivity(launchIntent.putExtra("fbaid","1976",)
-                .putExtra("ssid","15921")
-                .putExtra("parentid","0")
-                .addFlags(FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK)
-            )
-        } else {
-
-            showAlert("There is no package available in android")
-        }
-//Intent  cmp=com.policyboss.policybosspro/.splashscreen.SplashScreenActivity }
-        //com.example.jetpackdemo/com.utility.finmartcontact
-        //".login.LoginActivity"
-       // var packageName = "com.utility.finmartcontact"
-//        var className = "LoginActivity"
-//
-//        val intent = Intent(Intent.ACTION_MAIN)
-//        intent.addCategory(Intent.CATEGORY_LAUNCHER)
-//        intent.setPackage(packageName)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//        intent.setClassName(packageName, className)
-//        startActivity(intent)
-    }
     private fun requestPermission(){
         isReadPermissionGranted = ContextCompat.checkSelfPermission(
             this,
@@ -312,6 +302,37 @@ class LoginActivity : BaseActivity() {
             this,
             Manifest.permission.RECORD_AUDIO
         ) == PackageManager.PERMISSION_GRANTED
+
+
+        /////////CALL LOG ///////////////
+
+        isReadPhoneStatePermissionGranted = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.READ_PHONE_STATE
+        ) == PackageManager.PERMISSION_GRANTED
+
+        isReadContactsPermissionGranted = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.READ_CONTACTS
+        ) == PackageManager.PERMISSION_GRANTED
+
+        isSystemAlertWindowPermissionGranted = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.SYSTEM_ALERT_WINDOW
+        ) == PackageManager.PERMISSION_GRANTED
+
+
+        isCallPhonePermissionGranted = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.CALL_PHONE
+        ) == PackageManager.PERMISSION_GRANTED
+
+
+        isWakeLockPermissionGranted = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WAKE_LOCK
+        ) == PackageManager.PERMISSION_GRANTED
+
 
 
         val permissionRequest : MutableList<String> = ArrayList()

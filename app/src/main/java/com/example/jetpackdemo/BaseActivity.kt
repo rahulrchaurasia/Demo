@@ -120,6 +120,10 @@ open class BaseActivity : AppCompatActivity() {
 
      }
 
+    open fun showToast(strMessage: String){
+        Toast.makeText(this,strMessage,Toast.LENGTH_SHORT).show()
+    }
+
 
 
 
