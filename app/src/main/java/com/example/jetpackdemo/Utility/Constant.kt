@@ -36,6 +36,7 @@ object Constant {
 
     val PUSH_BROADCAST_ACTION : String = "com.example.jetpackdemo.callDialog"
 
+    val REQUEST_ID_MULTIPLE_PERMISSIONS = 111
 
     fun hideKeyBoard(view: View?, context: Context) {
         if (view != null) {

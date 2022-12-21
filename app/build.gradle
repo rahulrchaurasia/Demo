@@ -39,6 +39,7 @@ android {
     kapt {
         correctErrorTypes true
     }
+    namespace 'com.example.jetpackdemo'
 }
 
 dependencies {
