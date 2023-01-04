@@ -25,6 +25,9 @@ import java.security.Permission
 
 // Link
 //https://www.youtube.com/watch?v=xsUnbQEfJ6I
+
+//https://medium.com/@ajinkya.kolkhede1/requesting-runtime-permissions-using-new-activityresult-api-cb6116551f00
+//https://gist.github.com/SurajBahadur/671521c379502495d9ef0f6f1dc21724           [ Multiple Permission]
 class MultiplePermissionActivity : BaseActivity() {
 
 
