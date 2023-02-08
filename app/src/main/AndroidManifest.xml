@@ -119,13 +119,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetPackDemo"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".MultiPermiisionDemo2Activity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".webView.WebViewDemoActivity"
             android:exported="false"
