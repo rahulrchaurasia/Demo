@@ -188,7 +188,7 @@ public class CommonWebViewActivity extends BaseActivity {
 
 
         // region For URL1
-        // Web to Android
+        // *********** Web to Android ****************
         @JavascriptInterface
         public void showToast(String msg) {
 
@@ -197,7 +197,7 @@ public class CommonWebViewActivity extends BaseActivity {
 
         }
 
-        // Android to Web
+        //  *********** Android to Web  ***********
         @JavascriptInterface
         public String getLatLon() {
 

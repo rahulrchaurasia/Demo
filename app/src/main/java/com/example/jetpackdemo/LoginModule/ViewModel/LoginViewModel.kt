@@ -93,7 +93,7 @@ class LoginViewModel (var loginRepository: LoginRepository) : ViewModel(){
         loginRepository.getLogin2(loginRequestEntity).collect{
 
            loginMutableLiveData.postValue(it)
-
+          
 
         }
 
